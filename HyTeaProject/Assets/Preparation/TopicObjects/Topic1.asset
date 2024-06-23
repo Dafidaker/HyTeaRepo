@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b6fd6b0fb3b2094d9225bd6e84a5726, type: 3}
+  m_Name: Topic1
+  m_EditorClassIdentifier: 
+  Title: Only the sweet release of death will cease my eternal suffering
+  AvailableSlides:
+  - {fileID: 762159623617537414, guid: 349090d27ee0b9740882f09aa41e6288, type: 3}
+  - {fileID: 762159623617537414, guid: 67764b95e36ba7a40ae7f26d7d3ea2c2, type: 3}
+  - {fileID: 762159623617537414, guid: f473c469a6489db4a9caee51196f5439, type: 3}
+  AvailableOptionsForSlides:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
