@@ -43,12 +43,13 @@ public class DragAndDropManager : MonoBehaviour, IPointerDownHandler, IBeginDrag
         _optionCanvasGroup.alpha = 1f;
         _optionCanvasGroup.blocksRaycasts = true;
         EventManager.DropOptionEvent.Invoke();
+        //EventManager.RefreshGridEvent.Invoke();
         if(!_placed) ResetPosition();
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        Debug.Log(_optionTransform.position);
+        Debug.Log(_defaultPosition);
         _optionTransform.position = eventData.position;
     }
 

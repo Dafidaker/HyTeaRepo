@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b6fd6b0fb3b2094d9225bd6e84a5726, type: 3}
   m_Name: Topic2
   m_EditorClassIdentifier: 
-  Title: Topic2
+  Title: For what is a man? What has he got?
   AvailableSlides:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 762159623617537414, guid: ac7869789367b594d8a61da14fdc2c75, type: 3}
+  - {fileID: 762159623617537414, guid: a27257fab6b670848b5e023e00590f78, type: 3}
+  - {fileID: 762159623617537414, guid: 8606adc596e431443a156209c6ec6cf6, type: 3}
   AvailableOptionsForSlides:
   - {fileID: 0}
   - {fileID: 0}

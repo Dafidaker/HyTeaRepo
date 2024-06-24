@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 5953153828560924738}
   - component: {fileID: 4270735509073826794}
   - component: {fileID: 5697475163022763449}
-  - component: {fileID: -8256710267963859190}
-  - component: {fileID: -6650283611410989161}
+  - component: {fileID: 5476148910811773841}
+  - component: {fileID: -6649252241701365863}
   m_Layer: 5
-  m_Name: Topic1_Slide2
+  m_Name: Topic1_Slide4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -78,7 +78,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &-8256710267963859190
+--- !u!114 &5476148910811773841
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -91,7 +91,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _placed: 0
---- !u!225 &-6650283611410989161
+--- !u!225 &-6649252241701365863
 CanvasGroup:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -170,7 +170,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Topic 1
 
-    Slide 2'
+    Slide 4
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
