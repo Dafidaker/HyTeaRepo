@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 5953153828560924738}
   - component: {fileID: 4270735509073826794}
   - component: {fileID: 5697475163022763449}
-  - component: {fileID: 6523179700112266281}
-  - component: {fileID: 1484249593776980467}
+  - component: {fileID: -7603215765457373156}
+  - component: {fileID: 5697383282899441198}
   m_Layer: 5
-  m_Name: Topic1_Slide3
+  m_Name: Topic1_Slide7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -78,7 +78,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!225 &6523179700112266281
+--- !u!225 &-7603215765457373156
 CanvasGroup:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -90,7 +90,7 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!114 &1484249593776980467
+--- !u!114 &5697383282899441198
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -113,7 +113,7 @@ GameObject:
   - component: {fileID: 3538038041348202925}
   - component: {fileID: 2919196387632697318}
   - component: {fileID: 2161778402583566820}
-  - component: {fileID: 5793311627767854580}
+  - component: {fileID: 2330589294671307510}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -170,7 +170,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Topic 1
 
-    Slide 3
+    Slide 7
 
 '
   m_isRightToLeft: 0
@@ -241,7 +241,7 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!225 &5793311627767854580
+--- !u!225 &2330589294671307510
 CanvasGroup:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

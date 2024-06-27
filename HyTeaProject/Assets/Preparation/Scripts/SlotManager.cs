@@ -16,7 +16,7 @@ public class SlotManager : MonoBehaviour, IDropHandler
       {
          UpdatePlacedItem();
          eventData.pointerDrag.GetComponent<Transform>().position = GetComponent<Transform>().position;
-         eventData.pointerDrag.GetComponent<DragAndDropManager>().SetAsPlaced(true);
+         eventData.pointerDrag.GetComponent<DragAndDropOptionManager>().SetAsPlaced(true);
          _placedItem = eventData.pointerDrag;
          
       }
@@ -26,6 +26,6 @@ public class SlotManager : MonoBehaviour, IDropHandler
    {
       if (_placedItem == null) return;
          
-      _placedItem.GetComponent<DragAndDropManager>().ResetPosition();
+      _placedItem.GetComponent<DragAndDropOptionManager>().ResetPosition();
    }
 }

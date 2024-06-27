@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,16 +7,22 @@ using UnityEngine;
 public class Topic : ScriptableObject
 {
     public string Title;
-    [SerializeField] private GameObject[] AvailableSlides;
-    [SerializeField] private GameObject[] AvailableOptionsForSlides;
-
-    public GameObject[] GetAvailableSlides()
+    [SerializeField] private List<GameObject> AvailableSlides;
+    [SerializeField] private List<GameObject> AvailableOptionsForSlides;
+    
+    public List<GameObject> GetAvailableSlides()
     {
         return AvailableSlides;
     }
 
-    public GameObject[] GetAvailableOptionsForSlides()
+    public List<GameObject> GetAvailableOptionsForSlides()
     {
         return AvailableOptionsForSlides;
+    }
+
+    private void Awake()
+    {
+        AvailableSlides = new List<GameObject>();
+        AvailableOptionsForSlides = new List<GameObject>();
     }
 }

@@ -7,12 +7,13 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UIElements;
 
-public class DragAndDropManager : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndDragHandler, IDragHandler
+public class DragAndDropOptionManager : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndDragHandler, IDragHandler, IPointerUpHandler
 {
-    [SerializeField] private bool _placed;
+    private bool _placed;
     private Transform _optionTransform;
     private CanvasGroup _optionCanvasGroup;
     private Vector3 _defaultPosition;
+    private int _indexOfHeldSlide;
 
     private void Awake()
     {
@@ -26,8 +27,10 @@ public class DragAndDropManager : MonoBehaviour, IPointerDownHandler, IBeginDrag
     {
         Debug.Log("test");
         _optionTransform.position = eventData.position;
+        _optionCanvasGroup.alpha = .6f;
         SetAsPlaced(false);
         EventManager.GrabOptionEvent.Invoke();
+       
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -42,15 +45,33 @@ public class DragAndDropManager : MonoBehaviour, IPointerDownHandler, IBeginDrag
         Debug.Log("End Drag");
         _optionCanvasGroup.alpha = 1f;
         _optionCanvasGroup.blocksRaycasts = true;
-        EventManager.DropOptionEvent.Invoke();
-        //EventManager.RefreshGridEvent.Invoke();
-        if(!_placed) ResetPosition();
+        if (!_placed)
+        {
+            ResetPosition();
+            EventManager.DropOptionEvent.Invoke();
+        }
+        
     }
 
     public void OnDrag(PointerEventData eventData)
     {
         Debug.Log(_defaultPosition);
         _optionTransform.position = eventData.position;
+    }
+    
+    public void OnPointerUp(PointerEventData eventData)
+    {
+         Debug.Log("Drop");
+        if (!_placed)
+        {
+            ResetPosition();
+            EventManager.DropOptionEvent.Invoke();
+            _optionCanvasGroup.alpha = 1f;
+        }
+        else
+        {
+            Debug.Log("Item was placed");
+        }
     }
 
     public void SetAsPlaced(bool placed)
