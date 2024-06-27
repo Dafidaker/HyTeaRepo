@@ -13,4 +13,19 @@ public static class EventManager
    public static UnityEvent<int> GetIndexOfHeldSlideEvent = new UnityEvent<int>();
    public static UnityEvent<int, int> SwapSlidesEvent = new UnityEvent<int, int>();
    //public static UnityEvent RefreshGridEvent = new UnityEvent();
+   public static UnityEvent<Interactable> InteractableIsBeingWatched = new();
+   public static UnityEvent NothingIsBeingDetected = new();
+   
+   ///////////////////////////*Audio Events*//////////////////////////////////////
+   public static UnityEvent PressedVolumeAnalysisButton = new();
+   public static UnityEvent StartedVolumeAnalysis = new();
+   public static UnityEvent FinishedVolumeAnalysis = new();
+   
+   public static UnityEvent<int> ChangedMicrophone = new();
+   public static UnityEvent PopulateMicrophoneList = new();
+   public static UnityEvent<bool> ClickedPlaybackButton = new();
+
+   
+   
+   
 }
