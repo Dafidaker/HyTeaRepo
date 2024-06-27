@@ -30,3 +30,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  AvailableSlideObjects:
+  - {fileID: 11400000, guid: baf9c67014ca2ca4bb4610a2981c64ee, type: 2}
+  - {fileID: 11400000, guid: 5225ed71b2d5d7241965a1b9f5c508e2, type: 2}
+  - {fileID: 11400000, guid: 491001386755a704084c84f08159447f, type: 2}

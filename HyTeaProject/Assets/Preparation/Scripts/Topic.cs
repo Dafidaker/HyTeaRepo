@@ -7,22 +7,25 @@ using UnityEngine;
 public class Topic : ScriptableObject
 {
     public string Title;
-    [SerializeField] private List<GameObject> AvailableSlides;
+    //[SerializeField] private List<GameObject> AvailableSlides;
+    [SerializeField] private List<Slide> AvailableSlideObjects;
     [SerializeField] private List<GameObject> AvailableOptionsForSlides;
+    private List<GameObject> _previewSlides;
+    private List<GameObject> _fullSlides;
     
-    public List<GameObject> GetAvailableSlides()
-    {
-        return AvailableSlides;
-    }
-
     public List<GameObject> GetAvailableOptionsForSlides()
     {
         return AvailableOptionsForSlides;
     }
 
-    private void Awake()
+    public List<GameObject> GetAllPreviewSlides()
     {
-        AvailableSlides = new List<GameObject>();
-        AvailableOptionsForSlides = new List<GameObject>();
+        _previewSlides = new List<GameObject>();
+        for (int i = 0; i < AvailableSlideObjects.Count; i++)
+        {
+            _previewSlides.Add(AvailableSlideObjects[i].GetSlidePreview());
+        }
+        return _previewSlides;
     }
+    
 }

@@ -19,7 +19,6 @@ public class SlideBuildingManager : MonoBehaviour
     [SerializeField] private GameObject OutroSlidePrefab;
     [SerializeField] private GameObject SlidesParent;
     [SerializeField] private Transform StartingPoint;
-    //[SerializeField] private GridLayoutGroup Grid;
 
     private List<GameObject> _slidesInOrder;
 
@@ -33,14 +32,12 @@ public class SlideBuildingManager : MonoBehaviour
     public void UpdateSelectedTopic(Topic topic)
     {
         SelectedTopic = topic;
-        AvailableSlides = SelectedTopic.GetAvailableSlides();
+        //AvailableSlides = SelectedTopic.GetAvailableSlides();
+        AvailableSlides = SelectedTopic.GetAllPreviewSlides();
         AvailableOptionsForSlides = SelectedTopic.GetAvailableOptionsForSlides();
 
         CurrentTopicText.text = SelectedTopic.Title;
         
-        /*Debug.Log("Topic Title: " + SelectedTopic.Title);
-        Debug.Log("Available Slides: " + AvailableSlides.Length);
-        Debug.Log("Available Options: " + AvailableOptionsForSlides.Length);*/
     }
 
     public void MoveToSlideOrderSection()
@@ -113,11 +110,6 @@ public class SlideBuildingManager : MonoBehaviour
         _indexOfHeldSlide = index;
         Debug.Log("Event triggered. Index of the held slide: " + index);
     }
-    
-    /*private void RefreshGrid()
-    {
-        LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)Grid.transform);
-    }*/
     private void OnEnable()
     {
         EventManager.TopicSelectedEvent.AddListener(UpdateSelectedTopic);
@@ -131,11 +123,4 @@ public class SlideBuildingManager : MonoBehaviour
     {
         EventManager.TopicSelectedEvent.RemoveListener(UpdateSelectedTopic);    
     }
-
-    /*private void Start()
-    {
-        TopicSection.SetActive(true);
-        SlideOrderSection.SetActive(false);
-        OptionsSection.SetActive(false);
-    }*/
 }
