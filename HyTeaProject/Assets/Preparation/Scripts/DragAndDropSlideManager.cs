@@ -46,6 +46,17 @@ public class DragAndDropSlideManager : MonoBehaviour, IPointerDownHandler, IBegi
         //EventManager.DropOptionEvent.Invoke();
         if(!_placed) ResetPosition();
         _slideCanvasGroup.blocksRaycasts = true;
+        
+        if (eventData.pointerCurrentRaycast.gameObject.GetComponent<DragAndDropSlideManager>() != null)
+        {
+            GameObject hitObj = eventData.pointerCurrentRaycast.gameObject;
+            Debug.Log("Slide was dropped on a slide of index: " + hitObj.GetComponent<DragAndDropSlideManager>().GetIndex());
+            EventManager.SwapSlidesEvent.Invoke(_indexInSlideOrder, hitObj.GetComponent<DragAndDropSlideManager>().GetIndex());
+        }
+        else
+        {
+            Debug.Log("Object doesn't have drag and drop manager.");
+        }
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -71,15 +82,16 @@ public class DragAndDropSlideManager : MonoBehaviour, IPointerDownHandler, IBegi
 
     public void OnDrop(PointerEventData eventData)
     {
-        if (eventData.pointerCurrentRaycast.gameObject.GetComponent<DragAndDropSlideManager>() != null)
+        /*if (eventData.pointerCurrentRaycast.gameObject.GetComponent<DragAndDropSlideManager>() != null)
         {
-            DragAndDropSlideManager hitObj = eventData.pointerCurrentRaycast.gameObject.GetComponent<DragAndDropSlideManager>();
-            Debug.Log("Slide was dropped on a slide of index: " + hitObj.GetIndex());        
+            GameObject hitObj = eventData.pointerCurrentRaycast.gameObject;
+            Debug.Log("Slide was dropped on a slide of index: " + hitObj.GetComponent<DragAndDropSlideManager>().GetIndex());
+            EventManager.SwapSlidesEvent.Invoke(_indexInSlideOrder, hitObj.GetComponent<DragAndDropSlideManager>().GetIndex());
         }
         else
         {
             Debug.Log("Object doesn't have drag and drop manager.");
-        }
+        }*/
     }
 
     public void SetAsPlaced(bool placed)
@@ -107,6 +119,16 @@ public class DragAndDropSlideManager : MonoBehaviour, IPointerDownHandler, IBegi
         _numOfSiblings = num;
         //Debug.Log("Num of children: " + num);
     }
+
+    public Vector3 GetDefaultPos()
+    {
+        return _defaultPosition;
+    }
+
+    public void SetDefaultPos(Vector3 newPos)
+    {
+        _defaultPosition = newPos;
+    }
     
     private void OnEnable()
     {
@@ -117,9 +139,5 @@ public class DragAndDropSlideManager : MonoBehaviour, IPointerDownHandler, IBegi
     {
         EventManager.GetNumberOfSiblings.RemoveListener(UpdateNumOfSiblings);
     }
-
-    public void test()
-    {
-        Debug.Log("Test");
-    }
+    
 }

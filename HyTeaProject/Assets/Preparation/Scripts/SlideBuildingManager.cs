@@ -23,6 +23,7 @@ public class SlideBuildingManager : MonoBehaviour
     private List<GameObject> _slidesInOrder;
 
     private int _indexOfHeldSlide;
+    private int _indexOfTargetSlide;
     
     [Header("Sections")]
     [SerializeField] private GameObject TopicSection;
@@ -110,10 +111,34 @@ public class SlideBuildingManager : MonoBehaviour
         _indexOfHeldSlide = index;
         Debug.Log("Event triggered. Index of the held slide: " + index);
     }
+
+    private void SwapSlidesOnDrop(int index1, int index2)
+    {
+        (_slidesInOrder[index1], _slidesInOrder[index2]) = (_slidesInOrder[index2], _slidesInOrder[index1]);
+        
+        foreach (Transform child in SlidesParent.transform)
+        {
+            Destroy(child.gameObject);
+        }
+        
+        SlidesParent.transform.DetachChildren();
+        
+        for (int i = 0; i < _slidesInOrder.Count; i++)
+        {
+            int row = i / 4;
+            int column = i % 4;
+            var go = Instantiate(_slidesInOrder[i], StartingPoint.position + new Vector3(column * 250, row * -145 , 0), quaternion.identity, SlidesParent.transform);
+            if (!go.GetComponent<DragAndDropSlideManager>()) continue;
+            go.GetComponent<DragAndDropSlideManager>().SetIndex(i);
+        }
+        EventManager.GetNumberOfSiblings.Invoke(SlidesParent.transform.childCount);
+    }
+    
     private void OnEnable()
     {
         EventManager.TopicSelectedEvent.AddListener(UpdateSelectedTopic);
         EventManager.GetIndexOfHeldSlideEvent.AddListener(UpdateIndexOfHeldSlide);
+        EventManager.SwapSlidesEvent.AddListener(SwapSlidesOnDrop);
         if (SelectedTopic == null) CurrentTopicText.text = "None";
 
         _slidesInOrder = new List<GameObject>();
@@ -121,6 +146,16 @@ public class SlideBuildingManager : MonoBehaviour
 
     private void OnDisable()
     {
-        EventManager.TopicSelectedEvent.RemoveListener(UpdateSelectedTopic);    
+        EventManager.TopicSelectedEvent.RemoveListener(UpdateSelectedTopic);
+        EventManager.GetIndexOfHeldSlideEvent.RemoveListener(UpdateIndexOfHeldSlide);
+    }
+
+    public void PrintSlideOrder()
+    {
+        Debug.Log("Printing slide order\n");
+        for (int i = 0; i < _slidesInOrder.Count; i++)
+        {
+            Debug.Log(_slidesInOrder[i].name);
+        }
     }
 }

@@ -28,4 +28,13 @@ public class Topic : ScriptableObject
         return _previewSlides;
     }
     
+    public List<GameObject> GetAllFullSlides()
+    {
+        _fullSlides = new List<GameObject>();
+        for (int i = 0; i < AvailableSlideObjects.Count; i++)
+        {
+            _fullSlides.Add(AvailableSlideObjects[i].GetFullSlide());
+        }
+        return _fullSlides;
+    }
 }
