@@ -32,12 +32,12 @@ public class SpeechRecognitionTest : MonoBehaviour
     
     private void OnEnable()
     {
-        MicrophoneSelector.OnMicrophoneChanged += ChangedMicrophone;
+        EventManager.ChangedMicrophone.AddListener(ChangedMicrophone);
     }
 
     private void OnDisable()
     {
-        MicrophoneSelector.OnMicrophoneChanged -= ChangedMicrophone;
+        EventManager.ChangedMicrophone.RemoveListener(ChangedMicrophone);
     }
     
     public void ChangedMicrophone(int microphoneIndex)

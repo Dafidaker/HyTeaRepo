@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -8,17 +7,32 @@ using UnityEngine.Events;
 public class MicrophoneSelector : MonoBehaviour
 {
     public TMP_Dropdown sourceDropdown;
-    public int chooseDeviceIndex;
-
-    public static UnityAction<int> OnMicrophoneChanged;
+    private int _chooseDeviceIndex;
     
+    private void Awake()
+    {
+        _chooseDeviceIndex = 0;
+    }
+
     private void Start()
     {
         PopulateSourceDownDrop();   
     }
 
+    private void OnEnable()
+    {
+        EventManager.PopulateMicrophoneList.AddListener(PopulateSourceDownDrop);
+    }
+
+    private void OnDisable()
+    {
+        EventManager.PopulateMicrophoneList.RemoveListener(PopulateSourceDownDrop);
+    }
+
     private void PopulateSourceDownDrop()
     {
+        sourceDropdown.ClearOptions();
+        
         var options = new List<TMP_Dropdown.OptionData>();
 
         foreach (var microphone in Microphone.devices)
@@ -29,12 +43,14 @@ public class MicrophoneSelector : MonoBehaviour
         }
 
         sourceDropdown.options = options;
+
+        ChooseMicrophone(0);
     }
 
 
     public void ChooseMicrophone(int optionIndex)
     {
-        chooseDeviceIndex = optionIndex;
-        OnMicrophoneChanged.Invoke(chooseDeviceIndex);
+        _chooseDeviceIndex = optionIndex;
+        EventManager.ChangedMicrophone.Invoke(_chooseDeviceIndex);
     }
 }
