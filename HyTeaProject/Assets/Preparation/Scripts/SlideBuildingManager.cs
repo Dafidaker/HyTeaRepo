@@ -4,23 +4,23 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class SlideBuildingManager : MonoBehaviour
 {
     [Header("Topic Selection Section")]
     [SerializeField] private Topic SelectedTopic;
-    [SerializeField] private List<GameObject> AvailableSlides;
-    [SerializeField] private List<GameObject> AvailableOptionsForSlides;
+    [SerializeField] private List<Slide> AvailableSlides;
     [SerializeField] private TextMeshProUGUI CurrentTopicText;
     
     [Header("Slide Order Section")]
-    [SerializeField] private GameObject IntroSlidePrefab;
-    [SerializeField] private GameObject OutroSlidePrefab;
+    [SerializeField] private Slide IntroSlideObj;
+    [SerializeField] private Slide OutroSlideObj;
     [SerializeField] private GameObject SlidesParent;
     [SerializeField] private Transform StartingPoint;
-
-    private List<GameObject> _slidesInOrder;
+    
+    private List<Slide> _slideObjInOrder;
 
     private int _indexOfHeldSlide;
     private int _indexOfTargetSlide;
@@ -33,9 +33,7 @@ public class SlideBuildingManager : MonoBehaviour
     public void UpdateSelectedTopic(Topic topic)
     {
         SelectedTopic = topic;
-        //AvailableSlides = SelectedTopic.GetAvailableSlides();
-        AvailableSlides = SelectedTopic.GetAllPreviewSlides();
-        AvailableOptionsForSlides = SelectedTopic.GetAvailableOptionsForSlides();
+        AvailableSlides = SelectedTopic.GetAllSlides();
 
         CurrentTopicText.text = SelectedTopic.Title;
         
@@ -76,14 +74,15 @@ public class SlideBuildingManager : MonoBehaviour
 
     private void DisplayAvailableOptions()
     {
-        _slidesInOrder = AvailableSlides;
-        _slidesInOrder = AddToBeginning(_slidesInOrder, IntroSlidePrefab);
-        _slidesInOrder = AddToEnd(_slidesInOrder, OutroSlidePrefab);
-        for (int i = 0; i < _slidesInOrder.Count; i++)
+        _slideObjInOrder = AvailableSlides;
+        _slideObjInOrder = AddToBeginning(_slideObjInOrder, IntroSlideObj);
+        _slideObjInOrder = AddToEnd(_slideObjInOrder, OutroSlideObj);
+        
+        for (int i = 0; i < _slideObjInOrder.Count; i++)
         {
             int row = i / 4;
             int column = i % 4;
-            var go = Instantiate(_slidesInOrder[i], StartingPoint.position + new Vector3(column * 250, row * -145 , 0), quaternion.identity, SlidesParent.transform);
+            var go = Instantiate(_slideObjInOrder[i].GetSlidePreview(), StartingPoint.position + new Vector3(column * 250, row * -145 , 0), quaternion.identity, SlidesParent.transform);
             if (!go.GetComponent<DragAndDropSlideManager>()) continue;
             go.GetComponent<DragAndDropSlideManager>().SetIndex(i);
         }
@@ -91,17 +90,17 @@ public class SlideBuildingManager : MonoBehaviour
         EventManager.GetNumberOfSiblings.Invoke(SlidesParent.transform.childCount);
     }
     
-    private List<GameObject> AddToBeginning(List<GameObject> originalList, GameObject newElement)
+    private List<Slide> AddToBeginning(List<Slide> originalList, Slide newElement)
     {
-        List<GameObject> newList = new List<GameObject>(originalList.Count + 1);
+        List<Slide> newList = new List<Slide>(originalList.Count + 1);
         newList.Add(newElement);
         newList.AddRange(originalList);
         return newList;
     }
     
-    private List<GameObject> AddToEnd(List<GameObject> originalList, GameObject newElement)
+    private List<Slide> AddToEnd(List<Slide> originalList, Slide newElement)
     {
-        List<GameObject> newList = new List<GameObject>(originalList);
+        List<Slide> newList = new List<Slide>(originalList);
         newList.Add(newElement);
         return newList;
     }
@@ -114,7 +113,7 @@ public class SlideBuildingManager : MonoBehaviour
 
     private void SwapSlidesOnDrop(int index1, int index2)
     {
-        (_slidesInOrder[index1], _slidesInOrder[index2]) = (_slidesInOrder[index2], _slidesInOrder[index1]);
+        (_slideObjInOrder[index1], _slideObjInOrder[index2]) = (_slideObjInOrder[index2], _slideObjInOrder[index1]);
         
         foreach (Transform child in SlidesParent.transform)
         {
@@ -123,14 +122,15 @@ public class SlideBuildingManager : MonoBehaviour
         
         SlidesParent.transform.DetachChildren();
         
-        for (int i = 0; i < _slidesInOrder.Count; i++)
+        for (int i = 0; i < _slideObjInOrder.Count; i++)
         {
             int row = i / 4;
             int column = i % 4;
-            var go = Instantiate(_slidesInOrder[i], StartingPoint.position + new Vector3(column * 250, row * -145 , 0), quaternion.identity, SlidesParent.transform);
+            var go = Instantiate(_slideObjInOrder[i].GetSlidePreview(), StartingPoint.position + new Vector3(column * 250, row * -145 , 0), quaternion.identity, SlidesParent.transform);
             if (!go.GetComponent<DragAndDropSlideManager>()) continue;
             go.GetComponent<DragAndDropSlideManager>().SetIndex(i);
         }
+        
         EventManager.GetNumberOfSiblings.Invoke(SlidesParent.transform.childCount);
     }
     
@@ -140,8 +140,8 @@ public class SlideBuildingManager : MonoBehaviour
         EventManager.GetIndexOfHeldSlideEvent.AddListener(UpdateIndexOfHeldSlide);
         EventManager.SwapSlidesEvent.AddListener(SwapSlidesOnDrop);
         if (SelectedTopic == null) CurrentTopicText.text = "None";
-
-        _slidesInOrder = new List<GameObject>();
+        
+        _slideObjInOrder = new List<Slide>();
     }
 
     private void OnDisable()
@@ -153,9 +153,9 @@ public class SlideBuildingManager : MonoBehaviour
     public void PrintSlideOrder()
     {
         Debug.Log("Printing slide order\n");
-        for (int i = 0; i < _slidesInOrder.Count; i++)
+        for (int i = 0; i < _slideObjInOrder.Count; i++)
         {
-            Debug.Log(_slidesInOrder[i].name);
+            Debug.Log(_slideObjInOrder[i].GetSlidePreview().name);
         }
     }
 }

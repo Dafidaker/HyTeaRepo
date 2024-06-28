@@ -12,12 +12,12 @@ public class Topic : ScriptableObject
     [SerializeField] private List<GameObject> AvailableOptionsForSlides;
     private List<GameObject> _previewSlides;
     private List<GameObject> _fullSlides;
-    
-    public List<GameObject> GetAvailableOptionsForSlides()
-    {
-        return AvailableOptionsForSlides;
-    }
 
+    public List<Slide> GetAllSlides()
+    {
+        return AvailableSlideObjects;
+    }
+    
     public List<GameObject> GetAllPreviewSlides()
     {
         _previewSlides = new List<GameObject>();
