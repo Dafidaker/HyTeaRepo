@@ -7,9 +7,7 @@ using UnityEngine;
 public class Topic : ScriptableObject
 {
     public string Title;
-    //[SerializeField] private List<GameObject> AvailableSlides;
     [SerializeField] private List<Slide> AvailableSlideObjects;
-    [SerializeField] private List<GameObject> AvailableOptionsForSlides;
     private List<GameObject> _previewSlides;
     private List<GameObject> _fullSlides;
 

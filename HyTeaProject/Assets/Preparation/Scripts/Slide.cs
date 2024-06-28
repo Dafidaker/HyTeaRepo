@@ -29,6 +29,11 @@ public class Slide : ScriptableObject
         return AvailableOptions;
     }
 
+    public GameObject GetChosenOption()
+    {
+        return _chosenOption;
+    }
+
     public void SetChosenOption(GameObject chosen)
     {
         _chosenOption = chosen;

@@ -10,7 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8e13cfcf2990ba245ba474a710bbd1f1, type: 3}
-  m_Name: Topic1_Slide5
+  m_Name: Topic1_Slide6
   m_EditorClassIdentifier: 
-  SlidePreviewPrefab: {fileID: 762159623617537414, guid: e25052c9b8fe4a54cbc684cb65082a01, type: 3}
-  SlideFullPrefab: {fileID: 0}
+  SlidePreviewPrefab: {fileID: 762159623617537414, guid: 1b8893691843eb64591141ec07a8325e, type: 3}
+  SlideFullPrefab: {fileID: 6941635050581408522, guid: 5bb6ee9aa64a781438c10c39cd62ff06, type: 3}
+  AvailableOptions: []
+  IsNotMovable: 0

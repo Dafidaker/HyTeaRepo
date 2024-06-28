@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e13cfcf2990ba245ba474a710bbd1f1, type: 3}
   m_Name: OutroSlide
   m_EditorClassIdentifier: 
-  SlidePreviewPrefab: {fileID: 0}
+  SlidePreviewPrefab: {fileID: 762159623617537414, guid: 5380996f8bd8ae84ea8457916f3cf7b3, type: 3}
   SlideFullPrefab: {fileID: 0}
   AvailableOptions: []
-  IsMovable: 0
+  IsNotMovable: 1

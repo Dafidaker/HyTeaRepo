@@ -20,10 +20,17 @@ public class SlideBuildingManager : MonoBehaviour
     [SerializeField] private GameObject SlidesParent;
     [SerializeField] private Transform StartingPoint;
     
+    [Header("Slide Customization Section")] 
+    [SerializeField] private Transform SlideDisplayPoint;
+    [SerializeField] private Transform OptionStartPoint;
+    
     private List<Slide> _slideObjInOrder;
-
+    
     private int _indexOfHeldSlide;
     private int _indexOfTargetSlide;
+
+    private int _indexOfCurrentFullSlide;
+    private List<GameObject> _displayedSlides;
     
     [Header("Sections")]
     [SerializeField] private GameObject TopicSection;
@@ -45,7 +52,7 @@ public class SlideBuildingManager : MonoBehaviour
         {
             TopicSection.SetActive(false);
             SlideOrderSection.SetActive(true);
-            DisplayAvailableOptions();
+            DisplayAvailableSlides();
         }
         else
         {
@@ -57,6 +64,8 @@ public class SlideBuildingManager : MonoBehaviour
     {
         SlideOrderSection.SetActive(false);
         OptionsSection.SetActive(true);
+        
+        DisplayFullSlides();
     }
 
     public void ReturnToTopicSection()
@@ -72,7 +81,31 @@ public class SlideBuildingManager : MonoBehaviour
         SlidesParent.transform.DetachChildren();
     }
 
-    private void DisplayAvailableOptions()
+    public void ReturnToSlideOrderSection()
+    {
+        foreach (Transform child in SlideDisplayPoint.transform)
+        {
+            Destroy(child.gameObject);
+        }
+        
+        SlideDisplayPoint.transform.DetachChildren();
+        
+        SlideOrderSection.SetActive(true);
+        OptionsSection.SetActive(false);
+        
+        _displayedSlides.Clear();
+    }
+
+    public void CycleThroughDisplayedSlides(int increment)
+    {
+        _displayedSlides[_indexOfCurrentFullSlide].SetActive(false);
+        _indexOfCurrentFullSlide += increment;
+        if (_indexOfCurrentFullSlide < 0) _indexOfCurrentFullSlide = _displayedSlides.Count - 1;
+        if (_indexOfCurrentFullSlide >= _displayedSlides.Count) _indexOfCurrentFullSlide = 0;
+        _displayedSlides[_indexOfCurrentFullSlide].SetActive(true);
+    }
+
+    private void DisplayAvailableSlides()
     {
         _slideObjInOrder = AvailableSlides;
         _slideObjInOrder = AddToBeginning(_slideObjInOrder, IntroSlideObj);
@@ -88,6 +121,24 @@ public class SlideBuildingManager : MonoBehaviour
         }
         
         EventManager.GetNumberOfSiblings.Invoke(SlidesParent.transform.childCount);
+    }
+
+    private void DisplayFullSlides()
+    {
+        _displayedSlides.Clear();
+        for (int i = 0; i < _slideObjInOrder.Count; i++)
+        {
+            if (_slideObjInOrder[i].IsNotMovable) continue;
+            var go = Instantiate(_slideObjInOrder[i].GetFullSlide(), SlideDisplayPoint.position, quaternion.identity, SlideDisplayPoint.transform);
+            _displayedSlides.Add(go);
+        }
+
+        for (int j = 1; j < _displayedSlides.Count; j++)
+        {
+            _displayedSlides[j].SetActive(false);
+        }
+
+        _indexOfCurrentFullSlide = 0;
     }
     
     private List<Slide> AddToBeginning(List<Slide> originalList, Slide newElement)
@@ -142,6 +193,7 @@ public class SlideBuildingManager : MonoBehaviour
         if (SelectedTopic == null) CurrentTopicText.text = "None";
         
         _slideObjInOrder = new List<Slide>();
+        _displayedSlides = new List<GameObject>();
     }
 
     private void OnDisable()
