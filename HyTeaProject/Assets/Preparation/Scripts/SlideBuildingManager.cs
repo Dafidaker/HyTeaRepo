@@ -110,12 +110,15 @@ public class SlideBuildingManager : MonoBehaviour
         _slideObjInOrder = AvailableSlides;
         _slideObjInOrder = AddToBeginning(_slideObjInOrder, IntroSlideObj);
         _slideObjInOrder = AddToEnd(_slideObjInOrder, OutroSlideObj);
+
+        float horizontalSpacing = IntroSlideObj.GetSlidePreview().GetComponent<RectTransform>().rect.width + 5 + Screen.width / 100;
+        float verticalSpacing = IntroSlideObj.GetSlidePreview().GetComponent<RectTransform>().rect.height + 10 + Screen.height / 100;
         
         for (int i = 0; i < _slideObjInOrder.Count; i++)
         {
             int row = i / 4;
             int column = i % 4;
-            var go = Instantiate(_slideObjInOrder[i].GetSlidePreview(), StartingPoint.position + new Vector3(column * 250, row * -145 , 0), quaternion.identity, SlidesParent.transform);
+            var go = Instantiate(_slideObjInOrder[i].GetSlidePreview(), StartingPoint.position + new Vector3(column * horizontalSpacing, row * -verticalSpacing , 0), quaternion.identity, SlidesParent.transform);
             if (!go.GetComponent<DragAndDropSlideManager>()) continue;
             go.GetComponent<DragAndDropSlideManager>().SetIndex(i);
         }
@@ -173,11 +176,14 @@ public class SlideBuildingManager : MonoBehaviour
         
         SlidesParent.transform.DetachChildren();
         
+        float horizontalSpacing = IntroSlideObj.GetSlidePreview().GetComponent<RectTransform>().rect.width + 5 + Screen.width / 100;
+        float verticalSpacing = IntroSlideObj.GetSlidePreview().GetComponent<RectTransform>().rect.height + 10 + Screen.height / 100;
+        
         for (int i = 0; i < _slideObjInOrder.Count; i++)
         {
             int row = i / 4;
             int column = i % 4;
-            var go = Instantiate(_slideObjInOrder[i].GetSlidePreview(), StartingPoint.position + new Vector3(column * 250, row * -145 , 0), quaternion.identity, SlidesParent.transform);
+            var go = Instantiate(_slideObjInOrder[i].GetSlidePreview(), StartingPoint.position + new Vector3(column * horizontalSpacing, row * -verticalSpacing , 0), quaternion.identity, SlidesParent.transform);            
             if (!go.GetComponent<DragAndDropSlideManager>()) continue;
             go.GetComponent<DragAndDropSlideManager>().SetIndex(i);
         }
