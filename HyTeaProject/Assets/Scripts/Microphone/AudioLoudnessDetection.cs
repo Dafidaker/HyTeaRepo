@@ -11,7 +11,6 @@ public struct ClipInfo
     public float Loudness;
 }
 
-//[RequireComponent(typeof(AudioSource))]
 public class AudioLoudnessDetection : MonoBehaviour
 {
     private int _sampleWindow;
@@ -95,8 +94,8 @@ public class AudioLoudnessDetection : MonoBehaviour
     {
         clipInfo.AudioClip = Microphone.Start(_microphoneString, loop, length, AudioSettings.outputSampleRate);
     }*/
-    
-    public float GetLoudnessFromMicrophone()
+
+    private float GetLoudnessFromMicrophone()
     {
         return GetLoudnessFromAudioClip(Microphone.GetPosition(MicrophoneManager.Instance.GetSelectedMicrophoneString()), MicrophoneManager.Instance.microphoneClip);
     }
@@ -171,9 +170,11 @@ public class AudioLoudnessDetection : MonoBehaviour
 
         for (var i = 0; i < _sampleWindow; i++)
         {
-            var valueToAdd = Mathf.Abs(AddingGainToAudio(waveData[i]));
+            var valueToAdd = AddingGainToAudio(waveData[i]);;
             
             if (!(valueToAdd >= threashold)) continue;
+            
+            valueToAdd = Mathf.Clamp(valueToAdd, -1.0f, 1.0f);
             
             totalLoudness += valueToAdd;
             usableSamples++;
@@ -187,7 +188,7 @@ public class AudioLoudnessDetection : MonoBehaviour
 
     private float AddingGainToAudio(float data)
     {
-        return Mathf.Clamp(data * Gain, -1.0f, 1.0f);
+        return Mathf.Abs(data * Gain);
     }
 }
 

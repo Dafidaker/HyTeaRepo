@@ -1,12 +1,9 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Object = UnityEngine.Object;
 
@@ -21,9 +18,9 @@ class VolumeAnalyzer : Object
 
     public VolumeAnalyzer(float whisperingLoudness, float projectingLoudness, float min, float max)
     {
-        _threshold = Mathf.Clamp(whisperingLoudness - 0.1f, 0, 1);
-        _minAcceptable = Mathf.Clamp(projectingLoudness - 0.1f, 0, 1);
-        _maxAcceptable = Mathf.Clamp(projectingLoudness + 0.1f, 0, 1);
+        _threshold = Mathf.Clamp(whisperingLoudness - 0.05f, min, max);
+        _minAcceptable = Mathf.Clamp(projectingLoudness - 0.15f, min, max);
+        _maxAcceptable = Mathf.Clamp(projectingLoudness + 0.15f, min, max);
         _minValue = min;
         _maxValue = max;
     }
@@ -31,31 +28,24 @@ class VolumeAnalyzer : Object
     public List<GameObject> CreateDividors(Slider slider,GameObject dividorPrefab)
     {
         float initialValue = slider.value;
-        GameObject tempGo;
         
         List<GameObject> gameObjects = new List<GameObject>();
 
-        slider.value = _threshold;
-        tempGo = Instantiate(dividorPrefab);
-        if (slider.handleRect.parent != null) { tempGo.transform.SetParent(slider.handleRect.parent); }
-        CopyRectTransform(slider.handleRect.GetComponent<RectTransform>(), tempGo.GetComponent<RectTransform>());
-        //tempGo.transform.SetParent(slider.transform);
-        gameObjects.Add(tempGo);
+        gameObjects.Add(CreateADivider(slider,  dividorPrefab, _threshold));
+        gameObjects.Add(CreateADivider(slider,  dividorPrefab, _minAcceptable));
+        gameObjects.Add(CreateADivider(slider,  dividorPrefab, _maxAcceptable));
         
-        slider.value = _minAcceptable; 
-        tempGo = Instantiate(dividorPrefab);
-        if (slider.handleRect.parent != null) { tempGo.transform.SetParent(slider.handleRect.parent); }
-        CopyRectTransform(slider.handleRect.GetComponent<RectTransform>(), tempGo.GetComponent<RectTransform>());
-        gameObjects.Add(tempGo);
-
-        slider.value = _maxAcceptable;
-        tempGo = Instantiate(dividorPrefab);
-        if (slider.handleRect.parent != null) { tempGo.transform.SetParent(slider.handleRect.parent); }
-        CopyRectTransform(slider.handleRect.GetComponent<RectTransform>(), tempGo.GetComponent<RectTransform>());
-        gameObjects.Add(tempGo);
-
         slider.value = initialValue;
         return gameObjects;
+    }
+
+    private GameObject CreateADivider(Slider slider, GameObject dividorPrefab, float value)
+    {
+        slider.value = value;
+        GameObject tempGo = Instantiate(dividorPrefab);
+        if (slider.handleRect.parent != null) { tempGo.transform.SetParent(slider.handleRect.parent); }
+        CopyRectTransform(slider.handleRect.GetComponent<RectTransform>(), tempGo.GetComponent<RectTransform>());
+        return tempGo;
     }
     
     void CopyRectTransform(RectTransform source, RectTransform target)
@@ -91,7 +81,7 @@ class VolumeAnalyzer : Object
     private readonly float _minValue;
     private readonly float _maxValue;
 
-    SpeakingVolume GetSpeakingVolume(float loudness)
+    public SpeakingVolume GetSpeakingVolume(float loudness)
     {
         //smaller than the threshold
         if (loudness < _threshold)
@@ -140,13 +130,15 @@ public class SliderVoiceLoudness : MonoBehaviour
     private List<float> _loudnessTestHistory;
     private float _averageLoudness;
     private float _averageLoudnessRecurring;
-    private float _whisperingLoudness;
-    private float _projectingLoudness;
+    public float _whisperingLoudness;
+    public float _projectingLoudness;
 
     private const float Min = 0f;
-    private const float Max = 0.3f;
+    private const float Max = 1f;
 
     private VolumeAnalyzer _volumeAnalyzer;
+    private bool _isSliderNotNull;
+    private bool _isEverytimeSliderNotNull;
 
     private void OnEnable()
     {
@@ -179,6 +171,8 @@ public class SliderVoiceLoudness : MonoBehaviour
 
     private void Start()
     {
+        _isEverytimeSliderNotNull = everytimeSlider != null;
+        _isSliderNotNull = slider != null;
         StartCoroutine(GetLoudnessRecurring());
     }
 
@@ -187,12 +181,22 @@ public class SliderVoiceLoudness : MonoBehaviour
         if (_isDetectionNull) return;
         
         float loudness = detection.currentLoudness * loudnessSensitivity;
+
+        /*string loudnessInText = _volumeAnalyzer.GetSpeakingVolume(loudness).ToString();
         
-        loudnessText.text = loudness.ToString(CultureInfo.InvariantCulture);
+        if (loudnessInText != null)
+        {
+            loudnessText.text = loudnessInText;
+        }
+        else
+        {
+            loudnessText.text = loudness.ToString(CultureInfo.InvariantCulture);
+        }*/
+        
 
         //if (loudness < threshold) { loudness = 0; }
 
-        everytimeSlider.value = RoundUpToOneDecimalPlace(loudness);
+        if(_isEverytimeSliderNotNull) everytimeSlider.value = RoundUpToOneDecimalPlace(loudness);
     
         _loudnessHistory.Add(loudness);
         _loudnessTestHistory.Add(loudness);
@@ -220,6 +224,11 @@ public class SliderVoiceLoudness : MonoBehaviour
 
     private void CreateVolumeAnalyzer()
     {
+        foreach (var dividingBar in _dividingBars)
+        {
+            Destroy(dividingBar);
+        }
+        _dividingBars.Clear();
         _volumeAnalyzer = new VolumeAnalyzer(_whisperingLoudness,_projectingLoudness,Min,Max);
         _dividingBars = _volumeAnalyzer.CreateDividors(slider,divisionBarPrefab);
     }
@@ -244,7 +253,23 @@ public class SliderVoiceLoudness : MonoBehaviour
     
         _loudnessHistory.Clear();
 
-        slider.value = _averageLoudnessRecurring;
+        if (_isSliderNotNull)
+        {
+            slider.value = _averageLoudnessRecurring;
+        }
+
+        string loudnessInText = _volumeAnalyzer.GetSpeakingVolume(_averageLoudnessRecurring).ToString();
+        
+        if (loudnessInText != null)
+        {
+            loudnessText.text = loudnessInText;
+        }
+        else
+        {
+            loudnessText.text = _averageLoudnessRecurring.ToString(CultureInfo.InvariantCulture);
+        }
+
+        
         StartCoroutine(GetLoudnessRecurring());
     }
 
@@ -373,5 +398,10 @@ public class SliderVoiceLoudness : MonoBehaviour
         _projectingLoudness = GetLoudness();
         instructionText.text = "Projecting loudness is " + _projectingLoudness;
 
+    }
+    
+    public void ButtonCallExample()
+    {
+        CreateVolumeAnalyzer();
     }
 }

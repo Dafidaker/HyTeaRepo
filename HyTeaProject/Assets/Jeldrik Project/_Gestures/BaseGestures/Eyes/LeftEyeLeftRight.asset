@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 086fa0f94f5380e46aff06b1910ab0b4, type: 3}
+  m_Name: LeftEyeLeftRight
+  m_EditorClassIdentifier: 
+  LandMarkToTrack: 2
+  StepAnalysisParameters:
+    XStepLimits: {x: -0.005, y: 0.005}
+    YStepLimits: {x: -0.005, y: 0.005}
+    VisibilityThreshold: 0.7
+  DirectionPercentages:
+  - Direction: 0
+    MinimumPercentage: 0.2
+    MaximumPercentage: 1
+  - Direction: 1
+    MinimumPercentage: 0.2
+    MaximumPercentage: 1
+  PositionConditions:
+  - Landmark: 4
+    Direction: 0
+    Type: 0

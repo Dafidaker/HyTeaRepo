@@ -1,4 +1,5 @@
 using System;
+using Imports.QuickOutline.Scripts;
 using UnityEngine;
 
 [RequireComponent(typeof(Outline))]

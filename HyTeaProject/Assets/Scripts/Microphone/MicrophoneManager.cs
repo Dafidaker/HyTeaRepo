@@ -7,11 +7,13 @@ public class MicrophoneManager : Singleton<MicrophoneManager>
 {
     private int _microphoneIndex;
     private string _microphoneString;
+    private bool _isRecording;
     
     public AudioClip microphoneClip;
     private List<AudioClip> _previousAudioClips;
 
     private float Gain;
+    private string[] _previousMicrophoneDevices;
 
     private void OnEnable()
     {
@@ -23,14 +25,23 @@ public class MicrophoneManager : Singleton<MicrophoneManager>
         EventManager.ChangedMicrophone.RemoveListener(ChangeSelectedMicrophone);
     }
 
+    
     private void Awake()
     {
+        _isRecording = false;
         _previousAudioClips = new List<AudioClip>();
+        _previousMicrophoneDevices = Microphone.devices;
         
-        //it selects the first microphone initially
+        // Select the first microphone initially
         ChangeSelectedMicrophone(0);
         
         RecordMicrophone();
+
+        InicializeMicrophoneData();
+        
+        // Start coroutine to check for microphone changes
+        StartCoroutine(CheckForMicrophoneChanges());
+        
     }
 
     public void SetGain(float newGain)
@@ -66,15 +77,27 @@ public class MicrophoneManager : Singleton<MicrophoneManager>
 
     public void RecordMicrophone()
     {
-        StopRecordingMicrophone();
+        StopRecordingTheMicrophone();
         
         microphoneClip = Microphone.Start(_microphoneString, true, 10, AudioSettings.outputSampleRate);
-        
-        if (microphoneClip != null) EventManager.StartedNewRecording.Invoke(); 
+        microphoneClip.name = Time.time + " by " + _microphoneString;
+
+        if (microphoneClip != null)
+        {
+            _isRecording = true;
+            EventManager.StartedNewRecording.Invoke();
+        } 
     }
     
-    private void StopRecordingMicrophone()
+    private void StopRecordingTheMicrophone()
     {
+        //_isRecording = false;
+        Microphone.End(_microphoneString);
+    }
+    
+    private void StopRecording()
+    {
+        _isRecording = false;
         Microphone.End(_microphoneString);
     }
 
@@ -96,13 +119,77 @@ public class MicrophoneManager : Singleton<MicrophoneManager>
     
     private void ChangeSelectedMicrophone(int newIndex)
     {
-        var wasRecording = IsMicrophoneRecording();
+        //var wasRecording = IsMicrophoneRecording();
         
-        StopRecordingMicrophone();
+        StopRecordingTheMicrophone();
 
         UpdateMicrophoneVariables(newIndex);
 
-        if (wasRecording) RecordMicrophone();
+        if (_isRecording) RecordMicrophone();
+    }
+
+    private void InicializeMicrophoneData()
+    {
+        _previousMicrophoneDevices = Microphone.devices;
+    }
+    
+    private IEnumerator CheckForMicrophoneChanges()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(2f);
+
+            string[] currentMicrophoneDevices = Microphone.devices;
+
+            // Check if the microphone list has changed
+            if (HasMicrophoneListChanged(currentMicrophoneDevices))
+            {
+                HandleMicrophoneDisconnection(currentMicrophoneDevices);
+                _previousMicrophoneDevices = currentMicrophoneDevices;
+            }
+        }
+    }
+
+    private bool HasMicrophoneListChanged(string[] currentDevices)
+    {
+        if (currentDevices.Length != _previousMicrophoneDevices.Length)
+        {
+            return true;
+        }
+
+        for (int i = 0; i < currentDevices.Length; i++)
+        {
+            if (currentDevices[i] != _previousMicrophoneDevices[i])
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private void HandleMicrophoneDisconnection(string[] currentMicrophoneDevices)
+    {
+        int indexOfSelectedMicrophone = Array.IndexOf(currentMicrophoneDevices, _microphoneString);
+        // Check if the currently selected microphone is still available
+        if (indexOfSelectedMicrophone == -1)
+        {
+            // If the current microphone is not available, select a new one
+            if (currentMicrophoneDevices.Length > 0)
+            {
+                ChangeSelectedMicrophone(0);
+            }
+            else
+            {
+                // No microphones are available
+                StopRecordingTheMicrophone();
+                _microphoneString = null;
+            }
+        }
+        else
+        {
+            ChangeSelectedMicrophone(indexOfSelectedMicrophone);
+        }
     }
     
 }

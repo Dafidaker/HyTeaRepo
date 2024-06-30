@@ -50,12 +50,14 @@ public class PlaybackMicrophone : MonoBehaviour
 
     private void PlaybackMicrophoneRecording()
     {
-        //if the microphone is not recording or if the microphone shouldn't playback return
-        if (!MicrophoneManager.Instance.IsMicrophoneRecording() || !_isMicrophonePlaybackEnabled) return;
-
         if (!_playbackAudioSource) return;
         
-        _playbackAudioSource.Stop();
+        //if the microphone is not recording or if the microphone shouldn't playback return
+        if (!MicrophoneManager.Instance.IsMicrophoneRecording() || !_isMicrophonePlaybackEnabled)
+        {
+            _playbackAudioSource.Stop();
+            return;
+        }
 
         UpdateAudioClipStartTime();
         
