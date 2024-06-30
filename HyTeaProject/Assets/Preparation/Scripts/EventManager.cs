@@ -29,4 +29,10 @@ public static class EventManager
    public static UnityEvent<float> ChangedGain = new();
    
    public static UnityEvent<bool> OnPauseStateChanged = new();
+   public static readonly UnityEvent<float> LatestLoudnessCaptured = new();
+   
+   
+   ///////////////////////////*Gestures*//////////////////////////////////////
+   /// 
+   public static readonly UnityEvent<float, float, GesturesEnum> GestureCaptured = new();
 }

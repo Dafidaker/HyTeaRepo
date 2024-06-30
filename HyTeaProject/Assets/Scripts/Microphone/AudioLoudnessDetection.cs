@@ -97,14 +97,16 @@ public class AudioLoudnessDetection : MonoBehaviour
 
     private float GetLoudnessFromMicrophone()
     {
-        return GetLoudnessFromAudioClip(Microphone.GetPosition(MicrophoneManager.Instance.GetSelectedMicrophoneString()), MicrophoneManager.Instance.microphoneClip);
+        return  GetLoudnessFromAudioClip(Microphone.GetPosition(MicrophoneManager.Instance.GetSelectedMicrophoneString()), MicrophoneManager.Instance.microphoneClip);
     }
 
     private IEnumerator UpdateLoudness()
     {
-        yield return new WaitForSeconds(0.01f);
+        yield return new WaitForSeconds(0.1f);
 
         currentLoudness = GetLoudnessFromMicrophone();
+
+        EventManager.LatestLoudnessCaptured.Invoke(currentLoudness);
         
         if (currentLoudness == 0)
         {

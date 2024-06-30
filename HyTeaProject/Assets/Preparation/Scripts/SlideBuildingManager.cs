@@ -129,7 +129,6 @@ public class SlideBuildingManager : MonoBehaviour
     private void DisplayFullSlides()
     {
         float horizontalSpacing = _slideObjInOrder[1].GetAvailableOptions()[0].GetComponent<RectTransform>().rect.width + 5 + Screen.width / 100;
-        //float verticalSpacing = _slideObjInOrder[1].GetAvailableOptions()[0].GetComponent<RectTransform>().rect.height + 10 + Screen.height / 100;
         
         _displayedSlides.Clear();
         for (int i = 0; i < _slideObjInOrder.Count; i++)
@@ -138,34 +137,28 @@ public class SlideBuildingManager : MonoBehaviour
             var go = Instantiate(_slideObjInOrder[i].GetFullSlide(), SlideDisplayPoint.position, quaternion.identity, SlideDisplayPoint.transform);
             _displayedSlides.Add(go);
             
-            // Get the number of available options
+            
             int optionCount = _slideObjInOrder[i].GetAvailableOptions().Count;
 
-// Get the width of the parent container
+    
             RectTransform parentRectTransform = go.transform.Find("OptionDisplayStart").GetComponent<RectTransform>();
             float parentWidth = parentRectTransform.rect.width;
 
-// Calculate the total width required to display all options with the given spacing
+
             float totalWidth = (optionCount - 1) * horizontalSpacing;
 
-// Calculate the starting position so the options are centered within the parent container
+
             Vector3 startPosition = parentRectTransform.position - new Vector3(totalWidth / 2, 0, 0);
 
             for (int j = 0; j < optionCount; j++)
             {
-                // Calculate the position for each option
+                
                 Vector3 position = startPosition + new Vector3(j * horizontalSpacing, 0, 0);
 
-                // Instantiate the option at the calculated position
+                
                 var opt = Instantiate(_slideObjInOrder[i].GetAvailableOptions()[j], position, quaternion.identity, parentRectTransform);
                 opt.GetComponent<DragAndDropOptionManager>().Index = j;
             }
-            
-            /*for (int j = 0; j < _slideObjInOrder[i].GetAvailableOptions().Count; j++)
-            {
-                var opt = Instantiate(_slideObjInOrder[i].GetAvailableOptions()[j], go.transform.Find("OptionDisplayStart").position + new Vector3(j * horizontalSpacing, 0 , 0), quaternion.identity, go.transform.Find("OptionDisplayStart"));
-                opt.GetComponent<DragAndDropOptionManager>().Index = j;
-            }*/
         }
 
         for (int k = 1; k < _displayedSlides.Count; k++)
