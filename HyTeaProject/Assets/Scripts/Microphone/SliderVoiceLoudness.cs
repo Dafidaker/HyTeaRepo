@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -126,6 +127,7 @@ public class SliderVoiceLoudness : MonoBehaviour
     private List<GameObject> _dividingBars;
 
     [field:SerializeField] private TextMeshProUGUI instructionText;
+    [field:SerializeField] private TextMeshProUGUI loudnessText;
     [field:SerializeField] private GameObject divisionBarPrefab;
     
     public float loudnessSensitivity = 100;
@@ -135,13 +137,14 @@ public class SliderVoiceLoudness : MonoBehaviour
     private bool _isInstructionTextNull;
 
     private List<float> _loudnessHistory;
+    private List<float> _loudnessTestHistory;
     private float _averageLoudness;
     private float _averageLoudnessRecurring;
     private float _whisperingLoudness;
     private float _projectingLoudness;
 
-    private const float Min = 0;
-    private const float Max = 1;
+    private const float Min = 0f;
+    private const float Max = 0.3f;
 
     private VolumeAnalyzer _volumeAnalyzer;
 
@@ -159,7 +162,6 @@ public class SliderVoiceLoudness : MonoBehaviour
 
     private void Awake()
     {
-        
         slider.minValue = Min;
         slider.maxValue = Max;
         
@@ -170,6 +172,7 @@ public class SliderVoiceLoudness : MonoBehaviour
         _isDetectionNull = detection == null;
         
         _loudnessHistory = new List<float>();
+        _loudnessTestHistory = new List<float>();
         
         handleRectTransform = slider.handleRect;
     }
@@ -182,16 +185,19 @@ public class SliderVoiceLoudness : MonoBehaviour
     private void Update()
     {
         if (_isDetectionNull) return;
-    
-        var loudness = detection.GetLoudnessFromMicrophone() * loudnessSensitivity;
+        
+        float loudness = detection.currentLoudness * loudnessSensitivity;
+        
+        loudnessText.text = loudness.ToString(CultureInfo.InvariantCulture);
 
-        if (loudness < threshold) { loudness = 0; }
+        //if (loudness < threshold) { loudness = 0; }
 
         everytimeSlider.value = RoundUpToOneDecimalPlace(loudness);
-        
+    
         _loudnessHistory.Add(loudness);
+        _loudnessTestHistory.Add(loudness);
     }
-
+    
     private static float RoundUpToOneDecimalPlace(float value)
     {
         return Mathf.Ceil(value * 100f) / 100f;
@@ -220,8 +226,8 @@ public class SliderVoiceLoudness : MonoBehaviour
     
     private IEnumerator GetLoudnessRecurring()
     {
-        yield return new WaitForSeconds(1f);
-        
+        yield return new WaitForSeconds(0.3f);
+            
         _averageLoudnessRecurring = 0;
         var loudnessInstances = 0;
     
@@ -247,7 +253,7 @@ public class SliderVoiceLoudness : MonoBehaviour
         _averageLoudness = 0;
         var loudnessInstances = 0;
     
-        foreach (var loudness in _loudnessHistory.Where(loudness => loudness > 0))
+        foreach (var loudness in _loudnessTestHistory.Where(loudness => loudness > 0.001))
         {
             _averageLoudness += loudness;
             loudnessInstances++;
@@ -258,7 +264,7 @@ public class SliderVoiceLoudness : MonoBehaviour
             _averageLoudness /= loudnessInstances;
         }
     
-        _loudnessHistory.Clear();
+        _loudnessTestHistory.Clear();
 
         return _averageLoudness;
     }
@@ -275,7 +281,10 @@ public class SliderVoiceLoudness : MonoBehaviour
     private IEnumerator ResultsOfLoudnessTest()
     {
         var isProjectingLouderThanWhispering = _projectingLoudness > _whisperingLoudness;
-        var whisperingAndProjectingDifferenceIsNoticeable = Mathf.Abs(_projectingLoudness - _whisperingLoudness) >= 0.15f;
+        //var whisperingAndProjectingDifferenceIsNoticeable = Mathf.Abs(_projectingLoudness - _whisperingLoudness) >= 0.15f;
+        
+        
+        var whisperingAndProjectingDifferenceIsNoticeable = _projectingLoudness / _whisperingLoudness >= 2f;
         
         instructionText.text = "Calculating the Data ...";
         yield return new WaitForSeconds(2f);
@@ -318,7 +327,7 @@ public class SliderVoiceLoudness : MonoBehaviour
     
         yield return new WaitForSeconds(1.5f);
 
-        _loudnessHistory.Clear();
+        _loudnessTestHistory.Clear();
     
         while (duration >= 1)
         {
@@ -346,7 +355,7 @@ public class SliderVoiceLoudness : MonoBehaviour
     
         yield return new WaitForSeconds(1.5f);
 
-        _loudnessHistory.Clear();
+        _loudnessTestHistory.Clear();
     
         while (duration >= 1)
         {

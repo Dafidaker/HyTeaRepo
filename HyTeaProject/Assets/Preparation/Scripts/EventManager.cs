@@ -25,7 +25,8 @@ public static class EventManager
    public static UnityEvent PopulateMicrophoneList = new();
    public static UnityEvent<bool> ClickedPlaybackButton = new();
 
+   public static UnityEvent StartedNewRecording = new();
+   public static UnityEvent<float> ChangedGain = new();
    
-   
-   
+   public static UnityEvent<bool> OnPauseStateChanged = new();
 }
