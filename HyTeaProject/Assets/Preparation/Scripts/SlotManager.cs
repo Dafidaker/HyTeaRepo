@@ -17,6 +17,7 @@ public class SlotManager : MonoBehaviour, IDropHandler
          UpdatePlacedItem();
          eventData.pointerDrag.GetComponent<Transform>().position = GetComponent<Transform>().position;
          eventData.pointerDrag.GetComponent<DragAndDropOptionManager>().SetAsPlaced(true);
+         //EventManager.SetChosenOptionEvent.Invoke(eventData.pointerDrag.GetComponent<DragAndDropOptionManager>().Index);
          _placedItem = eventData.pointerDrag;
          
       }

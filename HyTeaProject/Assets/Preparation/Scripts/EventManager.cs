@@ -12,7 +12,7 @@ public static class EventManager
    public static UnityEvent<Topic> TopicSelectedEvent = new UnityEvent<Topic>();
    public static UnityEvent<int> GetIndexOfHeldSlideEvent = new UnityEvent<int>();
    public static UnityEvent<int, int> SwapSlidesEvent = new UnityEvent<int, int>();
-   //public static UnityEvent RefreshGridEvent = new UnityEvent();
+   public static UnityEvent<int> SetChosenOptionEvent = new UnityEvent<int>();
    public static UnityEvent<Interactable> InteractableIsBeingWatched = new();
    public static UnityEvent NothingIsBeingDetected = new();
    

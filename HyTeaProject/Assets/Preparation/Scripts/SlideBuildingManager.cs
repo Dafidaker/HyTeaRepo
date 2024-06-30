@@ -52,7 +52,7 @@ public class SlideBuildingManager : MonoBehaviour
         {
             TopicSection.SetActive(false);
             SlideOrderSection.SetActive(true);
-            DisplayAvailableSlides();
+            DisplayPreviewSlides();
         }
         else
         {
@@ -105,7 +105,7 @@ public class SlideBuildingManager : MonoBehaviour
         _displayedSlides[_indexOfCurrentFullSlide].SetActive(true);
     }
 
-    private void DisplayAvailableSlides()
+    private void DisplayPreviewSlides()
     {
         _slideObjInOrder = AvailableSlides;
         _slideObjInOrder = AddToBeginning(_slideObjInOrder, IntroSlideObj);
@@ -128,20 +128,61 @@ public class SlideBuildingManager : MonoBehaviour
 
     private void DisplayFullSlides()
     {
+        float horizontalSpacing = _slideObjInOrder[1].GetAvailableOptions()[0].GetComponent<RectTransform>().rect.width + 5 + Screen.width / 100;
+        //float verticalSpacing = _slideObjInOrder[1].GetAvailableOptions()[0].GetComponent<RectTransform>().rect.height + 10 + Screen.height / 100;
+        
         _displayedSlides.Clear();
         for (int i = 0; i < _slideObjInOrder.Count; i++)
         {
             if (_slideObjInOrder[i].IsNotMovable) continue;
             var go = Instantiate(_slideObjInOrder[i].GetFullSlide(), SlideDisplayPoint.position, quaternion.identity, SlideDisplayPoint.transform);
             _displayedSlides.Add(go);
+            
+            // Get the number of available options
+            int optionCount = _slideObjInOrder[i].GetAvailableOptions().Count;
+
+// Get the width of the parent container
+            RectTransform parentRectTransform = go.transform.Find("OptionDisplayStart").GetComponent<RectTransform>();
+            float parentWidth = parentRectTransform.rect.width;
+
+// Calculate the total width required to display all options with the given spacing
+            float totalWidth = (optionCount - 1) * horizontalSpacing;
+
+// Calculate the starting position so the options are centered within the parent container
+            Vector3 startPosition = parentRectTransform.position - new Vector3(totalWidth / 2, 0, 0);
+
+            for (int j = 0; j < optionCount; j++)
+            {
+                // Calculate the position for each option
+                Vector3 position = startPosition + new Vector3(j * horizontalSpacing, 0, 0);
+
+                // Instantiate the option at the calculated position
+                var opt = Instantiate(_slideObjInOrder[i].GetAvailableOptions()[j], position, quaternion.identity, parentRectTransform);
+                opt.GetComponent<DragAndDropOptionManager>().Index = j;
+            }
+            
+            /*for (int j = 0; j < _slideObjInOrder[i].GetAvailableOptions().Count; j++)
+            {
+                var opt = Instantiate(_slideObjInOrder[i].GetAvailableOptions()[j], go.transform.Find("OptionDisplayStart").position + new Vector3(j * horizontalSpacing, 0 , 0), quaternion.identity, go.transform.Find("OptionDisplayStart"));
+                opt.GetComponent<DragAndDropOptionManager>().Index = j;
+            }*/
         }
 
-        for (int j = 1; j < _displayedSlides.Count; j++)
+        for (int k = 1; k < _displayedSlides.Count; k++)
         {
-            _displayedSlides[j].SetActive(false);
+            _displayedSlides[k].SetActive(false);
         }
-
         _indexOfCurrentFullSlide = 0;
+    }
+
+    private void UpdateChosenOptionInSlide(int index)
+    {
+        int temp = _indexOfCurrentFullSlide;
+
+        if (temp == 0) temp = 1;
+        if (temp == _slideObjInOrder.Count - 1) temp = _slideObjInOrder.Count - 2;
+        
+        _slideObjInOrder[temp].SetChosenOption(_slideObjInOrder[temp].GetAvailableOptions()[index]);
     }
     
     private List<Slide> AddToBeginning(List<Slide> originalList, Slide newElement)
@@ -196,6 +237,7 @@ public class SlideBuildingManager : MonoBehaviour
         EventManager.TopicSelectedEvent.AddListener(UpdateSelectedTopic);
         EventManager.GetIndexOfHeldSlideEvent.AddListener(UpdateIndexOfHeldSlide);
         EventManager.SwapSlidesEvent.AddListener(SwapSlidesOnDrop);
+        EventManager.SetChosenOptionEvent.AddListener(UpdateChosenOptionInSlide);
         if (SelectedTopic == null) CurrentTopicText.text = "None";
         
         _slideObjInOrder = new List<Slide>();
@@ -206,6 +248,8 @@ public class SlideBuildingManager : MonoBehaviour
     {
         EventManager.TopicSelectedEvent.RemoveListener(UpdateSelectedTopic);
         EventManager.GetIndexOfHeldSlideEvent.RemoveListener(UpdateIndexOfHeldSlide);
+        EventManager.SwapSlidesEvent.RemoveListener(SwapSlidesOnDrop);
+        EventManager.SetChosenOptionEvent.RemoveListener(UpdateChosenOptionInSlide);
     }
 
     public void PrintSlideOrder()
@@ -216,4 +260,5 @@ public class SlideBuildingManager : MonoBehaviour
             Debug.Log(_slideObjInOrder[i].GetSlidePreview().name);
         }
     }
+    
 }

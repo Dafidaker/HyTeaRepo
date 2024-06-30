@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SlidePreviewPrefab: {fileID: 762159623617537414, guid: e25052c9b8fe4a54cbc684cb65082a01, type: 3}
   SlideFullPrefab: {fileID: 6941635050581408522, guid: 24623dbe1344ec94ca2976a329b65214, type: 3}
-  AvailableOptions: []
+  AvailableOptions:
+  - {fileID: 1683143259537343830, guid: 53bf10a04964ee243be1f63509194aba, type: 3}
   IsNotMovable: 0

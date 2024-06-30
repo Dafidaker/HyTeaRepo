@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -37,5 +38,10 @@ public class Slide : ScriptableObject
     public void SetChosenOption(GameObject chosen)
     {
         _chosenOption = chosen;
+    }
+
+    private void OnEnable()
+    {
+        _chosenOption = null;
     }
 }

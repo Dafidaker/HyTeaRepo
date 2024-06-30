@@ -13,7 +13,8 @@ public class DragAndDropOptionManager : MonoBehaviour, IPointerDownHandler, IBeg
     private Transform _optionTransform;
     private CanvasGroup _optionCanvasGroup;
     private Vector3 _defaultPosition;
-    private int _indexOfHeldSlide;
+
+    public int Index;
 
     private void Awake()
     {
@@ -25,7 +26,7 @@ public class DragAndDropOptionManager : MonoBehaviour, IPointerDownHandler, IBeg
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        Debug.Log("test");
+        //Debug.Log("test");
         _optionTransform.position = eventData.position;
         _optionCanvasGroup.alpha = .6f;
         SetAsPlaced(false);
@@ -35,14 +36,14 @@ public class DragAndDropOptionManager : MonoBehaviour, IPointerDownHandler, IBeg
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        Debug.Log("Begin Drag");
+        //Debug.Log("Begin Drag");
         _optionCanvasGroup.alpha = .6f;
         _optionCanvasGroup.blocksRaycasts = false;
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        Debug.Log("End Drag");
+        //Debug.Log("End Drag");
         _optionCanvasGroup.alpha = 1f;
         _optionCanvasGroup.blocksRaycasts = true;
         if (!_placed)
@@ -55,13 +56,13 @@ public class DragAndDropOptionManager : MonoBehaviour, IPointerDownHandler, IBeg
 
     public void OnDrag(PointerEventData eventData)
     {
-        Debug.Log(_defaultPosition);
+        //Debug.Log(_defaultPosition);
         _optionTransform.position = eventData.position;
     }
     
     public void OnPointerUp(PointerEventData eventData)
     {
-         Debug.Log("Drop");
+        //Debug.Log("Drop");
         if (!_placed)
         {
             ResetPosition();
