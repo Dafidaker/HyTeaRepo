@@ -8,7 +8,8 @@ public class MicCalibrationUIManager : MonoBehaviour
 {
     [field: SerializeField] private TMP_Dropdown microphoneDropdown;
     [field: SerializeField] private Slider microphoneCalibration;
-
+    [field: SerializeField] private Slider microphoneGain;
+    
     private void Awake()
     {
         if (microphoneDropdown == null) { GetComponentInChildren<TMP_Dropdown>(); }
@@ -31,11 +32,13 @@ public class MicCalibrationUIManager : MonoBehaviour
     {
         microphoneDropdown.interactable = false;
         microphoneCalibration.interactable = false;
+        microphoneGain.interactable = false;
     }
     
     private void EnableElements()
     {
         microphoneDropdown.interactable = true;
         microphoneCalibration.interactable = true;
+        microphoneGain.interactable = true;
     }
 }
