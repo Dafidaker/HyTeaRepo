@@ -13,4 +13,9 @@ MonoBehaviour:
   m_Name: Topic3_Slide2
   m_EditorClassIdentifier: 
   SlidePreviewPrefab: {fileID: 762159623617537414, guid: 60f97894fbd28444d8d7defc4871d843, type: 3}
-  SlideFullPrefab: {fileID: 0}
+  SlideFullPrefab: {fileID: 6941635050581408522, guid: 14723571246a23d4c8fe9206d233105d, type: 3}
+  AvailableOptions:
+  - {fileID: 1683143259537343830, guid: 59f1e61dde7649745a5feb972f3c9b85, type: 3}
+  - {fileID: 1683143259537343830, guid: 59f1e61dde7649745a5feb972f3c9b85, type: 3}
+  - {fileID: 1683143259537343830, guid: cad0bfe584c9ef94f935731982e7ee5c, type: 3}
+  IsNotMovable: 0

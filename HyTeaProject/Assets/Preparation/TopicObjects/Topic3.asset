@@ -12,25 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b6fd6b0fb3b2094d9225bd6e84a5726, type: 3}
   m_Name: Topic3
   m_EditorClassIdentifier: 
-  Title: Sonic Unleashed is the best Sonic Game. Fight me.
-  AvailableSlides:
-  - {fileID: 762159623617537414, guid: 95162330263eece419789cb6995aef65, type: 3}
-  - {fileID: 762159623617537414, guid: 60f97894fbd28444d8d7defc4871d843, type: 3}
-  - {fileID: 762159623617537414, guid: 85b7b7929bbdaa049a36b54763a53a08, type: 3}
-  - {fileID: 762159623617537414, guid: 85b7b7929bbdaa049a36b54763a53a08, type: 3}
-  - {fileID: 762159623617537414, guid: 85b7b7929bbdaa049a36b54763a53a08, type: 3}
-  - {fileID: 762159623617537414, guid: 85b7b7929bbdaa049a36b54763a53a08, type: 3}
-  - {fileID: 762159623617537414, guid: 85b7b7929bbdaa049a36b54763a53a08, type: 3}
-  - {fileID: 762159623617537414, guid: 85b7b7929bbdaa049a36b54763a53a08, type: 3}
-  - {fileID: 762159623617537414, guid: 85b7b7929bbdaa049a36b54763a53a08, type: 3}
-  AvailableOptionsForSlides:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  Title: Topic 3
   AvailableSlideObjects:
   - {fileID: 11400000, guid: baf9c67014ca2ca4bb4610a2981c64ee, type: 2}
   - {fileID: 11400000, guid: 5225ed71b2d5d7241965a1b9f5c508e2, type: 2}
   - {fileID: 11400000, guid: 491001386755a704084c84f08159447f, type: 2}
+  - {fileID: 11400000, guid: 1b39cfe7498f1b14d98aa52b2c51ebc2, type: 2}
+  - {fileID: 11400000, guid: 1611eae80f024944ea77910064aa465e, type: 2}

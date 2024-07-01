@@ -12,13 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b6fd6b0fb3b2094d9225bd6e84a5726, type: 3}
   m_Name: Topic1
   m_EditorClassIdentifier: 
-  Title: I'm melting under this sun
-  AvailableSlides:
-  - {fileID: 762159623617537414, guid: 349090d27ee0b9740882f09aa41e6288, type: 3}
-  - {fileID: 762159623617537414, guid: 67764b95e36ba7a40ae7f26d7d3ea2c2, type: 3}
-  - {fileID: 762159623617537414, guid: f473c469a6489db4a9caee51196f5439, type: 3}
-  - {fileID: 762159623617537414, guid: 3bd8bfa55b469f245949e4028d8e47ca, type: 3}
-  AvailableOptionsForSlides: []
+  Title: Topic 1
   AvailableSlideObjects:
   - {fileID: 11400000, guid: fa224d790365c7147bd8aee8d09d08f4, type: 2}
   - {fileID: 11400000, guid: 8a8b4955a0c44074d812a7f7a639d355, type: 2}
