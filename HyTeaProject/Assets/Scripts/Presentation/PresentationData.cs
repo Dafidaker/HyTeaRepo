@@ -1,75 +1,85 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public enum GesturesEnum
 {
-    
+    HandsInFace,
+    CrossedArms,
+    ArmsBelowWaist,
 }
 
-class Pauses
+[Serializable]
+public class Pauses
 {
     public Pauses(float startTime, float duration)
     {
         StartTime = startTime;
         Duration = duration;
     }
-    
-    public float StartTime { get; private set ; }
-    public float Duration { get;  set; }
+
+    public float StartTime; 
+    public float Duration; 
 }
 
-class TimedLoudness
+[Serializable]
+public class TimedLoudness
 {
     public TimedLoudness(float time, float loudness)
     {
         Time = time;
         Loudness = loudness;
     }
-    
-    public float Time { get; private set; }
-    public float Loudness { get; private set; }
+
+    public float Time; 
+    public float Loudness; 
 }
 
-class TimedGestures
+[Serializable]
+public class TimedGestures
 {
-    public TimedGestures(float startTime,float duration, GesturesEnum gesturesEnum)
+    /*public TimedGestures(float startTime,float duration, GesturesEnum gesturesEnum)
     {
         StartTime = startTime;
         Duration = duration;
         GesturesEnum = gesturesEnum;
-    }
-    
-    public float StartTime { get; private set; }
-    public float Duration { get; private set; }
-    public GesturesEnum GesturesEnum { get; private set; }
+    }*/
+
+    [SerializeField] public float StartTime;
+    [SerializeField] public float Duration;
+    [SerializeField] public GesturesEnum GesturesEnum; 
 }
 
-public class PresentationData : Object
+[CreateAssetMenu(fileName = "PresentationData", menuName = "Presentation/PresentationData")]
+[Serializable]
+public class PresentationData : ScriptableObject
 {
-    private float StartTime;
-    private float EndTime;
-    private float Duration;
+    public float StartTime;
+    public float EndTime;
+    public float Duration;
+    public float DesiredDuration;
+
+    public string presentationScript;
     
+    [SerializeField] public List<TimedLoudness>  _timedLoudness;
+    [SerializeField] public List<TimedGestures>  _timedGestures;
+    [SerializeField] public List<Pauses> _timedPauses;
     
-    private List<TimedLoudness>  _timedLoudness;
-    private List<TimedGestures>  _timedGestures;
-    private List<Pauses> _timedPauses;
-    
-    PresentationData()
+    /*PresentationData()
     {
-        StartTime = Time.time;
+//        StartTime = Time.time;
         
         
         _timedLoudness = new List<TimedLoudness>();
         _timedGestures = new List<TimedGestures>();
         _timedPauses = new List<Pauses>();
-        EventManager.LatestLoudnessCaptured.AddListener(StoreLoudness);
-        EventManager.OnPauseStateChanged.AddListener(CreateUpdatePause);
-        EventManager.GestureCaptured.AddListener(StoreGesture);
-    }
+        //EventManager.LatestLoudnessCaptured.AddListener(StoreLoudness);
+        //EventManager.OnPauseStateChanged.AddListener(CreateUpdatePause);
+        //EventManager.GestureCaptured.AddListener(StoreGesture);
+    }*/
 
 
-    private void StoreLoudness(float loudness)
+    /*private void StoreLoudness(float loudness)
     {
         _timedLoudness.Add(new TimedLoudness(Time.time, loudness));
     }
@@ -89,5 +99,5 @@ public class PresentationData : Object
         {
             _timedPauses[^1].Duration = Time.time - StartTime;
         }
-    }
+    }*/
 }

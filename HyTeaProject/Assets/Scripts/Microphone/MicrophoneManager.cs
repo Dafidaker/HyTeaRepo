@@ -35,7 +35,7 @@ public class MicrophoneManager : Singleton<MicrophoneManager>
         // Select the first microphone initially
         ChangeSelectedMicrophone(0);
         
-        RecordMicrophone();
+        //RecordMicrophone();
 
         InicializeMicrophoneData();
         
@@ -95,7 +95,7 @@ public class MicrophoneManager : Singleton<MicrophoneManager>
         Microphone.End(_microphoneString);
     }
     
-    private void StopRecording()
+    public void StopRecording()
     {
         _isRecording = false;
         Microphone.End(_microphoneString);

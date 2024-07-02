@@ -2,6 +2,7 @@ using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 public class MicCalibrationUIManager : MonoBehaviour
@@ -14,6 +15,17 @@ public class MicCalibrationUIManager : MonoBehaviour
     {
         if (microphoneDropdown == null) { GetComponentInChildren<TMP_Dropdown>(); }
         if (microphoneCalibration == null) { GetComponentInChildren<Slider>(); }
+    }
+
+    private void Start()
+    {
+        MicrophoneManager.Instance.RecordMicrophone();
+    }
+
+    private void OnDestroy()
+    {
+        EventManager.ClickedPlaybackButton.Invoke(false);
+        MicrophoneManager.Instance.StopRecording();
     }
 
     private void OnEnable()
