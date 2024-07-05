@@ -1,0 +1,1823 @@
+fileFormatVersion: 2
+guid: feb3e36061623fc4ebddd2504d99ac87
+ModelImporter:
+  serializedVersion: 22200
+  internalIDToNameTable: []
+  externalObjects: {}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Idle Standing
+      takeName: Take 001
+      internalID: 1827226128182048838
+      firstFrame: 0
+      lastFrame: 50
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importPhysicalCameras: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    strictVertexDataChecks: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton:
+    - name: AS_RobotA_IdleStanding(Clone)
+      parentName: 
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:MotionSystem
+      parentName: AS_RobotA_IdleStanding(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:MainSystem
+      parentName: RobotA_rig:MotionSystem
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:Main
+      parentName: RobotA_rig:MainSystem
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKSystem
+      parentName: RobotA_rig:MotionSystem
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKParentConstraintToRoot_M
+      parentName: RobotA_rig:FKSystem
+      position: {x: -1.9709482e-17, y: 0.3680773, z: 0}
+      rotation: {x: 0.5021769, y: -0.49781358, z: -0.49781358, w: 0.5021769}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKOffsetHip_R
+      parentName: RobotA_rig:FKParentConstraintToRoot_M
+      position: {x: 0.03824406, y: 0, z: -0.11167172}
+      rotation: {x: 0, y: 0, z: 0.99985266, w: 0.017165907}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKExtraHip_R
+      parentName: RobotA_rig:FKOffsetHip_R
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKHip_R
+      parentName: RobotA_rig:FKExtraHip_R
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKXHip_R
+      parentName: RobotA_rig:FKHip_R
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKOffsetKnee_R
+      parentName: RobotA_rig:FKXHip_R
+      position: {x: -0.0972273, y: 8.2156505e-17, z: 1.4210854e-16}
+      rotation: {x: 0, y: 0, z: 0.026087513, w: 0.99965966}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKExtraKnee_R
+      parentName: RobotA_rig:FKOffsetKnee_R
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKKnee_R
+      parentName: RobotA_rig:FKExtraKnee_R
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKXKnee_R
+      parentName: RobotA_rig:FKKnee_R
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKOffsetHip_L
+      parentName: RobotA_rig:FKParentConstraintToRoot_M
+      position: {x: 0.03824406, y: 0, z: 0.11167172}
+      rotation: {x: 0, y: -0, z: -0.017165907, w: 0.99985266}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKExtraHip_L
+      parentName: RobotA_rig:FKOffsetHip_L
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKHip_L
+      parentName: RobotA_rig:FKExtraHip_L
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKXHip_L
+      parentName: RobotA_rig:FKHip_L
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKOffsetKnee_L
+      parentName: RobotA_rig:FKXHip_L
+      position: {x: 0.0972273, y: 2.220446e-18, z: -1.9539925e-16}
+      rotation: {x: 0, y: 0, z: 0.026087513, w: 0.99965966}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKExtraKnee_L
+      parentName: RobotA_rig:FKOffsetKnee_L
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKKnee_L
+      parentName: RobotA_rig:FKExtraKnee_L
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKXKnee_L
+      parentName: RobotA_rig:FKKnee_L
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKParentConstraintToChest_M
+      parentName: RobotA_rig:FKSystem
+      position: {x: -0.0012560923, y: 0.51201123, z: -2.5423837e-16}
+      rotation: {x: 0.5030526, y: -0.5012997, z: -0.49694398, w: 0.49868166}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKOffsetNeck_M
+      parentName: RobotA_rig:FKParentConstraintToChest_M
+      position: {x: -0.29802147, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKExtraNeck_M
+      parentName: RobotA_rig:FKOffsetNeck_M
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKNeck_M
+      parentName: RobotA_rig:FKExtraNeck_M
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.0071322275, y: -0.008603159, z: 0.01751223, w: 0.99978423}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKXNeck_M
+      parentName: RobotA_rig:FKNeck_M
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKOffsetScapula_R
+      parentName: RobotA_rig:FKParentConstraintToChest_M
+      position: {x: -0.25242567, y: 0.019917684, z: -0.043653592}
+      rotation: {x: -0.008502289, y: -0.8035652, z: 0.024814703, w: 0.5946385}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKExtraScapula_R
+      parentName: RobotA_rig:FKOffsetScapula_R
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKScapula_R
+      parentName: RobotA_rig:FKExtraScapula_R
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKXScapula_R
+      parentName: RobotA_rig:FKScapula_R
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKOffsetShoulder_R
+      parentName: RobotA_rig:FKXScapula_R
+      position: {x: -0.23289567, y: -1.8651746e-16, z: -2.842171e-16}
+      rotation: {x: 0.004534439, y: -0.32876253, z: 0.021135224, w: 0.9441652}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKExtraShoulder_R
+      parentName: RobotA_rig:FKOffsetShoulder_R
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKShoulder_R
+      parentName: RobotA_rig:FKExtraShoulder_R
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.20224944, y: -0.1831182, z: -0.024240673, w: 0.96175635}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKXShoulder_R
+      parentName: RobotA_rig:FKShoulder_R
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKOffsetElbow_R
+      parentName: RobotA_rig:FKXShoulder_R
+      position: {x: -0.18894821, y: 1.9984014e-16, z: -7.81597e-16}
+      rotation: {x: 0, y: -0, z: -0.03298251, w: 0.9994559}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKExtraElbow_R
+      parentName: RobotA_rig:FKOffsetElbow_R
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKElbow_R
+      parentName: RobotA_rig:FKExtraElbow_R
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0.117687985, w: 0.99305063}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKXElbow_R
+      parentName: RobotA_rig:FKElbow_R
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKOffsetWrist_R
+      parentName: RobotA_rig:FKXElbow_R
+      position: {x: -0.22387584, y: -1.1546319e-16, z: -2.842171e-16}
+      rotation: {x: 0.998163, y: 0.03526475, z: -0.038898326, w: 0.03023245}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKExtraWrist_R
+      parentName: RobotA_rig:FKOffsetWrist_R
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKWrist_R
+      parentName: RobotA_rig:FKExtraWrist_R
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKXWrist_R
+      parentName: RobotA_rig:FKWrist_R
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKOffsetScapula_L
+      parentName: RobotA_rig:FKParentConstraintToChest_M
+      position: {x: -0.25242567, y: 0.019917684, z: 0.043653592}
+      rotation: {x: 0.8035652, y: -0.008502295, z: 0.5946385, w: -0.0248147}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKExtraScapula_L
+      parentName: RobotA_rig:FKOffsetScapula_L
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKScapula_L
+      parentName: RobotA_rig:FKExtraScapula_L
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKXScapula_L
+      parentName: RobotA_rig:FKScapula_L
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKOffsetShoulder_L
+      parentName: RobotA_rig:FKXScapula_L
+      position: {x: 0.23289567, y: 4.52971e-16, z: 2.842171e-16}
+      rotation: {x: 0.004534439, y: -0.32876253, z: 0.021135224, w: 0.9441652}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKExtraShoulder_L
+      parentName: RobotA_rig:FKOffsetShoulder_L
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKShoulder_L
+      parentName: RobotA_rig:FKExtraShoulder_L
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.13303259, y: -0.22649333, z: -0.008218898, w: 0.96485}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKXShoulder_L
+      parentName: RobotA_rig:FKShoulder_L
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKOffsetElbow_L
+      parentName: RobotA_rig:FKXShoulder_L
+      position: {x: 0.18894821, y: -2.6645352e-17, z: 4.973799e-16}
+      rotation: {x: 0, y: -0, z: -0.03298251, w: 0.9994559}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKExtraElbow_L
+      parentName: RobotA_rig:FKOffsetElbow_L
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKElbow_L
+      parentName: RobotA_rig:FKExtraElbow_L
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0.12927668, w: 0.99160856}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKXElbow_L
+      parentName: RobotA_rig:FKElbow_L
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKOffsetWrist_L
+      parentName: RobotA_rig:FKXElbow_L
+      position: {x: 0.22387584, y: 7.105427e-17, z: -7.105427e-17}
+      rotation: {x: 0.998163, y: 0.03526475, z: -0.038898326, w: 0.03023245}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKExtraWrist_L
+      parentName: RobotA_rig:FKOffsetWrist_L
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKWrist_L
+      parentName: RobotA_rig:FKExtraWrist_L
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKXWrist_L
+      parentName: RobotA_rig:FKWrist_L
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKParentConstraintToWrist_R
+      parentName: RobotA_rig:FKSystem
+      position: {x: 0.33671802, y: 0.29792738, z: 0.05584641}
+      rotation: {x: 0.5543036, y: 0.61184746, z: -0.48899987, w: -0.28154838}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKOffsetMiddleFinger1_R
+      parentName: RobotA_rig:FKParentConstraintToWrist_R
+      position: {x: -0.056695554, y: 0, z: 0}
+      rotation: {x: -0.0010443038, y: 0.03538873, z: 0.027933411, w: 0.99898267}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:SDKFKMiddleFinger1_R
+      parentName: RobotA_rig:FKOffsetMiddleFinger1_R
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKExtraMiddleFinger1_R
+      parentName: RobotA_rig:SDKFKMiddleFinger1_R
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKMiddleFinger1_R
+      parentName: RobotA_rig:FKExtraMiddleFinger1_R
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: 0.053172506, z: -0, w: 0.99858534}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKXMiddleFinger1_R
+      parentName: RobotA_rig:FKMiddleFinger1_R
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKOffsetMiddleFinger2_R
+      parentName: RobotA_rig:FKXMiddleFinger1_R
+      position: {x: -0.05099488, y: 0, z: 0}
+      rotation: {x: 0.00018955555, y: -0.010558328, z: -0.000001590081, w: 0.99994427}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:SDKFKMiddleFinger2_R
+      parentName: RobotA_rig:FKOffsetMiddleFinger2_R
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKExtraMiddleFinger2_R
+      parentName: RobotA_rig:SDKFKMiddleFinger2_R
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKMiddleFinger2_R
+      parentName: RobotA_rig:FKExtraMiddleFinger2_R
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: 0.10369396, z: -0, w: 0.99460924}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKXMiddleFinger2_R
+      parentName: RobotA_rig:FKMiddleFinger2_R
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKOffsetMiddleFinger3_R
+      parentName: RobotA_rig:FKXMiddleFinger2_R
+      position: {x: -0.017459827, y: 0, z: 0}
+      rotation: {x: 0.0031900895, y: 0.037080072, z: -0.0049142744, w: 0.9992952}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:SDKFKMiddleFinger3_R
+      parentName: RobotA_rig:FKOffsetMiddleFinger3_R
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKExtraMiddleFinger3_R
+      parentName: RobotA_rig:SDKFKMiddleFinger3_R
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKMiddleFinger3_R
+      parentName: RobotA_rig:FKExtraMiddleFinger3_R
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: 0.07206064, z: -0, w: 0.9974003}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKXMiddleFinger3_R
+      parentName: RobotA_rig:FKMiddleFinger3_R
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKOffsetIndexFinger1_R
+      parentName: RobotA_rig:FKParentConstraintToWrist_R
+      position: {x: -0.057431836, y: 0.034293707, z: 0.016400537}
+      rotation: {x: 0.17625926, y: 0.050596327, z: 0.026462158, w: 0.98268634}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:SDKFKIndexFinger1_R
+      parentName: RobotA_rig:FKOffsetIndexFinger1_R
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKExtraIndexFinger1_R
+      parentName: RobotA_rig:SDKFKIndexFinger1_R
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKIndexFinger1_R
+      parentName: RobotA_rig:FKExtraIndexFinger1_R
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: 0.07771242, z: -0, w: 0.99697584}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKXIndexFinger1_R
+      parentName: RobotA_rig:FKIndexFinger1_R
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKOffsetIndexFinger2_R
+      parentName: RobotA_rig:FKXIndexFinger1_R
+      position: {x: -0.046025533, y: 0, z: 0}
+      rotation: {x: 0.00039666228, y: -0.04291545, z: -0.011104559, w: 0.99901694}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:SDKFKIndexFinger2_R
+      parentName: RobotA_rig:FKOffsetIndexFinger2_R
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKExtraIndexFinger2_R
+      parentName: RobotA_rig:SDKFKIndexFinger2_R
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKIndexFinger2_R
+      parentName: RobotA_rig:FKExtraIndexFinger2_R
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: 0.07497587, z: -0, w: 0.99718535}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKXIndexFinger2_R
+      parentName: RobotA_rig:FKIndexFinger2_R
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKOffsetIndexFinger3_R
+      parentName: RobotA_rig:FKXIndexFinger2_R
+      position: {x: -0.015259829, y: 0, z: 0}
+      rotation: {x: -0.014457, y: 0.07579289, z: 0.018422415, w: 0.9968486}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:SDKFKIndexFinger3_R
+      parentName: RobotA_rig:FKOffsetIndexFinger3_R
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKExtraIndexFinger3_R
+      parentName: RobotA_rig:SDKFKIndexFinger3_R
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKIndexFinger3_R
+      parentName: RobotA_rig:FKExtraIndexFinger3_R
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: 0.10237381, z: -0, w: 0.994746}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKXIndexFinger3_R
+      parentName: RobotA_rig:FKIndexFinger3_R
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKOffsetRingFinger1_R
+      parentName: RobotA_rig:FKParentConstraintToWrist_R
+      position: {x: -0.053002816, y: -0.034384087, z: 0.011770461}
+      rotation: {x: -0.17891566, y: 0.053637218, z: 0.0120975785, w: 0.9823268}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:SDKFKRingFinger1_R
+      parentName: RobotA_rig:FKOffsetRingFinger1_R
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKExtraRingFinger1_R
+      parentName: RobotA_rig:SDKFKRingFinger1_R
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKRingFinger1_R
+      parentName: RobotA_rig:FKExtraRingFinger1_R
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: 0.04543472, z: -0, w: 0.99896735}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKXRingFinger1_R
+      parentName: RobotA_rig:FKRingFinger1_R
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKOffsetRingFinger2_R
+      parentName: RobotA_rig:FKXRingFinger1_R
+      position: {x: -0.043834474, y: 0, z: 0}
+      rotation: {x: -0.0070991456, y: -0.03284514, z: 0.025266038, w: 0.9991158}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:SDKFKRingFinger2_R
+      parentName: RobotA_rig:FKOffsetRingFinger2_R
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKExtraRingFinger2_R
+      parentName: RobotA_rig:SDKFKRingFinger2_R
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKRingFinger2_R
+      parentName: RobotA_rig:FKExtraRingFinger2_R
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: 0.0757342, z: -0, w: 0.99712807}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKXRingFinger2_R
+      parentName: RobotA_rig:FKRingFinger2_R
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKOffsetRingFinger3_R
+      parentName: RobotA_rig:FKXRingFinger2_R
+      position: {x: -0.015359877, y: 0, z: 0}
+      rotation: {x: 0.009339553, y: 0.024275068, z: -0.00000021100101, w: 0.99966174}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:SDKFKRingFinger3_R
+      parentName: RobotA_rig:FKOffsetRingFinger3_R
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKExtraRingFinger3_R
+      parentName: RobotA_rig:SDKFKRingFinger3_R
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKRingFinger3_R
+      parentName: RobotA_rig:FKExtraRingFinger3_R
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: 0.07661149, z: -0, w: 0.997061}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKXRingFinger3_R
+      parentName: RobotA_rig:FKRingFinger3_R
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKOffsetRoot_M
+      parentName: RobotA_rig:FKSystem
+      position: {x: -1.9709482e-17, y: 0.37199405, z: 0}
+      rotation: {x: 0.5, y: -0.5, z: -0.5, w: 0.5}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKExtraRoot_M
+      parentName: RobotA_rig:FKOffsetRoot_M
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKRoot_M
+      parentName: RobotA_rig:FKExtraRoot_M
+      position: {x: 0.003916755, y: -7.724437e-34, z: 1.7393886e-18}
+      rotation: {x: 0, y: 0.0043633096, z: -0, w: 0.9999905}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKXRoot_M
+      parentName: RobotA_rig:FKRoot_M
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKOffsetChest_M
+      parentName: RobotA_rig:FKXRoot_M
+      position: {x: -0.14393939, y: -2.547962e-16, z: -2.0539126e-17}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKExtraChest_M
+      parentName: RobotA_rig:FKOffsetChest_M
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKChest_M
+      parentName: RobotA_rig:FKExtraChest_M
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.004363294, y: -0.0026179662, z: 0.000011423104, w: 0.99998707}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKXChest_M
+      parentName: RobotA_rig:FKChest_M
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKParentConstraintToWrist_L
+      parentName: RobotA_rig:FKSystem
+      position: {x: -0.31256428, y: 0.2930054, z: 0.053721275}
+      rotation: {x: 0.34007904, y: -0.5306739, z: -0.5518094, w: 0.54611164}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKOffsetMiddleFinger1_L
+      parentName: RobotA_rig:FKParentConstraintToWrist_L
+      position: {x: 0.056695554, y: 0, z: 0}
+      rotation: {x: -0.0010443038, y: 0.03538873, z: 0.027933411, w: 0.99898267}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:SDKFKMiddleFinger1_L
+      parentName: RobotA_rig:FKOffsetMiddleFinger1_L
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKExtraMiddleFinger1_L
+      parentName: RobotA_rig:SDKFKMiddleFinger1_L
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKMiddleFinger1_L
+      parentName: RobotA_rig:FKExtraMiddleFinger1_L
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: 0.0620546, z: -0, w: 0.9980728}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKXMiddleFinger1_L
+      parentName: RobotA_rig:FKMiddleFinger1_L
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKOffsetMiddleFinger2_L
+      parentName: RobotA_rig:FKXMiddleFinger1_L
+      position: {x: 0.05099488, y: 0, z: 0}
+      rotation: {x: 0.00018955555, y: -0.010558328, z: -0.000001590081, w: 0.99994427}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:SDKFKMiddleFinger2_L
+      parentName: RobotA_rig:FKOffsetMiddleFinger2_L
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKExtraMiddleFinger2_L
+      parentName: RobotA_rig:SDKFKMiddleFinger2_L
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKMiddleFinger2_L
+      parentName: RobotA_rig:FKExtraMiddleFinger2_L
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: 0.09658929, z: -0, w: 0.9953243}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKXMiddleFinger2_L
+      parentName: RobotA_rig:FKMiddleFinger2_L
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKOffsetMiddleFinger3_L
+      parentName: RobotA_rig:FKXMiddleFinger2_L
+      position: {x: 0.017459827, y: 0, z: 0}
+      rotation: {x: 0.0031900895, y: 0.037080072, z: -0.0049142744, w: 0.9992952}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:SDKFKMiddleFinger3_L
+      parentName: RobotA_rig:FKOffsetMiddleFinger3_L
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKExtraMiddleFinger3_L
+      parentName: RobotA_rig:SDKFKMiddleFinger3_L
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKMiddleFinger3_L
+      parentName: RobotA_rig:FKExtraMiddleFinger3_L
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: 0.0955443, z: -0, w: 0.9954252}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKXMiddleFinger3_L
+      parentName: RobotA_rig:FKMiddleFinger3_L
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKOffsetIndexFinger1_L
+      parentName: RobotA_rig:FKParentConstraintToWrist_L
+      position: {x: 0.057431836, y: -0.034293707, z: -0.016400537}
+      rotation: {x: 0.17625926, y: 0.050596327, z: 0.026462158, w: 0.98268634}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:SDKFKIndexFinger1_L
+      parentName: RobotA_rig:FKOffsetIndexFinger1_L
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKExtraIndexFinger1_L
+      parentName: RobotA_rig:SDKFKIndexFinger1_L
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKIndexFinger1_L
+      parentName: RobotA_rig:FKExtraIndexFinger1_L
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: 0.13754535, z: -0, w: 0.9904955}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKXIndexFinger1_L
+      parentName: RobotA_rig:FKIndexFinger1_L
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKOffsetIndexFinger2_L
+      parentName: RobotA_rig:FKXIndexFinger1_L
+      position: {x: 0.046025533, y: 0, z: 0}
+      rotation: {x: 0.00039666228, y: -0.04291545, z: -0.011104559, w: 0.99901694}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:SDKFKIndexFinger2_L
+      parentName: RobotA_rig:FKOffsetIndexFinger2_L
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKExtraIndexFinger2_L
+      parentName: RobotA_rig:SDKFKIndexFinger2_L
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKIndexFinger2_L
+      parentName: RobotA_rig:FKExtraIndexFinger2_L
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: 0.10930005, z: -0, w: 0.99400884}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKXIndexFinger2_L
+      parentName: RobotA_rig:FKIndexFinger2_L
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKOffsetIndexFinger3_L
+      parentName: RobotA_rig:FKXIndexFinger2_L
+      position: {x: 0.015259829, y: 0, z: 0}
+      rotation: {x: -0.014457, y: 0.07579289, z: 0.018422415, w: 0.9968486}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:SDKFKIndexFinger3_L
+      parentName: RobotA_rig:FKOffsetIndexFinger3_L
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKExtraIndexFinger3_L
+      parentName: RobotA_rig:SDKFKIndexFinger3_L
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKIndexFinger3_L
+      parentName: RobotA_rig:FKExtraIndexFinger3_L
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: 0.10361781, z: -0, w: 0.9946172}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKXIndexFinger3_L
+      parentName: RobotA_rig:FKIndexFinger3_L
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKOffsetRingFinger1_L
+      parentName: RobotA_rig:FKParentConstraintToWrist_L
+      position: {x: 0.053002816, y: 0.034384087, z: -0.011770461}
+      rotation: {x: -0.17891566, y: 0.053637218, z: 0.0120975785, w: 0.9823268}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:SDKFKRingFinger1_L
+      parentName: RobotA_rig:FKOffsetRingFinger1_L
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKExtraRingFinger1_L
+      parentName: RobotA_rig:SDKFKRingFinger1_L
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKRingFinger1_L
+      parentName: RobotA_rig:FKExtraRingFinger1_L
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: 0.087155744, z: -0, w: 0.9961947}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKXRingFinger1_L
+      parentName: RobotA_rig:FKRingFinger1_L
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKOffsetRingFinger2_L
+      parentName: RobotA_rig:FKXRingFinger1_L
+      position: {x: 0.043834474, y: 0, z: 0}
+      rotation: {x: -0.0070991456, y: -0.03284514, z: 0.025266038, w: 0.9991158}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:SDKFKRingFinger2_L
+      parentName: RobotA_rig:FKOffsetRingFinger2_L
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKExtraRingFinger2_L
+      parentName: RobotA_rig:SDKFKRingFinger2_L
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKRingFinger2_L
+      parentName: RobotA_rig:FKExtraRingFinger2_L
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: 0.0868223, z: -0, w: 0.9962238}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKXRingFinger2_L
+      parentName: RobotA_rig:FKRingFinger2_L
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKOffsetRingFinger3_L
+      parentName: RobotA_rig:FKXRingFinger2_L
+      position: {x: 0.015359877, y: 0, z: 0}
+      rotation: {x: 0.009339553, y: 0.024275068, z: -0.00000021100101, w: 0.99966174}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:SDKFKRingFinger3_L
+      parentName: RobotA_rig:FKOffsetRingFinger3_L
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKExtraRingFinger3_L
+      parentName: RobotA_rig:SDKFKRingFinger3_L
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKRingFinger3_L
+      parentName: RobotA_rig:FKExtraRingFinger3_L
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.010202168, y: 0.05520222, z: 0.021669498, w: 0.9981879}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKXRingFinger3_L
+      parentName: RobotA_rig:FKRingFinger3_L
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKSystem
+      parentName: RobotA_rig:MotionSystem
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKJoints
+      parentName: RobotA_rig:IKSystem
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKParentConstraintHip_R
+      parentName: RobotA_rig:IKJoints
+      position: {x: -1.9709482e-17, y: 0.3680773, z: 0}
+      rotation: {x: 0.5021769, y: -0.49781358, z: -0.49781358, w: 0.5021769}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKXOffsetHip_R
+      parentName: RobotA_rig:IKParentConstraintHip_R
+      position: {x: 0.03824406, y: 0, z: -0.11167172}
+      rotation: {x: 0, y: 0, z: 0.99985266, w: 0.017165907}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKXHip_R
+      parentName: RobotA_rig:IKXOffsetHip_R
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.98434603, y: 0.13840601, z: 0.012578256, w: -0.10839064}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKXKnee_R
+      parentName: RobotA_rig:IKXHip_R
+      position: {x: -0.0972273, y: 0, z: 0}
+      rotation: {x: 2.4750205e-10, y: 0.0000000018101801, z: 0.13546747, w: 0.9907818}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKMessureFromHip_R
+      parentName: RobotA_rig:IKParentConstraintHip_R
+      position: {x: 0.03824406, y: 0, z: -0.11167172}
+      rotation: {x: 0, y: 0, z: 0.99985266, w: 0.017165907}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKParentConstraintShoulder_R
+      parentName: RobotA_rig:IKJoints
+      position: {x: 0.04134063, y: 0.7645871, z: 0.02029787}
+      rotation: {x: 0.11687196, y: 0.7070733, z: 0.6916251, w: 0.089682914}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKXOffsetShoulder_R
+      parentName: RobotA_rig:IKParentConstraintShoulder_R
+      position: {x: -0.23289567, y: 0, z: 0}
+      rotation: {x: 0.0045344396, y: -0.32876256, z: 0.021135222, w: 0.9441652}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKXShoulder_R
+      parentName: RobotA_rig:IKXOffsetShoulder_R
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.0014124401, y: 0.0025347087, z: 0.033623002, w: 0.9994304}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKXElbow_R
+      parentName: RobotA_rig:IKXShoulder_R
+      position: {x: -0.18894821, y: 0, z: 0}
+      rotation: {x: 8.625313e-17, y: -1.0067768e-15, z: -0.08535987, w: 0.9963502}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKXWrist_R
+      parentName: RobotA_rig:IKXElbow_R
+      position: {x: -0.22387584, y: -8.8817837e-17, z: -2.842171e-16}
+      rotation: {x: 0.99740213, y: 0.056642015, z: -0.03403411, w: 0.028677985}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKMessureFromShoulder_R
+      parentName: RobotA_rig:IKParentConstraintShoulder_R
+      position: {x: -0.23289567, y: 0, z: 0}
+      rotation: {x: 0.0045344396, y: -0.32876256, z: 0.021135222, w: 0.9441652}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKParentConstraintRoot_M
+      parentName: RobotA_rig:IKJoints
+      position: {x: -0, y: 0.37199405, z: 0}
+      rotation: {x: 0.5, y: -0.5, z: -0.5, w: 0.5}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKXOffsetRoot_M
+      parentName: RobotA_rig:IKParentConstraintRoot_M
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKXRoot_M
+      parentName: RobotA_rig:IKXOffsetRoot_M
+      position: {x: -0, y: -8.7527684e-33, z: 1.9709482e-17}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKXChest_M
+      parentName: RobotA_rig:IKXRoot_M
+      position: {x: -0.14393939, y: -2.7965846e-16, z: -3.1960965e-17}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKfake0Spine_M
+      parentName: RobotA_rig:IKParentConstraintRoot_M
+      position: {x: -0, y: -8.7527684e-33, z: 1.9709482e-17}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKSpChest_M
+      parentName: RobotA_rig:IKfake0Spine_M
+      position: {x: -0.14393939, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKFixedOrientRoot_M
+      parentName: RobotA_rig:IKfake0Spine_M
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKAcRootFollowOffset_M
+      parentName: RobotA_rig:IKFixedOrientRoot_M
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKSpRootFollowOffset_M
+      parentName: RobotA_rig:IKFixedOrientRoot_M
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKParentConstraintHip_L
+      parentName: RobotA_rig:IKJoints
+      position: {x: -1.9709482e-17, y: 0.3680773, z: 0}
+      rotation: {x: 0.5021769, y: -0.49781358, z: -0.49781358, w: 0.5021769}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKXOffsetHip_L
+      parentName: RobotA_rig:IKParentConstraintHip_L
+      position: {x: 0.03824406, y: 0, z: 0.11167172}
+      rotation: {x: 0, y: -0, z: -0.017165907, w: 0.99985266}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKXHip_L
+      parentName: RobotA_rig:IKXOffsetHip_L
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.9959182, y: 0.088602185, z: 0.012576224, w: -0.011765641}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKXKnee_L
+      parentName: RobotA_rig:IKXHip_L
+      position: {x: 0.0972273, y: 0, z: 0}
+      rotation: {x: 1.0723435e-10, y: 0.0000000011321803, z: 0.0942929, w: 0.9955445}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKMessureFromHip_L
+      parentName: RobotA_rig:IKParentConstraintHip_L
+      position: {x: 0.03824406, y: 0, z: 0.11167172}
+      rotation: {x: 0, y: -0, z: -0.017165907, w: 0.99985266}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKParentConstraintShoulder_L
+      parentName: RobotA_rig:IKJoints
+      position: {x: -0.0459627, y: 0.76428235, z: 0.01953598}
+      rotation: {x: 0.08592283, y: -0.69026166, z: 0.7074168, w: -0.12537028}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKXOffsetShoulder_L
+      parentName: RobotA_rig:IKParentConstraintShoulder_L
+      position: {x: 0.23289567, y: 0, z: 0}
+      rotation: {x: 0.0045344396, y: -0.32876256, z: 0.021135222, w: 0.9441652}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKXShoulder_L
+      parentName: RobotA_rig:IKXOffsetShoulder_L
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.0038912948, y: 0.003227057, z: 0.06454042, w: 0.9979023}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKXElbow_L
+      parentName: RobotA_rig:IKXShoulder_L
+      position: {x: 0.18894821, y: 0, z: 0}
+      rotation: {x: 4.0082975e-16, y: -2.4521858e-15, z: -0.16131726, w: 0.9869026}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKXWrist_L
+      parentName: RobotA_rig:IKXElbow_L
+      position: {x: 0.22387584, y: 7.9936054e-17, z: 2.842171e-16}
+      rotation: {x: 0.99414134, y: 0.09687856, z: -0.035806693, w: 0.031865325}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKMessureFromShoulder_L
+      parentName: RobotA_rig:IKParentConstraintShoulder_L
+      position: {x: 0.23289567, y: 0, z: 0}
+      rotation: {x: 0.0045344396, y: -0.32876256, z: 0.021135222, w: 0.9441652}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKSpSpineOffset_M
+      parentName: RobotA_rig:IKJoints
+      position: {x: -0, y: 0.37199405, z: 0}
+      rotation: {x: 0.5, y: -0.5, z: -0.5, w: 0.5}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKSpChestFollowOffset_M
+      parentName: RobotA_rig:IKSpSpineOffset_M
+      position: {x: -0.14393939, y: 1.1746498e-31, z: 1.9709482e-17}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKAcSpineOffset_M
+      parentName: RobotA_rig:IKJoints
+      position: {x: -0, y: 0.37199405, z: 0}
+      rotation: {x: 0.5, y: -0.5, z: -0.5, w: 0.5}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKAcChest_M
+      parentName: RobotA_rig:IKAcSpineOffset_M
+      position: {x: -0.14393939, y: -8.7527684e-33, z: 1.9709482e-17}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKAcSpineOffset3_M
+      parentName: RobotA_rig:IKJoints
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKAcPociXformChest_M
+      parentName: RobotA_rig:IKAcSpineOffset3_M
+      position: {x: -8.3631414e-17, y: 0.51593345, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKAcSpineOffset2_M
+      parentName: RobotA_rig:IKJoints
+      position: {x: -0, y: 0.37199405, z: 0}
+      rotation: {x: 0.5, y: -0.5, z: -0.5, w: 0.5}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKAcChestFollowOffset_M
+      parentName: RobotA_rig:IKAcSpineOffset2_M
+      position: {x: -0.14393939, y: -2.7965846e-16, z: -1.2251485e-17}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKHandle
+      parentName: RobotA_rig:IKSystem
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKHandleFollowMain
+      parentName: RobotA_rig:IKHandle
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKOffsetLeg_R
+      parentName: RobotA_rig:IKHandleFollowMain
+      position: {x: 0.11167172, y: 0.049598303, z: 0.000000002378537}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKExtraLeg_R
+      parentName: RobotA_rig:IKOffsetLeg_R
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKLeg_R
+      parentName: RobotA_rig:IKExtraLeg_R
+      position: {x: 0.0074371314, y: 0, z: 0.01808028}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKmessureConstrainToLeg_R
+      parentName: RobotA_rig:IKLeg_R
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:PoleOffsetLeg_R
+      parentName: RobotA_rig:IKHandleFollowMain
+      position: {x: 0.11482225, y: 0.22178653, z: -0.27638173}
+      rotation: {x: -0.0283491, y: 0.00033896804, z: 0.011951303, w: 0.9995266}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:PoleExtraLeg_R
+      parentName: RobotA_rig:PoleOffsetLeg_R
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:PoleLeg_R
+      parentName: RobotA_rig:PoleExtraLeg_R
+      position: {x: 0.07170313, y: -0.00027236773, z: 0.60912025}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKOffsetArm_R
+      parentName: RobotA_rig:IKHandleFollowMain
+      position: {x: 0.50040376, y: 0.3606305, z: 0.0030410185}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKExtraArm_R
+      parentName: RobotA_rig:IKOffsetArm_R
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKArm_R
+      parentName: RobotA_rig:IKExtraArm_R
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKFKAlignedOffsetArm_R
+      parentName: RobotA_rig:IKArm_R
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.2833106, y: 0.6438807, z: -0.6321565, w: -0.3248552}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKFKAlignedArm_R
+      parentName: RobotA_rig:IKFKAlignedOffsetArm_R
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKmessureConstrainToArm_R
+      parentName: RobotA_rig:IKArm_R
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:PoleOffsetArm_R
+      parentName: RobotA_rig:IKHandleFollowMain
+      position: {x: 0.34417552, y: 0.53431845, z: -0.40491855}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:PoleExtraArm_R
+      parentName: RobotA_rig:PoleOffsetArm_R
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:PoleArm_R
+      parentName: RobotA_rig:PoleExtraArm_R
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKOffsetSpine2_M
+      parentName: RobotA_rig:IKHandleFollowMain
+      position: {x: -3.5689965e-17, y: 0.44396377, z: 1.3982923e-16}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKExtraSpine2_M
+      parentName: RobotA_rig:IKOffsetSpine2_M
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKSpine2_M
+      parentName: RobotA_rig:IKExtraSpine2_M
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKSpine2LocalOrient1_M
+      parentName: RobotA_rig:IKSpine2_M
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.5, y: -0.5, z: -0.5, w: 0.5}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKSpine2LocalOrient2_M
+      parentName: RobotA_rig:IKSpine2LocalOrient1_M
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKOffsetConstrainedSpine1_M
+      parentName: RobotA_rig:IKHandleFollowMain
+      position: {x: -1.9709482e-17, y: 0.37199405, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKhybridOffsetSpine1_M
+      parentName: RobotA_rig:IKOffsetConstrainedSpine1_M
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.5, y: -0.5, z: -0.5, w: 0.5}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKOffsetSpine1_M
+      parentName: RobotA_rig:IKhybridOffsetSpine1_M
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.5, y: 0.5, z: 0.5, w: 0.5}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKExtraSpine1_M
+      parentName: RobotA_rig:IKOffsetSpine1_M
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKSpine1_M
+      parentName: RobotA_rig:IKExtraSpine1_M
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKSpineLocator0_M
+      parentName: RobotA_rig:IKSpine1_M
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKSpine1LocalOrient1_M
+      parentName: RobotA_rig:IKSpine1_M
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.5, y: -0.5, z: -0.5, w: 0.5}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKSpine1LocalOrient2_M
+      parentName: RobotA_rig:IKSpine1LocalOrient1_M
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKhybridFollowSpine1_M
+      parentName: RobotA_rig:IKhybridOffsetSpine1_M
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKhybridExtraSpine1_M
+      parentName: RobotA_rig:IKhybridFollowSpine1_M
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKhybridSpine1_M
+      parentName: RobotA_rig:IKhybridExtraSpine1_M
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKhybridOffsetSpine2_M
+      parentName: RobotA_rig:IKhybridSpine1_M
+      position: {x: -0.071969695, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKhybridExtraSpine2_M
+      parentName: RobotA_rig:IKhybridOffsetSpine2_M
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKhybridSpine2_M
+      parentName: RobotA_rig:IKhybridExtraSpine2_M
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKhybridOffsetSpine3_M
+      parentName: RobotA_rig:IKhybridSpine2_M
+      position: {x: -0.071969695, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKhybridExtraSpine3_M
+      parentName: RobotA_rig:IKhybridOffsetSpine3_M
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKhybridSpine3_M
+      parentName: RobotA_rig:IKhybridExtraSpine3_M
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKOffsetSpine3_M
+      parentName: RobotA_rig:IKhybridSpine3_M
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.5, y: 0.5, z: 0.5, w: 0.5}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKExtraSpine3_M
+      parentName: RobotA_rig:IKOffsetSpine3_M
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKSpine3_M
+      parentName: RobotA_rig:IKExtraSpine3_M
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKSpineLocator1_M
+      parentName: RobotA_rig:IKSpine3_M
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKSpine3LocalOrient1_M
+      parentName: RobotA_rig:IKSpine3_M
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.5, y: -0.5, z: -0.5, w: 0.5}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKSpine3LocalOrient2_M
+      parentName: RobotA_rig:IKSpine3LocalOrient1_M
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKOffsetLeg_L
+      parentName: RobotA_rig:IKHandleFollowMain
+      position: {x: -0.11167172, y: 0.049598303, z: 0.0000000023785371}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKExtraLeg_L
+      parentName: RobotA_rig:IKOffsetLeg_L
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKLeg_L
+      parentName: RobotA_rig:IKExtraLeg_L
+      position: {x: -0.00407035, y: -0.0037543955, z: 0.005232884}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKmessureConstrainToLeg_L
+      parentName: RobotA_rig:IKLeg_L
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:PoleOffsetLeg_L
+      parentName: RobotA_rig:IKHandleFollowMain
+      position: {x: -0.11317475, y: 0.23165663, z: -0.2820512}
+      rotation: {x: -0.008118781, y: -0.00004606037, z: -0.005673173, w: 0.99995095}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:PoleExtraLeg_L
+      parentName: RobotA_rig:PoleOffsetLeg_L
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:PoleLeg_L
+      parentName: RobotA_rig:PoleExtraLeg_L
+      position: {x: -0.0076105255, y: -0.000028908944, z: 0.60912025}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKOffsetArm_L
+      parentName: RobotA_rig:IKHandleFollowMain
+      position: {x: -0.50040376, y: 0.3606305, z: 0.003041012}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKExtraArm_L
+      parentName: RobotA_rig:IKOffsetArm_L
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKArm_L
+      parentName: RobotA_rig:IKExtraArm_L
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKFKAlignedOffsetArm_L
+      parentName: RobotA_rig:IKArm_L
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.3248552, y: 0.6321565, z: 0.6438807, w: -0.2833106}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKFKAlignedArm_L
+      parentName: RobotA_rig:IKFKAlignedOffsetArm_L
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKmessureConstrainToArm_L
+      parentName: RobotA_rig:IKArm_L
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:PoleOffsetArm_L
+      parentName: RobotA_rig:IKHandleFollowMain
+      position: {x: -0.34417552, y: 0.53431845, z: -0.40491855}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:PoleExtraArm_L
+      parentName: RobotA_rig:PoleOffsetArm_L
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:PoleArm_L
+      parentName: RobotA_rig:PoleExtraArm_L
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKCurve
+      parentName: RobotA_rig:IKSystem
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKSpineCurve_M
+      parentName: RobotA_rig:IKCurve
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKMessure
+      parentName: RobotA_rig:IKSystem
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKmessureLoc1Leg_R
+      parentName: RobotA_rig:IKMessure
+      position: {x: 0.11200121, y: 0.3308092, z: -4.9592207e-17}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKmessureLoc2Leg_R
+      parentName: RobotA_rig:IKmessureLoc1Leg_R
+      position: {x: 0.0071076443, y: -0.2812109, z: 0.018080281}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKdistanceLeg_R
+      parentName: RobotA_rig:IKMessure
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKmessureLoc1Arm_R
+      parentName: RobotA_rig:IKMessure
+      position: {x: 0.26412764, y: 0.6972038, z: 0.012184188}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKmessureLoc2Arm_R
+      parentName: RobotA_rig:IKmessureLoc1Arm_R
+      position: {x: 0.23627609, y: -0.3365733, z: -0.009143169}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKdistanceArm_R
+      parentName: RobotA_rig:IKMessure
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKmessureLoc1Leg_L
+      parentName: RobotA_rig:IKMessure
+      position: {x: -0.11133373, y: 0.3288602, z: 4.9592207e-17}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKmessureLoc2Leg_L
+      parentName: RobotA_rig:IKmessureLoc1Leg_L
+      position: {x: -0.0044083404, y: -0.28301626, z: 0.0052328864}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKdistanceLeg_L
+      parentName: RobotA_rig:IKMessure
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKmessureLoc1Arm_L
+      parentName: RobotA_rig:IKMessure
+      position: {x: -0.26809835, y: 0.695346, z: 0.0075394916}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKmessureLoc2Arm_L
+      parentName: RobotA_rig:IKmessureLoc1Arm_L
+      position: {x: -0.23230536, y: -0.33471546, z: -0.00449848}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKdistanceArm_L
+      parentName: RobotA_rig:IKMessure
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKScaler
+      parentName: RobotA_rig:IKSystem
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKScalerRoot_M
+      parentName: RobotA_rig:IKScaler
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IKScalerChest_M
+      parentName: RobotA_rig:IKScaler
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKIKSystem
+      parentName: RobotA_rig:MotionSystem
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKIKParentConstraintLeg_R
+      parentName: RobotA_rig:FKIKSystem
+      position: {x: -1.9709482e-17, y: 0.3680773, z: 0}
+      rotation: {x: 0.5021769, y: -0.49781358, z: -0.49781358, w: 0.5021769}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKIKLeg_R
+      parentName: RobotA_rig:FKIKParentConstraintLeg_R
+      position: {x: 0.10168224, y: -0.002178911, z: -0.21136683}
+      rotation: {x: -0.5, y: 0.5, z: 0.5, w: 0.5}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKIKParentConstraintArm_R
+      parentName: RobotA_rig:FKIKSystem
+      position: {x: 0.04134063, y: 0.7645871, z: 0.02029787}
+      rotation: {x: 0.116871916, y: 0.7070733, z: 0.6916251, w: 0.08968295}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKIKArm_R
+      parentName: RobotA_rig:FKIKParentConstraintArm_R
+      position: {x: -0.33081225, y: -0.004089066, z: 0.021478005}
+      rotation: {x: 0.121121846, y: 0.70725805, z: 0.6909457, w: -0.08780485}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKIKParentConstraintSpine_M
+      parentName: RobotA_rig:FKIKSystem
+      position: {x: -1.9709482e-17, y: 0.3680773, z: 0}
+      rotation: {x: 0.5021769, y: -0.49781358, z: -0.49781358, w: 0.5021769}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKIKSpine_M
+      parentName: RobotA_rig:FKIKParentConstraintSpine_M
+      position: {x: -0.06347559, y: -1.0304287e-16, z: 0.18269512}
+      rotation: {x: -0.5, y: 0.5, z: 0.5, w: 0.5}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKIKParentConstraintLeg_L
+      parentName: RobotA_rig:FKIKSystem
+      position: {x: -1.9709482e-17, y: 0.3680773, z: 0}
+      rotation: {x: 0.5021769, y: -0.49781358, z: -0.49781358, w: 0.5021769}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKIKLeg_L
+      parentName: RobotA_rig:FKIKParentConstraintLeg_L
+      position: {x: 0.10168224, y: -0.002178911, z: 0.21136683}
+      rotation: {x: -0.5, y: 0.5, z: 0.5, w: 0.5}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKIKParentConstraintArm_L
+      parentName: RobotA_rig:FKIKSystem
+      position: {x: -0.0459627, y: 0.76428235, z: 0.01953598}
+      rotation: {x: 0.085922904, y: -0.6902616, z: 0.7074167, w: -0.12537038}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:FKIKArm_L
+      parentName: RobotA_rig:FKIKParentConstraintArm_L
+      position: {x: 0.33081225, y: 0.004089066, z: -0.021478005}
+      rotation: {x: 0.08780485, y: -0.6909456, z: 0.7072581, w: 0.12112183}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:DeformationSystem
+      parentName: AS_RobotA_IdleStanding(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:Root_M
+      parentName: RobotA_rig:DeformationSystem
+      position: {x: -1.9709482e-17, y: 0.3680773, z: 0}
+      rotation: {x: 0.5, y: -0.5, z: -0.5, w: 0.5}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:Hip_R
+      parentName: RobotA_rig:Root_M
+      position: {x: 0.03824406, y: -1.4216474e-11, z: -0.11167172}
+      rotation: {x: -0.017166018, y: 0.99985266, z: -0, w: 0}
+      scale: {x: 1.0000002, y: 1.0000001, z: 1.0000001}
+    - name: RobotA_rig:Knee_R
+      parentName: RobotA_rig:Hip_R
+      position: {x: -0.0972273, y: 7.4606985e-16, z: -7.860379e-14}
+      rotation: {x: -0, y: -0, z: 0.02608767, w: 0.99965966}
+      scale: {x: 1.0000001, y: 1.0000001, z: 1.0000001}
+    - name: RobotA_rig:Ankle_R
+      parentName: RobotA_rig:Knee_R
+      position: {x: -0.18701148, y: 0, z: 1.6231017e-10}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1.0000001, y: 1, z: 1.0000001}
+    - name: RobotA_rig:Hip_L
+      parentName: RobotA_rig:Root_M
+      position: {x: 0.03824406, y: -1.4959986e-11, z: 0.11167172}
+      rotation: {x: 0.99985266, y: 0.017166048, z: -0.000000014901161, w: -0.000000014901161}
+      scale: {x: 1, y: 1.0000002, z: 0.99999994}
+    - name: RobotA_rig:Knee_L
+      parentName: RobotA_rig:Hip_L
+      position: {x: 0.0972273, y: 7.700507e-15, z: -4.6220802e-14}
+      rotation: {x: -0.000000014518747, y: -0.00000004534306, z: -0.0260877, w: -0.99965966}
+      scale: {x: 1.0000002, y: 1.0000001, z: 1.0000001}
+    - name: RobotA_rig:Ankle_L
+      parentName: RobotA_rig:Knee_L
+      position: {x: 0.18701148, y: 0, z: -1.6231017e-10}
+      rotation: {x: -0, y: -0, z: -6.5832444e-16, w: 1}
+      scale: {x: 1.0000001, y: 1.0000001, z: 1.0000001}
+    - name: RobotA_rig:Chest_M
+      parentName: RobotA_rig:Root_M
+      position: {x: -0.14393939, y: 5.4905556e-11, z: -6.050716e-17}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:Neck_M
+      parentName: RobotA_rig:Chest_M
+      position: {x: -0.29802147, y: 1.1367986e-10, z: -9.92064e-13}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1.0000001, y: 1.0000001, z: 1.0000001}
+    - name: RobotA_rig:Head_M
+      parentName: RobotA_rig:Neck_M
+      position: {x: -0.25125277, y: 0, z: 0}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1.0000001, y: 1.0000002, z: 1.0000001}
+    - name: RobotA_rig:Scapula_R
+      parentName: RobotA_rig:Chest_M
+      position: {x: -0.25242567, y: 0.019917684, z: -0.043653592}
+      rotation: {x: 0.008502319, y: 0.80356514, z: -0.024814665, w: -0.5946385}
+      scale: {x: 1.0000002, y: 1, z: 1.0000004}
+    - name: RobotA_rig:Shoulder_R
+      parentName: RobotA_rig:Scapula_R
+      position: {x: -0.23289567, y: -2.637114e-11, z: -1.4210854e-16}
+      rotation: {x: 0.017431794, y: -0.0028718112, z: -0.000632286, w: 0.9998438}
+      scale: {x: 1.0000004, y: 1.0000002, z: 1.0000001}
+    - name: RobotA_rig:Elbow_R
+      parentName: RobotA_rig:Shoulder_R
+      position: {x: -0.18894821, y: 2.1316282e-16, z: -8.5265126e-16}
+      rotation: {x: 0.000000013504177, y: -0.000000059604645, z: -0.03298249, w: 0.999456}
+      scale: {x: 1.0000002, y: 1, z: 1.0000002}
+    - name: RobotA_rig:Wrist_R
+      parentName: RobotA_rig:Elbow_R
+      position: {x: -0.22387584, y: -6.217249e-17, z: -2.1316282e-16}
+      rotation: {x: 0.99292964, y: 0.016592197, z: -0.11269072, w: 0.033408646}
+      scale: {x: 1.0000001, y: 1.0000002, z: 1}
+    - name: RobotA_rig:MiddleFinger1_R
+      parentName: RobotA_rig:Wrist_R
+      position: {x: -0.056695554, y: -1.7763568e-17, z: -7.105427e-17}
+      rotation: {x: 0.000424534, y: -0.0014427069, z: -0.018659571, w: -0.99982476}
+      scale: {x: 1.0000002, y: 0.99999994, z: 1}
+    - name: RobotA_rig:MiddleFinger2_R
+      parentName: RobotA_rig:MiddleFinger1_R
+      position: {x: -0.05099488, y: 1.7763568e-17, z: 7.105427e-17}
+      rotation: {x: 0.00018953046, y: -0.01055828, z: -0.0000016345964, w: 0.9999442}
+      scale: {x: 1.0000001, y: 0.9999998, z: 1.0000002}
+    - name: RobotA_rig:MiddleFinger3_R
+      parentName: RobotA_rig:MiddleFinger2_R
+      position: {x: -0.017459827, y: -2.6645352e-17, z: 7.105427e-17}
+      rotation: {x: 0.003190143, y: 0.037080117, z: -0.00491424, w: 0.9992951}
+      scale: {x: 1.0000001, y: 1.0000001, z: 1}
+    - name: RobotA_rig:MiddleFinger4_R
+      parentName: RobotA_rig:MiddleFinger3_R
+      position: {x: -0.025268005, y: 0, z: 0}
+      rotation: {x: -0, y: -0, z: 1.09139336e-10, w: 1}
+      scale: {x: 1.0000001, y: 1.0000001, z: 1.0000005}
+    - name: RobotA_rig:IndexFinger1_R
+      parentName: RobotA_rig:Wrist_R
+      position: {x: -0.057431836, y: 0.034293707, z: 0.016400537}
+      rotation: {x: -0.17625923, y: -0.050596327, z: -0.026462192, w: -0.98268634}
+      scale: {x: 1.0000002, y: 1, z: 0.99999994}
+    - name: RobotA_rig:IndexFinger2_R
+      parentName: RobotA_rig:IndexFinger1_R
+      position: {x: -0.046025533, y: 4.4408918e-17, z: 1.4210854e-16}
+      rotation: {x: 0.0003967136, y: -0.04291556, z: -0.011104543, w: 0.99901694}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:IndexFinger3_R
+      parentName: RobotA_rig:IndexFinger2_R
+      position: {x: -0.015259829, y: -8.881784e-18, z: 0}
+      rotation: {x: -0.0144569855, y: 0.07579301, z: 0.018422382, w: 0.9968486}
+      scale: {x: 1.0000002, y: 1.0000005, z: 1.0000005}
+    - name: RobotA_rig:IndexFinger4_R
+      parentName: RobotA_rig:IndexFinger3_R
+      position: {x: -0.02252955, y: 0, z: 0}
+      rotation: {x: -0, y: -0.000000007450578, z: 4.6566112e-10, w: 1}
+      scale: {x: 1.0000001, y: 1.0000001, z: 1.0000002}
+    - name: RobotA_rig:RingFinger1_R
+      parentName: RobotA_rig:Wrist_R
+      position: {x: -0.053002816, y: -0.034384087, z: 0.011770461}
+      rotation: {x: -0.17891555, y: 0.05363718, z: 0.012097587, w: 0.98232687}
+      scale: {x: 1.0000004, y: 1, z: 1}
+    - name: RobotA_rig:RingFinger2_R
+      parentName: RobotA_rig:RingFinger1_R
+      position: {x: -0.043834474, y: -7.105427e-17, z: 7.105427e-17}
+      rotation: {x: -0.0070992243, y: -0.032845, z: 0.02526609, w: 0.9991159}
+      scale: {x: 1.0000002, y: 0.99999994, z: 1.0000006}
+    - name: RobotA_rig:RingFinger3_R
+      parentName: RobotA_rig:RingFinger2_R
+      position: {x: -0.015359877, y: 5.3290704e-17, z: 7.105427e-17}
+      rotation: {x: 0.009339533, y: 0.024274988, z: -0.0000002562228, w: 0.9996617}
+      scale: {x: 0.99999994, y: 1.0000002, z: 1}
+    - name: RobotA_rig:RingFinger4_R
+      parentName: RobotA_rig:RingFinger3_R
+      position: {x: -0.024881342, y: 0, z: 0}
+      rotation: {x: -9.3132235e-10, y: -0, z: -0, w: 1}
+      scale: {x: 0.99999994, y: 1, z: 1}
+    - name: RobotA_rig:Scapula_L
+      parentName: RobotA_rig:Chest_M
+      position: {x: -0.25242567, y: 0.019917684, z: 0.043653592}
+      rotation: {x: 0.80356526, y: -0.008502331, z: 0.59463847, w: -0.024814695}
+      scale: {x: 1.0000007, y: 1.0000004, z: 1.0000004}
+    - name: RobotA_rig:Shoulder_L
+      parentName: RobotA_rig:Scapula_L
+      position: {x: 0.23289567, y: 2.5435595e-11, z: -5.2079938e-12}
+      rotation: {x: 0.017431652, y: -0.0028719022, z: -0.0006322404, w: 0.9998437}
+      scale: {x: 1.0000008, y: 1.0000006, z: 1.0000001}
+    - name: RobotA_rig:Elbow_L
+      parentName: RobotA_rig:Shoulder_L
+      position: {x: 0.18894821, y: -5.3290704e-17, z: 4.973799e-16}
+      rotation: {x: 0.00000006146728, y: 0.000000059604638, z: -0.032982547, w: 0.9994559}
+      scale: {x: 1, y: 1, z: 1.0000002}
+    - name: RobotA_rig:Wrist_L
+      parentName: RobotA_rig:Elbow_L
+      position: {x: 0.22387584, y: 5.3290704e-17, z: -1.4210854e-16}
+      rotation: {x: 0.9929297, y: 0.016592247, z: -0.11269055, w: 0.033408593}
+      scale: {x: 1.0000004, y: 1.0000004, z: 1.0000002}
+    - name: RobotA_rig:MiddleFinger1_L
+      parentName: RobotA_rig:Wrist_L
+      position: {x: 0.056695554, y: 1.7763568e-17, z: 0}
+      rotation: {x: -0.00042454147, y: 0.0014416702, z: 0.018659376, w: 0.9998248}
+      scale: {x: 1.0000005, y: 1.0000005, z: 1.0000002}
+    - name: RobotA_rig:MiddleFinger2_L
+      parentName: RobotA_rig:MiddleFinger1_L
+      position: {x: 0.05099488, y: -2.2204459e-17, z: 0}
+      rotation: {x: 0.00018955833, y: -0.010558226, z: -0.0000015762413, w: 0.99994427}
+      scale: {x: 0.9999998, y: 0.9999998, z: 1.0000001}
+    - name: RobotA_rig:MiddleFinger3_L
+      parentName: RobotA_rig:MiddleFinger2_L
+      position: {x: 0.017459827, y: -1.3322676e-17, z: -7.105427e-17}
+      rotation: {x: 0.003190117, y: 0.03708, z: -0.0049142614, w: 0.9992952}
+      scale: {x: 0.9999998, y: 1, z: 0.99999994}
+    - name: RobotA_rig:MiddleFinger4_L
+      parentName: RobotA_rig:MiddleFinger3_L
+      position: {x: 0.025268005, y: 0, z: 0}
+      rotation: {x: -0, y: -0.0000000037252894, z: 5.8207647e-11, w: 1}
+      scale: {x: 1.0000002, y: 1, z: 1.0000001}
+    - name: RobotA_rig:IndexFinger1_L
+      parentName: RobotA_rig:Wrist_L
+      position: {x: 0.057431836, y: -0.034293707, z: -0.016400537}
+      rotation: {x: 0.17625922, y: 0.050596293, z: 0.026462192, w: 0.9826864}
+      scale: {x: 1.0000005, y: 1.0000005, z: 1.0000005}
+    - name: RobotA_rig:IndexFinger2_L
+      parentName: RobotA_rig:IndexFinger1_L
+      position: {x: 0.046025533, y: 0, z: -3.5527136e-17}
+      rotation: {x: 0.000396654, y: -0.042915523, z: -0.011104548, w: 0.99901694}
+      scale: {x: 1, y: 0.99999994, z: 1}
+    - name: RobotA_rig:IndexFinger3_L
+      parentName: RobotA_rig:IndexFinger2_L
+      position: {x: 0.015259829, y: -3.5527136e-17, z: 3.5527136e-17}
+      rotation: {x: -0.0144569855, y: 0.07579294, z: 0.018422386, w: 0.9968486}
+      scale: {x: 1.0000001, y: 1.0000004, z: 1.0000002}
+    - name: RobotA_rig:IndexFinger4_L
+      parentName: RobotA_rig:IndexFinger3_L
+      position: {x: 0.02252955, y: 0, z: 0}
+      rotation: {x: 0.000000013038513, y: -0.00000005960463, z: 0.000000007799825, w: 1}
+      scale: {x: 1, y: 1, z: 1.0000002}
+    - name: RobotA_rig:RingFinger1_L
+      parentName: RobotA_rig:Wrist_L
+      position: {x: 0.053002816, y: 0.034384087, z: -0.011770461}
+      rotation: {x: -0.17891565, y: 0.053637203, z: 0.0120975915, w: 0.98232687}
+      scale: {x: 1.0000004, y: 1.0000004, z: 1.0000001}
+    - name: RobotA_rig:RingFinger2_L
+      parentName: RobotA_rig:RingFinger1_L
+      position: {x: 0.043834474, y: -1.7763568e-17, z: -1.4210854e-16}
+      rotation: {x: -0.0070991507, y: -0.032845125, z: 0.025266081, w: 0.9991159}
+      scale: {x: 1.0000004, y: 1.0000001, z: 1.0000002}
+    - name: RobotA_rig:RingFinger3_L
+      parentName: RobotA_rig:RingFinger2_L
+      position: {x: 0.015359877, y: 2.6645352e-17, z: 1.0658141e-16}
+      rotation: {x: 0.009339538, y: 0.024275096, z: -0.00000019608339, w: 0.9996617}
+      scale: {x: 1, y: 1.0000004, z: 1.0000002}
+    - name: RobotA_rig:RingFinger4_L
+      parentName: RobotA_rig:RingFinger3_L
+      position: {x: 0.024881342, y: 0, z: 0}
+      rotation: {x: -0, y: 0.0000000018626449, z: -1.45519135e-11, w: 1}
+      scale: {x: 1.0000002, y: 1, z: 1}
+    - name: RobotA_rig:Geometry
+      parentName: AS_RobotA_IdleStanding(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:RobotA
+      parentName: RobotA_rig:Geometry
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RobotA_rig:RobotA_Face
+      parentName: RobotA_rig:Geometry
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
