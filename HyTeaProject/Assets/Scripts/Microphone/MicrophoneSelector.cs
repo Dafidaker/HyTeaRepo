@@ -35,6 +35,11 @@ public class MicrophoneSelector : MonoBehaviour
         
         var options = new List<TMP_Dropdown.OptionData>();
 
+        if(Microphone.devices.Length == 0)
+        {
+            AudioSettings.Reset(AudioSettings.GetConfiguration());
+        }
+        
         foreach (var microphone in Microphone.devices)
         {
             TMP_Dropdown.OptionData optionData = new TMP_Dropdown.OptionData(microphone, null);

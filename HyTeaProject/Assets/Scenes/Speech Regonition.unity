@@ -229,7 +229,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &120960049
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -243,6 +243,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Gain: 0
+  threashold: 0.001
   loudnessText: {fileID: 0}
   currentLoudness: 0
 --- !u!4 &120960050
@@ -2574,7 +2575,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1079
 --- !u!114 &1524384906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2834,6 +2835,8 @@ MonoBehaviour:
   divisionBarPrefab: {fileID: 0}
   loudnessSensitivity: 100
   threshold: 0.05
+  _whisperingLoudness: 0
+  _projectingLoudness: 0
 --- !u!1 &1772693559
 GameObject:
   m_ObjectHideFlags: 0

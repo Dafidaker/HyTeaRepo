@@ -262,6 +262,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   microphoneDropdown: {fileID: 766415077}
   microphoneCalibration: {fileID: 1334035080}
+  microphoneGain: {fileID: 0}
 --- !u!114 &71484847
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -874,7 +875,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1079
 --- !u!114 &251940673
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1407,6 +1408,8 @@ MonoBehaviour:
   divisionBarPrefab: {fileID: 2997034917043396301, guid: dc4ac04d7fe11a847b406bac5516094f, type: 3}
   loudnessSensitivity: 150
   threshold: 0.05
+  _whisperingLoudness: 0
+  _projectingLoudness: 0
 --- !u!114 &420827584
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2275,6 +2278,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Gain: 0
+  threashold: 0.001
   loudnessText: {fileID: 0}
   currentLoudness: 0
 --- !u!1 &627088313

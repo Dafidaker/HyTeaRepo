@@ -690,6 +690,164 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1955092098518135318, guid: 54aecb098ddd5ce4491819b770954c0b, type: 3}
   m_PrefabInstance: {fileID: 591590008}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &986738608
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1499800399}
+    m_Modifications:
+    - target: {fileID: 402779245252101054, guid: 54aecb098ddd5ce4491819b770954c0b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 402779245252101054, guid: 54aecb098ddd5ce4491819b770954c0b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 402779245252101054, guid: 54aecb098ddd5ce4491819b770954c0b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 62873690}
+    - target: {fileID: 402779245252101054, guid: 54aecb098ddd5ce4491819b770954c0b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 402779245252101054, guid: 54aecb098ddd5ce4491819b770954c0b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ClickedConfigureMicrophone
+      objectReference: {fileID: 0}
+    - target: {fileID: 402779245252101054, guid: 54aecb098ddd5ce4491819b770954c0b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UIManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 402779245252101054, guid: 54aecb098ddd5ce4491819b770954c0b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 1955092098518135318, guid: 54aecb098ddd5ce4491819b770954c0b, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1955092098518135318, guid: 54aecb098ddd5ce4491819b770954c0b, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1955092098518135318, guid: 54aecb098ddd5ce4491819b770954c0b, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1955092098518135318, guid: 54aecb098ddd5ce4491819b770954c0b, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1955092098518135318, guid: 54aecb098ddd5ce4491819b770954c0b, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1955092098518135318, guid: 54aecb098ddd5ce4491819b770954c0b, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1955092098518135318, guid: 54aecb098ddd5ce4491819b770954c0b, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 333.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1955092098518135318, guid: 54aecb098ddd5ce4491819b770954c0b, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 66.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1955092098518135318, guid: 54aecb098ddd5ce4491819b770954c0b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1955092098518135318, guid: 54aecb098ddd5ce4491819b770954c0b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1955092098518135318, guid: 54aecb098ddd5ce4491819b770954c0b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1955092098518135318, guid: 54aecb098ddd5ce4491819b770954c0b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1955092098518135318, guid: 54aecb098ddd5ce4491819b770954c0b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1955092098518135318, guid: 54aecb098ddd5ce4491819b770954c0b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1955092098518135318, guid: 54aecb098ddd5ce4491819b770954c0b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1955092098518135318, guid: 54aecb098ddd5ce4491819b770954c0b, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1955092098518135318, guid: 54aecb098ddd5ce4491819b770954c0b, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1955092098518135318, guid: 54aecb098ddd5ce4491819b770954c0b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1955092098518135318, guid: 54aecb098ddd5ce4491819b770954c0b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1955092098518135318, guid: 54aecb098ddd5ce4491819b770954c0b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6428338652437740863, guid: 54aecb098ddd5ce4491819b770954c0b, type: 3}
+      propertyPath: m_Name
+      value: SpeechRecognition
+      objectReference: {fileID: 0}
+    - target: {fileID: 8998515744229955413, guid: 54aecb098ddd5ce4491819b770954c0b, type: 3}
+      propertyPath: m_text
+      value: Speech Recognition
+      objectReference: {fileID: 0}
+    - target: {fileID: 8998515744229955413, guid: 54aecb098ddd5ce4491819b770954c0b, type: 3}
+      propertyPath: m_fontSize
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8998515744229955413, guid: 54aecb098ddd5ce4491819b770954c0b, type: 3}
+      propertyPath: m_fontSizeMax
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8998515744229955413, guid: 54aecb098ddd5ce4491819b770954c0b, type: 3}
+      propertyPath: m_fontSizeMin
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 8998515744229955413, guid: 54aecb098ddd5ce4491819b770954c0b, type: 3}
+      propertyPath: m_lineSpacingMax
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8998515744229955413, guid: 54aecb098ddd5ce4491819b770954c0b, type: 3}
+      propertyPath: m_charWidthMaxAdj
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8998515744229955413, guid: 54aecb098ddd5ce4491819b770954c0b, type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 54aecb098ddd5ce4491819b770954c0b, type: 3}
+--- !u!224 &986738609 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 1955092098518135318, guid: 54aecb098ddd5ce4491819b770954c0b, type: 3}
+  m_PrefabInstance: {fileID: 986738608}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1147932091
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1224,6 +1382,7 @@ RectTransform:
   - {fileID: 1833633436}
   - {fileID: 1990790386}
   - {fileID: 1271676310}
+  - {fileID: 986738609}
   - {fileID: 849719510}
   m_Father: {fileID: 415557509}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

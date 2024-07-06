@@ -33,6 +33,16 @@ public static class EventManager
    
    
    ///////////////////////////*Gestures*//////////////////////////////////////
-   /// 
    public static readonly UnityEvent<float, float, GesturesEnum> GestureCaptured = new();
+   
+   ///////////////////////////*Settings*//////////////////////////////////////
+   public static readonly UnityEvent<Vector2> ChangedMouseSensitivity = new();
+   
+   ///////////////////////////*Scene*//////////////////////////////////////
+   public static readonly UnityEvent<Camera> CameraWasChanged = new();
+   
+   ///////////////////////////*Presentation*//////////////////////////////////
+   public static readonly UnityEvent ChangeToNextSlide = new();
+   public static readonly UnityEvent CameraWasLocked = new();
+   public static readonly UnityEvent CameraWasUnlocked = new();
 }

@@ -10,7 +10,7 @@ public class PresentationEvaluationUIControllerEditor : Editor
         DrawDefaultInspector();
 
         PresentationEvaluationUIController myScript = (PresentationEvaluationUIController)target;
-        if (GUILayout.Button("Create Dividors"))
+        if (GUILayout.Button("Show Feedback"))
         {
             myScript.PopulateScreenEditorButton();
         }

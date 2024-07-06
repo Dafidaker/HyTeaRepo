@@ -5,8 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Outline))]
 public abstract class Interactable : MonoBehaviour
 {
-    private Outline _outline;
-    
+    protected Outline _outline;
     private void OnEnable()
     {
         EventManager.InteractableIsBeingWatched.AddListener(LookedAt);
@@ -44,43 +43,56 @@ public abstract class Interactable : MonoBehaviour
     }
 }
 
-interface IInteractable
-{
-    public void Interact();
-    public void LookedAt();
-    public void StoppedBeingLookedAt();
-}
-
-
 
 public class PlayerInteracts : MonoBehaviour
 {
     [field:SerializeField] private Transform directionTranform;
     [field:SerializeField] private float interactRange;
+
+    private bool _interactThoroughMouse;
+    
     private GameObject _observedGameObject;
     private GameObject _previousObservedGameObject;
 
     private void Awake()
     {
+        _interactThoroughMouse = false;
         _observedGameObject = null;
+
+        directionTranform = GameManager.Instance.currentCamera.transform;
+    }
+
+    private void OnEnable()
+    {
+        EventManager.CameraWasLocked.AddListener(() => { _interactThoroughMouse = true; });
+        EventManager.CameraWasUnlocked.AddListener(() => { _interactThoroughMouse = false; });
+        EventManager.CameraWasChanged.AddListener((cam) => { directionTranform = cam.transform; });
+    }
+
+    private void OnDisable()
+    {
+        EventManager.CameraWasLocked.RemoveListener(() => { _interactThoroughMouse = true; });
+        EventManager.CameraWasUnlocked.RemoveListener(() => { _interactThoroughMouse = false; });
+        EventManager.CameraWasChanged.RemoveListener((cam) => { directionTranform = cam.transform; });
     }
 
     private void Update()
     {
         _observedGameObject = null;
-        
-        Ray ray = new Ray(transform.position, directionTranform.forward);
+
+        Ray ray = CreateRay();
+        Debug.DrawRay(ray.origin, ray.direction*100);
         if (Physics.Raycast(ray, out RaycastHit hitInfo, interactRange))
         {
             _observedGameObject = hitInfo.transform.gameObject;
-            
         }
 
         if (_observedGameObject == null)
         {
+            EventManager.InteractableIsBeingWatched.Invoke(null);
             _previousObservedGameObject = null;
             return;
-        }
+        }   
 
         if (_observedGameObject != _previousObservedGameObject)
         {
@@ -90,7 +102,7 @@ public class PlayerInteracts : MonoBehaviour
             }
         }
 
-        if (Input.GetKey(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) && !_interactThoroughMouse)
         {
             if (_observedGameObject.TryGetComponent(out Interactable _interactable))
             {
@@ -98,6 +110,28 @@ public class PlayerInteracts : MonoBehaviour
             }
 
         }
-
+        
+        if (Input.GetKeyDown(KeyCode.Mouse0) && _interactThoroughMouse)
+        {
+            if (_observedGameObject.TryGetComponent(out Interactable _interactable))
+            {
+                _interactable.Interact();
+            }
+        }
+        
     }
+
+    private Ray CreateRay()
+    {
+        if (_interactThoroughMouse)
+        {
+             return GameManager.Instance.currentCamera.ScreenPointToRay(Input.mousePosition);
+        }
+        
+        //return new Ray(transform.position, directionTranform.forward);
+        
+        return GameManager.Instance.currentCamera.ScreenPointToRay(new Vector2(Screen.width/2,Screen.height/2));
+    }
+    
+    
 }
