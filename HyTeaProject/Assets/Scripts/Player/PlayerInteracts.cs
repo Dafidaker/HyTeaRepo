@@ -1,11 +1,13 @@
 using System;
 using Imports.QuickOutline.Scripts;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [RequireComponent(typeof(Outline))]
 public abstract class Interactable : MonoBehaviour
 {
     protected Outline _outline;
+    protected bool isInteractable = true;
     private void OnEnable()
     {
         EventManager.InteractableIsBeingWatched.AddListener(LookedAt);
@@ -48,7 +50,8 @@ public class PlayerInteracts : MonoBehaviour
 {
     [field:SerializeField] private Transform directionTranform;
     [field:SerializeField] private float interactRange;
-
+    [field:SerializeField] private bool isDebuggingObjectName;
+    
     private bool _interactThoroughMouse;
     
     private GameObject _observedGameObject;
@@ -58,6 +61,7 @@ public class PlayerInteracts : MonoBehaviour
     {
         _interactThoroughMouse = false;
         _observedGameObject = null;
+        isDebuggingObjectName = false;
 
         directionTranform = GameManager.Instance.currentCamera.transform;
     }
@@ -84,8 +88,10 @@ public class PlayerInteracts : MonoBehaviour
         Debug.DrawRay(ray.origin, ray.direction*100);
         if (Physics.Raycast(ray, out RaycastHit hitInfo, interactRange))
         {
-            _observedGameObject = hitInfo.transform.gameObject;
+            _observedGameObject = hitInfo.collider.gameObject;
         }
+
+        if (isDebuggingObjectName) DebugObjectBeingSeen();
 
         if (_observedGameObject == null)
         {
@@ -99,6 +105,10 @@ public class PlayerInteracts : MonoBehaviour
             if (_observedGameObject.TryGetComponent(out Interactable _interactable))
             {
                 EventManager.InteractableIsBeingWatched.Invoke(_interactable);
+            }
+            else
+            {
+                EventManager.InteractableIsBeingWatched.Invoke(null);
             }
         }
 
@@ -131,6 +141,18 @@ public class PlayerInteracts : MonoBehaviour
         //return new Ray(transform.position, directionTranform.forward);
         
         return GameManager.Instance.currentCamera.ScreenPointToRay(new Vector2(Screen.width/2,Screen.height/2));
+    }
+
+    private void DebugObjectBeingSeen()
+    {
+        if (_observedGameObject != null)
+        {
+            Debug.Log("Object Being Seen: " + _observedGameObject.name);
+        }
+        else
+        {
+            Debug.Log("No is Object Being Seen");
+        }
     }
     
     

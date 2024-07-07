@@ -14,9 +14,10 @@ public class NotesInteractable : Interactable
     
    protected override void LookedAt(Interactable obj)
     {
-        if (obj == this)
+        if (obj == this && isInteractable)
         {
-            _outline.enabled = true;
+            StartCoroutine(UninteractableForSeconds(0.5f));
+            //_outline.enabled = true;
             
             PlayerCam playerCam = GameManager.Instance.currentCamera.gameObject.GetComponent<PlayerCam>();
             if (playerCam.cameraIsLocked)
@@ -29,14 +30,20 @@ public class NotesInteractable : Interactable
 
     protected override void StoppedBeingLookedAt(Interactable obj)
     {
-        
-        if (obj != this)
+        if ((obj != this || obj == null) && isInteractable)
         {
-            _outline.enabled = false;
+            //_outline.enabled = false;
             
             GameManager.Instance.currentCamera.gameObject.GetComponent<PlayerCam>().RemoveLookAtTransform(CameraLookAt);
         }
         
+    }
+
+    private IEnumerator UninteractableForSeconds(float duration)
+    {
+        isInteractable = false;
+        yield return new WaitForSeconds(duration);
+        isInteractable = true;
     }
 
     

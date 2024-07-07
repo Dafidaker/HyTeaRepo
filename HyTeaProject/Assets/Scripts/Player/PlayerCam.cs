@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -9,6 +10,7 @@ public class PlayerCam : MonoBehaviour
     [field: SerializeField] private float sensY;
     
     public bool cameraIsLocked;
+    private bool cameraIsMoving;
     public Transform orientation;
 
     private float xRotation;
@@ -42,9 +44,8 @@ public class PlayerCam : MonoBehaviour
         if (cameraIsLocked) return;
         
         CreateRotation();
+        
         RotateCamera();
-        
-        
     }
 
     private void LockInput()
@@ -52,21 +53,22 @@ public class PlayerCam : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.L))
         {
             cameraIsLocked = !cameraIsLocked;
+            
+            if (cameraIsLocked)
+            {
+                LockCamera();
+            }
+            else
+            {
+                UnlockCamera();
+            }
         }
-
-        if (cameraIsLocked)
-        {
-            LockCamera();
-        }
-        else
-        {
-            UnlockCamera();
-        }
+        
     }
     
     private void LateUpdate()
     {
-        if (! cameraIsLocked) return;
+        if (!cameraIsLocked) return;
         
         RotateLockedCamera();
     }
@@ -96,9 +98,9 @@ public class PlayerCam : MonoBehaviour
 
     private void RotateLockedCamera()
     {
-        /*transform.rotation = Quaternion.Euler(xRotation,yRotation,0);
-        orientation.rotation = Quaternion.Euler(0,yRotation,0);*/
-        LookToTranform();
+        if (cameraIsMoving) return;
+            
+        LookToTransform();
         
         _smoothMousePosition = Vector2.Lerp(MouseOnScreen(), _smoothMousePosition, Mathf.Pow(0.0001f, Time.deltaTime * 0.99f));
         
@@ -106,19 +108,41 @@ public class PlayerCam : MonoBehaviour
         transform.Rotate(Vector3.up, _smoothMousePosition.x * easeAngles.x);
     }
 
-    private void LookToTranform()
+    private void LookToTransform()
     {
         if(_lookAtTranforms == null || _lookAtTranforms.Count < 0) return;
+        
         transform.forward = _lookAtTranforms[^1].position - transform.position;
     }
 
+    private IEnumerator LerpCameraRotation()
+    {
+        if (_lookAtTranforms == null || _lookAtTranforms.Count <= 0) yield break;
+
+        cameraIsMoving = true;
+    
+        Transform targetTransform = _lookAtTranforms[^1]; // Target is the last transform in the list
+    
+        while (Vector3.Angle(transform.forward, targetTransform.position - transform.position) > 5f)
+        {
+            Vector3 targetDirection = (targetTransform.position - transform.position).normalized;
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(targetDirection), 0.5f * Time.deltaTime * 360); 
+
+            yield return null;
+        }
+    
+        cameraIsMoving = false;
+        
+    }
+    
     public void LockCamera()
     {
-        EventManager.CameraWasLocked.Invoke();
         cameraIsLocked = true;
+        EventManager.CameraWasLocked.Invoke();
         _smoothMousePosition = MouseOnScreen();
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = true;
+        StartCoroutine(LerpCameraRotation());
     }
     
     public void UnlockCamera()
@@ -134,6 +158,7 @@ public class PlayerCam : MonoBehaviour
         if (!_lookAtTranforms.Contains(tf))
         {
             _lookAtTranforms.Add(tf);
+            StartCoroutine(LerpCameraRotation());
         }
     }
 
@@ -142,5 +167,6 @@ public class PlayerCam : MonoBehaviour
         if (tf == lookAtTranformLockedCamera || _lookAtTranforms.Count <= 1) return;
         
         _lookAtTranforms.Remove(tf);
+        StartCoroutine(LerpCameraRotation());
     }
 }
