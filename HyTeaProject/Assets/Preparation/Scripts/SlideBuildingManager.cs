@@ -105,7 +105,7 @@ public class SlideBuildingManager : MonoBehaviour
         _displayedSlides[_indexOfCurrentFullSlide].SetActive(true);
     }
 
-    private void DisplayPreviewSlides()
+    private void DisplayPreviewSlides() 
     {
         _slideObjInOrder = AvailableSlides;
         _slideObjInOrder = AddToBeginning(_slideObjInOrder, IntroSlideObj);

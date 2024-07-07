@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Topic", menuName = "Presentation/Topic", order = 51)]
@@ -8,6 +9,8 @@ public class Topic : ScriptableObject
 {
     public string Title;
     [SerializeField] private List<Slide> AvailableSlideObjects;
+    [SerializeField] private List<Section> AvailableSections;
+    
     private List<GameObject> _previewSlides;
     private List<GameObject> _fullSlides;
 
@@ -34,5 +37,10 @@ public class Topic : ScriptableObject
             _fullSlides.Add(AvailableSlideObjects[i].GetFullSlide());
         }
         return _fullSlides;
+    }
+
+    public List<Section> GetAllSections()
+    {
+        return AvailableSections;
     }
 }
