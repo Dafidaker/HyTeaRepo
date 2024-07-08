@@ -15,6 +15,9 @@ public static class EventManager
    public static UnityEvent<int> SetChosenOptionEvent = new UnityEvent<int>();
    public static UnityEvent<Interactable> InteractableIsBeingWatched = new();
    public static UnityEvent NothingIsBeingDetected = new();
+
+   public static UnityEvent<int> SetNumOfSectionsAdded = new UnityEvent<int>();
+   public static UnityEvent<Section, Vector2> AddSectionToOrderEvent = new UnityEvent<Section, Vector2>();
    
    ///////////////////////////*Audio Events*//////////////////////////////////////
    public static UnityEvent PressedVolumeAnalysisButton = new();

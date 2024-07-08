@@ -224,7 +224,12 @@ public class SlideBuildingManager : MonoBehaviour
         
         EventManager.GetNumberOfSiblings.Invoke(SlidesParent.transform.childCount);
     }
-    
+
+    private void Update()
+    {
+        
+    }
+
     private void OnEnable()
     {
         EventManager.TopicSelectedEvent.AddListener(UpdateSelectedTopic);
