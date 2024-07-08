@@ -31,6 +31,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
+        GameManager.Instance.SetPlayer(gameObject);
+        
         _rb = GetComponent<Rigidbody>();
         _rb.freezeRotation = true;
     }
