@@ -8,6 +8,7 @@ public abstract class Interactable : MonoBehaviour
 {
     protected Outline _outline;
     protected bool isInteractable = true;
+    protected bool isBeingWatched = false;
     private void OnEnable()
     {
         EventManager.InteractableIsBeingWatched.AddListener(LookedAt);

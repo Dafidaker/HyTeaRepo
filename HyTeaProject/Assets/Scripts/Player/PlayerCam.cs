@@ -27,6 +27,7 @@ public class PlayerCam : MonoBehaviour
 
     private void Awake()
     {
+        GameManager.Instance.SetPlayerCam(this);
         _lookAtTranforms = new List<Transform>();
         _lookAtTranforms.Add(lookAtTranformLockedCamera);
     }
@@ -134,6 +135,18 @@ public class PlayerCam : MonoBehaviour
         cameraIsMoving = false;
         
     }
+
+    public void LockOnTarget(Transform target)
+    { 
+        LookAt(target);
+        LockCamera();
+    }
+    
+    public void UnlockOnTarget(Transform target)
+    { 
+        UnlockCamera();
+        StopLookingAt(target);
+    }
     
     public void LockCamera()
     {
@@ -153,7 +166,7 @@ public class PlayerCam : MonoBehaviour
         Cursor.visible = false;
     }
 
-    public void AddLookAtTransform(Transform tf)
+    public void LookAt(Transform tf)
     {
         if (!_lookAtTranforms.Contains(tf))
         {
@@ -162,7 +175,7 @@ public class PlayerCam : MonoBehaviour
         }
     }
 
-    public void RemoveLookAtTransform(Transform tf)
+    public void StopLookingAt(Transform tf)
     {
         if (tf == lookAtTranformLockedCamera || _lookAtTranforms.Count <= 1) return;
         

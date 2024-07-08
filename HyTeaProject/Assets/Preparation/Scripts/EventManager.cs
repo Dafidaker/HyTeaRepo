@@ -48,4 +48,8 @@ public static class EventManager
    public static readonly UnityEvent ChangeToNextSlide = new();
    public static readonly UnityEvent CameraWasLocked = new();
    public static readonly UnityEvent CameraWasUnlocked = new();
+   
+   ///////////////////////////*AI*//////////////////////////////////
+   public static readonly UnityEvent<AgentController,Transform> ArrivedAtTarget = new();
+   public static readonly UnityEvent<AgentController> FeedbackWasGiven = new();
 }
