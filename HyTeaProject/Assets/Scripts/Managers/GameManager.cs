@@ -43,6 +43,8 @@ public class GameManager : Singleton<GameManager>
         public void SetPlayerCam(PlayerCam playerCam)
         {
             PlayerCam = playerCam;
+            currentCamera = playerCam.gameObject.GetComponent<Camera>();
+            EventManager.CameraWasChanged.Invoke(currentCamera);
         }
 
     #endregion

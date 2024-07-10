@@ -33,7 +33,7 @@ public class AIManager : Singleton<AIManager>
         if (robot == feedbackRobot && playerTransform == Player.transform)
         {
             GameManager.Instance.LockPlayerCameraOnTarget(robot.dialogueCameraLookAt);
-            robot.GiveFeedback(PresentationManager.Instance._feedbacks);
+            robot.GiveFeedback(PresentationManager.Instance._feedbacks, UIManager.Instance.CreateDialogueCanvas());
             EventManager.ArrivedAtTarget.RemoveListener(RobotArrivedThePlayer);
         }
         

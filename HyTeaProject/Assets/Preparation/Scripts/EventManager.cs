@@ -52,4 +52,9 @@ public static class EventManager
    ///////////////////////////*AI*//////////////////////////////////
    public static readonly UnityEvent<AgentController,Transform> ArrivedAtTarget = new();
    public static readonly UnityEvent<AgentController> FeedbackWasGiven = new();
+   
+   
+   ///////////////////////////*Input*//////////////////////////////////
+   public static readonly UnityEvent MouseWasPressed = new();
+   
 }

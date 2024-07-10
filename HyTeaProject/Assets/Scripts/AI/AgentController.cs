@@ -7,14 +7,17 @@ using UnityEngine.AI;
 public class AgentController : MonoBehaviour
 {
     public Transform dialogueCameraLookAt;
+    [field: SerializeField]private string name;
+    
     private NavMeshAgent _navMeshAgent;
     private Coroutine _followCoroutine;
+    
+    private bool _canContinue = false;
     
     void Awake()
     {
         _navMeshAgent = GetComponent<NavMeshAgent>();
     }
-    
     
     public void FollowTarget(Transform target)
     {
@@ -31,7 +34,7 @@ public class AgentController : MonoBehaviour
         {
             _navMeshAgent.SetDestination(target.position);
 
-            if (Vector3.Distance(transform.position,target.position) < 3f)
+            if (Vector3.Distance(transform.position,target.position) <= _navMeshAgent.stoppingDistance)
             {
                 EventManager.ArrivedAtTarget.Invoke(this,target);
                 StopFollowing();
@@ -52,7 +55,7 @@ public class AgentController : MonoBehaviour
         }
     }
 
-    public void StopFollowing()
+    private void StopFollowing()
     {
         if (_followCoroutine != null)
         {
@@ -61,7 +64,6 @@ public class AgentController : MonoBehaviour
         }
     }
 
-    // Method to move to a specific position
     public void MoveTo(Vector3 position)
     {
         if (_followCoroutine != null)
@@ -72,24 +74,47 @@ public class AgentController : MonoBehaviour
         _navMeshAgent.SetDestination(position);
     }
 
-    public void GiveFeedback(List<Feedback> feedbacks)
+    public void GiveFeedback(List<Feedback> feedbacks,DialogueUIController dialController )
     {
-        StartCoroutine(GiveFeedbackCourotine(feedbacks));
+        StartCoroutine(GiveFeedbackCourotine(feedbacks,dialController));
     }
 
-    private IEnumerator GiveFeedbackCourotine(List<Feedback> feedbacks)
+    private IEnumerator GiveFeedbackCourotine(List<Feedback> feedbacks,DialogueUIController dialController )
     {
-        if (feedbacks == null)
+        var coroutine= StartCoroutine(UIManager.Instance.CheckForMousePress());
+        EventManager.MouseWasPressed.AddListener((() => _canContinue = true));
+        
+        if (feedbacks == null || dialController == null)
         {
             EventManager.FeedbackWasGiven.Invoke(this);
             yield break;
         }
+
+        UIManager.Instance.ShowActiveCanvas(true);
+        dialController.EnableContinueText(false);
+        dialController.ChangeNameText(name);
+        
         
         foreach (var feedback in feedbacks)
         {
-            Debug.Log(feedback.TextFeedback);
+            dialController.ChangeDialogueText(feedback.TextFeedback);
             yield return new WaitForSeconds(1f);
+            dialController.EnableContinueText(true);
+            
+            yield return new WaitUntil(() => _canContinue);
+            _canContinue = false;
         }
+        
+        dialController.ChangeDialogueText("Thank you for the presentation");
+        yield return new WaitForSeconds(1f);
+        dialController.EnableContinueText(true);
+            
+        yield return new WaitUntil(() => _canContinue);
+        _canContinue = false;
+        
         EventManager.FeedbackWasGiven.Invoke(this);
+        EventManager.MouseWasPressed.RemoveListener((() => _canContinue = true));
+        if (coroutine != null) StopCoroutine(coroutine);
+        UIManager.Instance.CloseUpperCanvas();
     }
 }

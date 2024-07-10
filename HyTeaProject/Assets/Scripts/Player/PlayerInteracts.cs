@@ -1,59 +1,16 @@
 using System;
-using Imports.QuickOutline.Scripts;
 using UnityEngine;
 using UnityEngine.Serialization;
-
-[RequireComponent(typeof(Outline))]
-public abstract class Interactable : MonoBehaviour
-{
-    protected Outline _outline;
-    protected bool isInteractable = true;
-    protected bool isBeingWatched = false;
-    private void OnEnable()
-    {
-        EventManager.InteractableIsBeingWatched.AddListener(LookedAt);
-        EventManager.InteractableIsBeingWatched.AddListener(StoppedBeingLookedAt);
-    }
-
-    private void OnDisable()
-    {
-        EventManager.InteractableIsBeingWatched.RemoveListener(LookedAt);
-        EventManager.InteractableIsBeingWatched.RemoveListener(StoppedBeingLookedAt);
-    }
-
-    private void Awake()
-    {
-        _outline = GetComponent<Outline>();
-        _outline.enabled = false;
-    }
-
-    public abstract void Interact();
-
-    protected virtual void LookedAt(Interactable obj)
-    {
-        if (obj == this)
-        {
-            _outline.enabled = true;
-        }
-    }
-
-    protected virtual void StoppedBeingLookedAt(Interactable obj)
-    {
-        if (obj != this)
-        {
-            _outline.enabled = false;
-        }
-    }
-}
 
 
 public class PlayerInteracts : MonoBehaviour
 {
-    [field:SerializeField] private Transform directionTranform;
     [field:SerializeField] private float interactRange;
     [field:SerializeField] private bool isDebuggingObjectName;
     
     private bool _interactThoroughMouse;
+
+    private Camera playerCamera;
     
     private GameObject _observedGameObject;
     private GameObject _previousObservedGameObject;
@@ -64,28 +21,33 @@ public class PlayerInteracts : MonoBehaviour
         _observedGameObject = null;
         isDebuggingObjectName = false;
 
-        directionTranform = GameManager.Instance.currentCamera.transform;
+        playerCamera = GameManager.Instance.currentCamera;
     }
 
     private void OnEnable()
     {
         EventManager.CameraWasLocked.AddListener(() => { _interactThoroughMouse = true; });
         EventManager.CameraWasUnlocked.AddListener(() => { _interactThoroughMouse = false; });
-        EventManager.CameraWasChanged.AddListener((cam) => { directionTranform = cam.transform; });
+        EventManager.CameraWasChanged.AddListener((cam) => { playerCamera = cam; });
     }
 
     private void OnDisable()
     {
         EventManager.CameraWasLocked.RemoveListener(() => { _interactThoroughMouse = true; });
         EventManager.CameraWasUnlocked.RemoveListener(() => { _interactThoroughMouse = false; });
-        EventManager.CameraWasChanged.RemoveListener((cam) => { directionTranform = cam.transform; });
+        EventManager.CameraWasChanged.RemoveListener((cam) => { playerCamera = cam; });
     }
 
     private void Update()
     {
         _observedGameObject = null;
 
-        Ray ray = CreateRay();
+        var potentialRay = CreateRay();
+
+        if (potentialRay == null) return;
+        
+        var ray = (Ray) potentialRay;
+        
         Debug.DrawRay(ray.origin, ray.direction*100);
         if (Physics.Raycast(ray, out RaycastHit hitInfo, interactRange))
         {
@@ -132,16 +94,16 @@ public class PlayerInteracts : MonoBehaviour
         
     }
 
-    private Ray CreateRay()
+    private Ray? CreateRay()
     {
-        if (_interactThoroughMouse)
+        if (playerCamera == null)
         {
-             return GameManager.Instance.currentCamera.ScreenPointToRay(Input.mousePosition);
+            return null;
         }
         
-        //return new Ray(transform.position, directionTranform.forward);
-        
-        return GameManager.Instance.currentCamera.ScreenPointToRay(new Vector2(Screen.width/2,Screen.height/2));
+        return _interactThoroughMouse 
+            ? playerCamera.ScreenPointToRay(Input.mousePosition) 
+            : playerCamera.ScreenPointToRay(new Vector2(Screen.width/2, Screen.height/2));
     }
 
     private void DebugObjectBeingSeen()

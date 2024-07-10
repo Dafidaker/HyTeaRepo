@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-enum LookingAtNotepad
+internal enum LookingAtNotepad
 {
     CameraMoves,
     NotepadMoves
@@ -61,7 +61,7 @@ public class NotepadInteractable : Interactable
             
             if (playerCam == null)
             {
-                playerCam = GameManager.Instance.currentCamera.gameObject.GetComponent<PlayerCam>();
+                playerCam = GameManager.Instance.PlayerCam; 
             }
             
             if (playerCam != null && playerCam.cameraIsLocked)
