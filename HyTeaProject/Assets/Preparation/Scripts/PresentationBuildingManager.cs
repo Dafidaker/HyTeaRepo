@@ -28,6 +28,7 @@ public class PresentationBuildingManager : MonoBehaviour
     private bool _drawingLine;
     private int _currentLinePoint;
     private UILineRenderer _line;
+    private Canvas _canvas;
     
     
     [Header("Sections")]
@@ -124,7 +125,12 @@ public class PresentationBuildingManager : MonoBehaviour
             _line.points = new List<Vector2>();
             _line.points.Add(linePoint);
             _currentLinePoint++;
-            //_line.points.Add(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+            Vector2 movePos;
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(
+                SectionOrderSection.GetComponent<Canvas>().transform as RectTransform,
+                Input.mousePosition, SectionOrderSection.GetComponent<Canvas>().worldCamera,
+                out movePos);
+            _line.points.Add(movePos);
         }
         else if(_drawingLine && _sectionsInOrder.Count < ListOfSections.Count)
         {
@@ -135,7 +141,16 @@ public class PresentationBuildingManager : MonoBehaviour
             }
             
             _sectionsInOrder.Add(section);
+            _line.points[_currentLinePoint] = linePoint;
             _line.points.Add(linePoint);
+            _currentLinePoint++;
+
+            if (_sectionsInOrder.Count == ListOfSections.Count)
+            {
+                Debug.Log("All Sections have been selected");
+                _drawingLine = false;
+            }
+            
             _line.SetAllDirty();
         }
         else if(_sectionsInOrder.Count == ListOfSections.Count)
@@ -145,14 +160,33 @@ public class PresentationBuildingManager : MonoBehaviour
         }
     }
 
+    public void ResetSectionOrder()
+    {
+        _sectionsInOrder = new List<Section>();
+        if(_line) Destroy(_line);
+        LineParent.transform.DetachChildren();
+        _currentLinePoint = 0;
+        _drawingLine = false;
+    }
+
+    private void Start()
+    {
+        _canvas = SectionOrderSection.GetComponent<Canvas>();
+    }
+
     private void Update()
     {
-        if (_drawingLine)
+        if (_drawingLine && _sectionsInOrder.Count > 0)
         {
-            //_line.points[_currentLinePoint] = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 movePos;
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(
+                _canvas.transform as RectTransform,
+                Input.mousePosition, _canvas.worldCamera,
+                out movePos);
+            _line.points[_currentLinePoint] = movePos;
         }
         
-        //_line.SetAllDirty();
+        if(_line) _line.SetAllDirty();
     }
 
     private void OnEnable()

@@ -388,7 +388,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Print Order
+  m_text: Reset Order
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2329,7 +2329,7 @@ GameObject:
   - component: {fileID: 1259851295}
   - component: {fileID: 1259851294}
   m_Layer: 5
-  m_Name: Print
+  m_Name: Reset
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2399,9 +2399,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1439282200}
-        m_TargetAssemblyTypeName: SlideBuildingManager, Assembly-CSharp
-        m_MethodName: PrintSlideOrder
+      - m_Target: {fileID: 508445554}
+        m_TargetAssemblyTypeName: PresentationBuildingManager, Assembly-CSharp
+        m_MethodName: ResetSectionOrder
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
