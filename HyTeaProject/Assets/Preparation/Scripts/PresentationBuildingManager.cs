@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
@@ -29,12 +30,19 @@ public class PresentationBuildingManager : MonoBehaviour
     private int _currentLinePoint;
     private UILineRenderer _line;
     private Canvas _canvas;
+
+    [Header("Slide Customization Section")] 
+    [SerializeField] private List<FullSlide> ListOfFullSlides;
+    [SerializeField] private GameObject FullSlideParent;
+
+    [SerializeField] private List<GameObject> _fullSlidesGameObjects;
+    private int _indexOfCurrentSlide;
     
     
     [Header("Sections")]
     [SerializeField] private GameObject TopicSection;
     [SerializeField] private GameObject SectionOrderSection;
-    [SerializeField] private GameObject OptionsSection;
+    [SerializeField] private GameObject SlideCustomizationSection;
     
     public void UpdateSelectedTopic(Topic topic)
     {
@@ -89,6 +97,47 @@ public class PresentationBuildingManager : MonoBehaviour
         LineParent.transform.DetachChildren();
     }
 
+    public void MoveToSlieCustomizationSection()
+    {
+        if (_sectionsInOrder.Count != ListOfSections.Count)
+        {
+            Debug.Log("There are still sections to select!");
+        }
+        else
+        {
+            SectionOrderSection.SetActive(false);
+            SlideCustomizationSection.SetActive(true);
+
+            ListOfFullSlides = new List<FullSlide>();
+
+            for (int i = 0; i < _sectionsInOrder.Count; i++)
+            {
+                for (int j = 0; j < _sectionsInOrder[i].GetSlidesRequired().Count; j++)
+                {
+                    ListOfFullSlides.Add(_sectionsInOrder[i].GetSlidesRequired()[j]);
+                }
+            }
+            
+            DisplayFullSlides();
+
+            for (int k = 1; k < _fullSlidesGameObjects.Count; k++)
+            {
+                _fullSlidesGameObjects[k].SetActive(false);
+            }
+
+            _indexOfCurrentSlide = 0;
+        }
+    }
+
+    public void CycleThroughSlides(int i)
+    {
+        _fullSlidesGameObjects[_indexOfCurrentSlide].SetActive(false);
+        _indexOfCurrentSlide += i;
+        if (_indexOfCurrentSlide < 0) _indexOfCurrentSlide = _fullSlidesGameObjects.Count - 1;
+        if (_indexOfCurrentSlide >= _fullSlidesGameObjects.Count) _indexOfCurrentSlide = 0;
+        _fullSlidesGameObjects[_indexOfCurrentSlide].SetActive(true);
+    }
+
     private void DisplaySectionPreviews()
     {
         _sectionsInOrder = new List<Section>();
@@ -105,6 +154,21 @@ public class PresentationBuildingManager : MonoBehaviour
         }
     }
 
+    private void DisplayFullSlides()
+    {
+        _fullSlidesGameObjects = new List<GameObject>();
+        for (int i = 0; i < ListOfFullSlides.Count; i++)
+        {
+            var go = Instantiate(ListOfFullSlides[i].FullSlidePrefab, FullSlideParent.transform);
+            _fullSlidesGameObjects.Add(go);
+        }
+
+        for (int i = 0; i < _fullSlidesGameObjects.Count; i++)
+        {
+            SetVariablesInFullSlides(_fullSlidesGameObjects[i], ListOfFullSlides[i].CorrespondingSection, i);
+        }
+    }
+
     private void SetVariablesInSectionPreview(GameObject preview, Section section, Transform trans)
     {
         preview.transform.Find("SectionTitle").GetComponent<TextMeshProUGUI>().SetText(section.GetSectionTitle());
@@ -112,8 +176,15 @@ public class PresentationBuildingManager : MonoBehaviour
         preview.GetComponent<Image>().color = section.GetColor();
         preview.GetComponent<SectionManager>().SetSection(section);
         preview.GetComponent<SectionManager>().ButtonPos = new Vector2(trans.localPosition.x, trans.localPosition.y);
+        
     }
 
+    private void SetVariablesInFullSlides(GameObject slide, Section section, int num)
+    {
+        slide.GetComponent<FullSlideManager>().SetTitle(section.GetSectionTitle() + " " + ListOfFullSlides[num].Title);
+        slide.GetComponent<FullSlideManager>().SetOptions(ListOfFullSlides[num].TextOptions);
+        slide.GetComponent<Image>().color = section.GetColor();
+    }
 
     private void AddSectionToOrder(Section section, Vector2 linePoint)
     {

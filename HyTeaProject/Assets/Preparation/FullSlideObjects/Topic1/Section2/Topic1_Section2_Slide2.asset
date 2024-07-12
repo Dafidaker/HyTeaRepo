@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49fd2793a2cd8d84a867a388a594e62a, type: 3}
+  m_Name: Topic1_Section2_Slide2
+  m_EditorClassIdentifier: 
+  CorrespondingSection: {fileID: 11400000, guid: ba7539adc947c4649a8f1165d2d31075, type: 2}
+  FullSlidePrefab: {fileID: 6941635050581408522, guid: 36c83bb073fb37f4fa848bb267dd0876, type: 3}
+  Title: Slide 2
+  TextOptions:
+  - Bullet Points

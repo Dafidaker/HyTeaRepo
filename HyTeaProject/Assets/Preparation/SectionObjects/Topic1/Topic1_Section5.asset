@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Topic1_Section5
   m_EditorClassIdentifier: 
   SectionTitle: Topic 1 Section 5
-  SlidesRequired: []
+  SlidesRequired:
+  - {fileID: 11400000, guid: a224acd157061944f878db290967011f, type: 2}
   ImageColor: {r: 0.3852392, g: 0.93962264, b: 0.36698464, a: 1}

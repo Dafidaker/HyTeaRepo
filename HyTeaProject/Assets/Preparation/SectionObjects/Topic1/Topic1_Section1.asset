@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SectionTitle: Miku hair color lol
   SlidesRequired:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 61a94499dc78b7d4e8c6380f567826ca, type: 2}
+  - {fileID: 11400000, guid: 15c73bc9e3ace634cbf860a9cb8585b9, type: 2}
   ImageColor: {r: 0.035848916, g: 1, b: 0.8939846, a: 1}

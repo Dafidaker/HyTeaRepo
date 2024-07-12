@@ -1,15 +1,17 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [CreateAssetMenu(fileName = "New Topic Section", menuName = "Presentation/Topic Section", order = 53)]
 public class Section : ScriptableObject
 {
     [SerializeField] private string SectionTitle;
-    [SerializeField] private List<GameObject> SlidesRequired;
+    [SerializeField] private List<FullSlide> SlidesRequired;
     [SerializeField] private Color ImageColor;
 
-    public List<GameObject> GetSlidesRequired()
+    public List<FullSlide> GetSlidesRequired()
     {
         return SlidesRequired;
     }
@@ -23,4 +25,5 @@ public class Section : ScriptableObject
     {
         return ImageColor;
     }
+    
 }

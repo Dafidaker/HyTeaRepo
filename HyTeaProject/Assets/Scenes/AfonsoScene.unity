@@ -206,9 +206,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1439282200}
-        m_TargetAssemblyTypeName: SlideBuildingManager, Assembly-CSharp
-        m_MethodName: MoveToSlideCustomizationSection
+      - m_Target: {fileID: 508445554}
+        m_TargetAssemblyTypeName: PresentationBuildingManager, Assembly-CSharp
+        m_MethodName: MoveToSlieCustomizationSection
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -634,41 +634,6 @@ RectTransform:
   m_AnchoredPosition: {x: -593, y: -168}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &217904989
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 217904990}
-  m_Layer: 5
-  m_Name: OptionStart
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &217904990
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 217904989}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1007061127}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -525, y: -345}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &277417884
 GameObject:
   m_ObjectHideFlags: 0
@@ -984,9 +949,13 @@ MonoBehaviour:
   LinePrefab: {fileID: 7342767201487803086, guid: d43b79b1f1d51da4da041fbdaad7965f, type: 3}
   LineParent: {fileID: 1281337906}
   _sectionsInOrder: []
+  ListOfFullSlides: []
+  FullSlidePrefab: {fileID: 6941635050581408522, guid: 5d9afdf1cb671b242be801ccc7a7e666, type: 3}
+  FullSlideParent: {fileID: 1126640290}
+  _fullSlidesGameObjects: []
   TopicSection: {fileID: 277417884}
   SectionOrderSection: {fileID: 1215187248}
-  OptionsSection: {fileID: 1007061123}
+  SlideCustomizationSection: {fileID: 1007061123}
 --- !u!4 &508445555
 Transform:
   m_ObjectHideFlags: 0
@@ -1085,9 +1054,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1439282200}
-        m_TargetAssemblyTypeName: SlideBuildingManager, Assembly-CSharp
-        m_MethodName: CycleThroughDisplayedSlides
+      - m_Target: {fileID: 508445554}
+        m_TargetAssemblyTypeName: PresentationBuildingManager, Assembly-CSharp
+        m_MethodName: CycleThroughSlides
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2025,11 +1994,10 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 789772109}
-  - {fileID: 1126640291}
-  - {fileID: 217904990}
   - {fileID: 549738171}
   - {fileID: 1306712367}
   - {fileID: 1778340282}
+  - {fileID: 1126640291}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2047,7 +2015,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1126640291}
   m_Layer: 5
-  m_Name: SlideDisplayPoint
+  m_Name: FullSlideParent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2069,7 +2037,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 165}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1152382515
@@ -2700,9 +2668,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1439282200}
-        m_TargetAssemblyTypeName: SlideBuildingManager, Assembly-CSharp
-        m_MethodName: CycleThroughDisplayedSlides
+      - m_Target: {fileID: 508445554}
+        m_TargetAssemblyTypeName: PresentationBuildingManager, Assembly-CSharp
+        m_MethodName: CycleThroughSlides
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2912,7 +2880,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1439282201}
-  - component: {fileID: 1439282200}
   m_Layer: 0
   m_Name: SlideBuildingManager
   m_TagString: Untagged
@@ -2920,30 +2887,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!114 &1439282200
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1439282199}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76cb411fdc3d17f4191c51502a4360a8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SelectedTopic: {fileID: 0}
-  AvailableSlides: []
-  CurrentTopicText: {fileID: 474946889}
-  IntroSlideObj: {fileID: 11400000, guid: 5201532c6afcb424383e7c609ba7e41e, type: 2}
-  OutroSlideObj: {fileID: 11400000, guid: 2b0a7300be7a0564da13d51a26c5da2d, type: 2}
-  SlidesParent: {fileID: 921520732}
-  StartingPoint: {fileID: 0}
-  SlideDisplayPoint: {fileID: 1126640291}
-  OptionStartPoint: {fileID: 217904990}
-  TopicSection: {fileID: 277417884}
-  SlideOrderSection: {fileID: 1215187248}
-  OptionsSection: {fileID: 1007061123}
 --- !u!4 &1439282201
 Transform:
   m_ObjectHideFlags: 0
@@ -3784,19 +3727,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1778340284}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1439282200}
-        m_TargetAssemblyTypeName: SlideBuildingManager, Assembly-CSharp
-        m_MethodName: ReturnToSlideOrderSection
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1778340284
 MonoBehaviour:
   m_ObjectHideFlags: 0
