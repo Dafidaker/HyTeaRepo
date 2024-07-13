@@ -183,6 +183,7 @@ public class PresentationBuildingManager : MonoBehaviour
     {
         slide.GetComponent<FullSlideManager>().SetTitle(section.GetSectionTitle() + " " + ListOfFullSlides[num].Title);
         slide.GetComponent<FullSlideManager>().SetOptions(ListOfFullSlides[num].TextOptions);
+        slide.GetComponent<FullSlideManager>().SetMiscOption(ListOfFullSlides[num].MiscOption);
         slide.GetComponent<Image>().color = section.GetColor();
     }
 

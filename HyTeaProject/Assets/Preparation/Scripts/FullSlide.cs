@@ -9,4 +9,5 @@ public class FullSlide : ScriptableObject
     public GameObject FullSlidePrefab;
     public string Title;
     public List<string> TextOptions;
+    public GameObject MiscOption;
 }

@@ -17,3 +17,5 @@ MonoBehaviour:
   Title: Slide 2
   TextOptions:
   - Bullet Points
+  - Full Text
+  MiscOption: {fileID: 0}

@@ -17,5 +17,5 @@ MonoBehaviour:
   Title: Slide 1
   TextOptions:
   - Bullet Points
-  - Graph
   - Full Text
+  MiscOption: {fileID: 0}
