@@ -6,6 +6,8 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.UIElements;
+using Button = UnityEngine.UI.Button;
 using Image = Microsoft.Unity.VisualStudio.Editor.Image;
 
 public class FullSlideManager : MonoBehaviour
@@ -13,15 +15,24 @@ public class FullSlideManager : MonoBehaviour
    [SerializeField] private Section CorrespondingSection;
    [SerializeField] private TextMeshProUGUI Title;
    [SerializeField] private GameObject OptionTextSlot;
+   [SerializeField] private GameObject OptionImageSlot;
+   
    [SerializeField] private GameObject OptionTextMenu;
+   [SerializeField] private GameObject OptionImageMenu;
    [SerializeField] private List<string> TextOptions;
+   [SerializeField] private List<GameObject> ImageOptions;
+   
    [SerializeField] private GameObject MiscOption;
+   [SerializeField] private Sprite MiscOptionSpirte;
    [SerializeField] private List<GameObject> TextDisplayBoxes;
-   [SerializeField] private GameObject MiscDisplayBox;
    [SerializeField] private GameObject SelectedTextOption;
-   [SerializeField] private GameObject SelectedImageOption;
+   [SerializeField] private Sprite DefaultBorderSprite;
 
+   [SerializeField] private Transform ImageStart;
+   
    public bool HasMiscOption;
+   
+   
 
    public void SetTitle(string title)
    {
@@ -58,35 +69,60 @@ public class FullSlideManager : MonoBehaviour
       TextOptions = options;
    }
 
-   public void SetMiscOption(GameObject misc)
+   public void SetImages(List<GameObject> images)
    {
-      MiscOption = misc;
+      ImageOptions = images;
    }
 
-   public GameObject GetMiscOption()
+   public void SetMiscOption(Sprite misc)
    {
-      return MiscOption;
+      MiscOptionSpirte = misc;
+   }
+
+   public Sprite GetMiscOption()
+   {
+      return MiscOptionSpirte;
    }
 
    private void OnEnable()
    {
       TextOptions ??= new List<string>();
+      ImageOptions ??= new List<GameObject>();
    }
 
    public void OpenTextMenu()
    {
       OptionTextMenu.SetActive(true);
-      UpdateOptions();
+      OptionTextSlot.transform.SetSiblingIndex(2);
+      UpdateTextOptions();
+   }
+
+   public void OpenImageMenu()
+   {
+      OptionImageMenu.SetActive(true);
+      OptionImageSlot.transform.SetSiblingIndex(2);
+      UpdateImageOptions();
    }
 
    public void CloseTextMenu(GameObject option)
    {
       OptionTextMenu.SetActive(false);
-      UpdateSelectedOption(option);
-      transform.Find("OptionTextSlot").GetComponent<UnityEngine.UI.Image>().enabled = false;
+      UpdateSelectedTextOption(option);
    }
 
-   private void UpdateOptions()
+   public void CloseImageMenu(GameObject image)
+   {
+      OptionImageMenu.SetActive(false);
+      UpdateSelectedImage(image);
+   }
+
+   public void RemoveImage()
+   {
+      OptionImageSlot.GetComponent<UnityEngine.UI.Image>().sprite = DefaultBorderSprite;
+      OptionImageMenu.SetActive(false);
+   }
+
+   private void UpdateTextOptions()
    {
       for (int i = 0; i < TextDisplayBoxes.Count; i++)
       {
@@ -95,14 +131,48 @@ public class FullSlideManager : MonoBehaviour
 
       if (HasMiscOption)
       {
-         
+         MiscOption.GetComponent<UnityEngine.UI.Image>().sprite = MiscOptionSpirte;
       }
    }
 
-   private void UpdateSelectedOption(GameObject option)
+   private void UpdateImageOptions()
    {
-      if(option.name != "MiscOption") SelectedTextOption.GetComponent<TextMeshProUGUI>().text = option.GetComponent<TextMeshProUGUI>().text;
-      else Debug.Log("Misc Option");
+      float horizontalSpacing = 505 + Screen.width / 100;
+      int count = ImageOptions.Count;
+      float totalWidth = count * horizontalSpacing;
+     
+      Vector3 startPosition = ImageStart.position;
+      startPosition.x -= (totalWidth - horizontalSpacing) / 2;
+
+      for (int i = 0; i < count; i++)
+      {
+         var go = Instantiate(ImageOptions[i], ImageStart);
+         go.GetComponent<Button>().onClick.AddListener(() => CloseImageMenu(go));
+
+         Vector3 newPosition = startPosition + new Vector3(i * horizontalSpacing, 0, 0);
+         go.transform.position = newPosition;
+      }
+   }
+
+   private void UpdateSelectedTextOption(GameObject option)
+   {
+      if (option.name != "MiscOption")
+      {
+         SelectedTextOption.GetComponent<TextMeshProUGUI>().text = option.GetComponent<TextMeshProUGUI>().text;
+         transform.Find("OptionTextSlot").GetComponent<UnityEngine.UI.Image>().enabled = false;
+      }
+      else
+      {
+         Debug.Log("Misc Option");
+         transform.Find("OptionTextSlot").GetComponent<UnityEngine.UI.Image>().enabled = true;
+         transform.Find("OptionTextSlot").GetComponent<UnityEngine.UI.Image>().sprite = MiscOptionSpirte;
+         SelectedTextOption.GetComponent<TextMeshProUGUI>().text = "";
+      }
+   }
+
+   private void UpdateSelectedImage(GameObject image)
+   {
+      OptionImageSlot.GetComponent<UnityEngine.UI.Image>().sprite = image.GetComponent<UnityEngine.UI.Image>().sprite;
    }
 }
 

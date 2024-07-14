@@ -97,7 +97,7 @@ public class PresentationBuildingManager : MonoBehaviour
         LineParent.transform.DetachChildren();
     }
 
-    public void MoveToSlieCustomizationSection()
+    public void MoveToSlideCustomizationSection()
     {
         if (_sectionsInOrder.Count != ListOfSections.Count)
         {
@@ -127,6 +127,19 @@ public class PresentationBuildingManager : MonoBehaviour
 
             _indexOfCurrentSlide = 0;
         }
+    }
+
+    public void ReturnToSectionOrder()
+    {
+        SlideCustomizationSection.SetActive(false);
+        SectionOrderSection.SetActive(true);
+
+        foreach (Transform child in FullSlideParent.transform)
+        {
+            Destroy(child.gameObject);
+        }
+        
+        FullSlideParent.transform.DetachChildren();
     }
 
     public void CycleThroughSlides(int i)
@@ -184,6 +197,7 @@ public class PresentationBuildingManager : MonoBehaviour
         slide.GetComponent<FullSlideManager>().SetTitle(section.GetSectionTitle() + " " + ListOfFullSlides[num].Title);
         slide.GetComponent<FullSlideManager>().SetOptions(ListOfFullSlides[num].TextOptions);
         slide.GetComponent<FullSlideManager>().SetMiscOption(ListOfFullSlides[num].MiscOption);
+        slide.GetComponent<FullSlideManager>().SetImages(ListOfFullSlides[num].AvailableImages);
         slide.GetComponent<Image>().color = section.GetColor();
     }
 

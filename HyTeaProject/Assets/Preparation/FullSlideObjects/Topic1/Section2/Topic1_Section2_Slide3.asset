@@ -16,5 +16,10 @@ MonoBehaviour:
   FullSlidePrefab: {fileID: 6941635050581408522, guid: 63bb04e67fbc47948a67887f35a36b9b, type: 3}
   Title: Slide 3
   TextOptions:
-  - Bullet Points
-  - Full Text
+  - "\u2022 This is an example of bullet points"
+  - As you can see, Rick Grimes is absolutely ecstatic as he observes a coral rift.
+  AvailableImages:
+  - {fileID: 6172086528769134804, guid: 43d2d8061e35a4c4f83a747624ae4b23, type: 3}
+  - {fileID: 6172086528769134804, guid: c33c0814c2c9e9e49bc76bd995f605e1, type: 3}
+  - {fileID: 6172086528769134804, guid: b27655ba2427a7f44afb9540ad92ac04, type: 3}
+  MiscOption: {fileID: 21300000, guid: fec775e4d7b917c4dbea6b3f00c89c5e, type: 3}

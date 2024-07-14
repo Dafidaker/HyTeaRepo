@@ -18,3 +18,7 @@ MonoBehaviour:
   TextOptions:
   - Full Text
   - Bullet Point
+  AvailableImages:
+  - {fileID: 6172086528769134804, guid: c33c0814c2c9e9e49bc76bd995f605e1, type: 3}
+  - {fileID: 6172086528769134804, guid: c33c0814c2c9e9e49bc76bd995f605e1, type: 3}
+  MiscOption: {fileID: 21300000, guid: fec775e4d7b917c4dbea6b3f00c89c5e, type: 3}
