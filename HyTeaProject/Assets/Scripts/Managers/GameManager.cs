@@ -7,6 +7,8 @@ public enum GameState
     
 }
 
+
+
 public class GameManager : Singleton<GameManager>
 {
     public Camera currentCamera;
@@ -16,6 +18,7 @@ public class GameManager : Singleton<GameManager>
     public GameObject Player { get; private set; }
     
     public PlayerCam PlayerCam { get; private set; }
+    
     
     #region Setters
 

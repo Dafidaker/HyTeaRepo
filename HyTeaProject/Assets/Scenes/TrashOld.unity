@@ -279,7 +279,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1079
 --- !u!114 &71484848
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1909,6 +1909,8 @@ MonoBehaviour:
   startButton: {fileID: 0}
   stopButton: {fileID: 0}
   text: {fileID: 0}
+  _clip: {fileID: 0}
+  resultString: 
 --- !u!1 &494791091
 GameObject:
   m_ObjectHideFlags: 0
@@ -1960,8 +1962,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 742df04aa416c77408fe54e3067b6c80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directionTranform: {fileID: 1673241547}
   interactRange: 100
+  isDebuggingObjectName: 0
 --- !u!114 &494791094
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2704,7 +2706,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sensX: 400
   sensY: 400
+  cameraIsLocked: 0
   orientation: {fileID: 1673241547}
+  lookAtTranformLockedCamera: {fileID: 0}
+  easeAngles: {x: 0, y: 0}
 --- !u!114 &660245496
 MonoBehaviour:
   m_ObjectHideFlags: 0

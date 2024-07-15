@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2379048699295296848}
   - component: {fileID: 1412613075110026706}
   - component: {fileID: 190704733028698776}
+  - component: {fileID: 4851439721422270679}
   m_Layer: 0
   m_Name: MicrophoneManager
   m_TagString: Untagged
@@ -58,6 +59,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f236dbc3c27c0e646beb4beedd965694, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4851439721422270679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 152057646999427186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37f0b470b535d6f4cae59cfb1fd54c24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Gain: 0
+  threashold: 0.001
+  loudnessText: {fileID: 0}
+  currentLoudness: 0
 --- !u!1 &296067975729787346
 GameObject:
   m_ObjectHideFlags: 0

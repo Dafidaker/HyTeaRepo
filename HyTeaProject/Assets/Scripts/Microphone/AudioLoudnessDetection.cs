@@ -1,28 +1,20 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
-
-public struct ClipInfo
-{
-    public AudioClip AudioClip;
-    public float Loudness;
-}
 
 public class AudioLoudnessDetection : MonoBehaviour
 {
     private int _sampleWindow;
-    
-    private Coroutine MicrophoneRecord;
     
     [field:SerializeField] private float Gain;
     [field:SerializeField] private float threashold = 0.001f;
     [field:SerializeField] private TextMeshProUGUI loudnessText;
 
     public float currentLoudness;
-    private bool _pauseHappening;
+    private bool _pauseHappening = false;
+
+    private Coroutine _loudnessTractCoroutine;
+    private Coroutine _pauseTractCoroutine;
     
     private void Awake()
     {
@@ -30,20 +22,57 @@ public class AudioLoudnessDetection : MonoBehaviour
 
         currentLoudness = 0;
     }
-
-    private void Start()
-    {
-        StartCoroutine(UpdateLoudness());
-    }
-
+    
     private void OnEnable()
     {
+        Gain = MicrophoneManager.Instance.GetGain();
         EventManager.ChangedGain.AddListener(SetGain);
+        EventManager.StartedNewRecording.AddListener(ResetDetectingLoudness);
+        EventManager.StoppedRecording.AddListener(HandleStopRecording);
     }
 
     private void OnDisable()
     {
         EventManager.ChangedGain.RemoveListener(SetGain);
+        EventManager.StartedNewRecording.RemoveListener(ResetDetectingLoudness);
+        EventManager.StoppedRecording.RemoveListener(HandleStopRecording);
+    }
+
+    /*private bool HaveAllCoroutinesEnded()
+    {
+        return _loudnessTractCoroutine == null && _pauseTractCoroutine == null;
+    }*/
+    
+    private void HandleStopRecording()
+    {
+        StartCoroutine(StopDetectingLoudness());
+    }
+
+    public void StartDetectingLoudness()
+    {
+        _loudnessTractCoroutine ??= StartCoroutine(UpdateLoudness());
+    }
+
+    public IEnumerator StopDetectingLoudness()
+    {
+        if (_loudnessTractCoroutine != null)
+        {
+            StopCoroutine(_loudnessTractCoroutine);
+            _loudnessTractCoroutine = null;
+        }
+        _pauseHappening = false;
+
+        while (_pauseTractCoroutine != null)
+        {
+            yield return null;
+        }
+    }
+
+    public void ResetDetectingLoudness()
+    {
+        StopDetectingLoudness();
+
+        StartDetectingLoudness();
     }
 
     private void SetGain(float newGain)
@@ -51,50 +80,6 @@ public class AudioLoudnessDetection : MonoBehaviour
         Gain = newGain;
     }
     
-    /*private void StartMicrophoneCoroutine()
-    {
-        if (MicrophoneRecord != null) StopCoroutine(MicrophoneRecord);
-        MicrophoneRecord = StartCoroutine(MicrophoneToAudioCLipCoroutine());
-    }*/
-    
-    /*private IEnumerator MicrophoneToAudioCLipCoroutine()
-    {
-        //saves the audio clip
-        if (microphoneClip != null)
-        {
-            microphoneClip.name = Time.time.ToString();
-            _previousAudioClips.Add(microphoneClip);
-        }
-        
-        //creates the audio clip
-        _audioSource.clip = Microphone.Start(_microphoneString, true, 10, AudioSettings.outputSampleRate);
-        _audioSource.clip.name = Time.time.ToString();
-        _audioSource.loop = true;
-
-        // Wait until the microphone has started recording
-        while (!(Microphone.GetPosition(_microphoneString) > 0)) { }
-        _audioSource.Play();
-        
-        microphoneClip = _audioSource.clip;
-
-        yield return new WaitForSeconds(10f);
-        
-        // Repeat the coroutine
-        StartMicrophoneCoroutine();
-    }*/
-
-    /*private void MicrophoneToAudioCLip()
-    {
-        _audioSource.clip = Microphone.Start(_microphoneString, true, 20, AudioSettings.outputSampleRate);
-        microphoneClip = _audioSource.clip;
-        //_audioSource.Play();
-    }
-    
-    public void MicrophoneToAudioCLip(ClipInfo clipInfo, int length = 5, bool loop = false)
-    {
-        clipInfo.AudioClip = Microphone.Start(_microphoneString, loop, length, AudioSettings.outputSampleRate);
-    }*/
-
     private float GetLoudnessFromMicrophone()
     {
         return  GetLoudnessFromAudioClip(Microphone.GetPosition(MicrophoneManager.Instance.GetSelectedMicrophoneString()), MicrophoneManager.Instance.microphoneClip);
@@ -108,17 +93,17 @@ public class AudioLoudnessDetection : MonoBehaviour
 
         EventManager.LatestLoudnessCaptured.Invoke(currentLoudness);
         
-        if (currentLoudness == 0)
+        if (currentLoudness == 0 && !_pauseHappening)
         {
             _pauseHappening = true;
-            StartCoroutine(CheckForPause());
+            _pauseTractCoroutine = StartCoroutine(CheckForPause());
         }
-        else
+        else if (_pauseHappening && currentLoudness != 0)
         {
             _pauseHappening = false;
         }
 
-        StartCoroutine(UpdateLoudness());
+        _loudnessTractCoroutine = StartCoroutine(UpdateLoudness());
     }
 
     private IEnumerator CheckForPause()
@@ -127,11 +112,11 @@ public class AudioLoudnessDetection : MonoBehaviour
 
         while (_pauseHappening)
         {
-            yield return null;
+            //yield return null;
 
             duration += Time.deltaTime;
 
-            if (!(duration > 0.5f)) continue;
+            if (!(duration > 1f)) continue;
             
             StartCoroutine(WaitForPause(0.5f));
             yield break;
@@ -142,7 +127,8 @@ public class AudioLoudnessDetection : MonoBehaviour
     {
         float duration = elapsedTime; 
         
-        EventManager.OnPauseStateChanged.Invoke(_pauseHappening);
+        //EventManager.OnPauseDone.Invoke(_pauseHappening);
+        EventManager.PauseStarted.Invoke();
         
         while (_pauseHappening)
         {
@@ -150,8 +136,9 @@ public class AudioLoudnessDetection : MonoBehaviour
 
             duration += Time.deltaTime;
         }
-        
-        EventManager.OnPauseStateChanged.Invoke(_pauseHappening);
+
+        _pauseTractCoroutine = null;
+        EventManager.OnPauseDone.Invoke(duration);
     }
 
     private float GetLoudnessFromAudioClip(int clipPosition, AudioClip clip)

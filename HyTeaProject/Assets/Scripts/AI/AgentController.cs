@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Serialization;
 
 [RequireComponent(typeof(NavMeshAgent))]
 public class AgentController : MonoBehaviour
 {
     public Transform dialogueCameraLookAt;
-    [field: SerializeField]private string name;
+    [FormerlySerializedAs("name")] [field: SerializeField]private string agentName;
     
     private NavMeshAgent _navMeshAgent;
     private Coroutine _followCoroutine;
@@ -92,7 +93,7 @@ public class AgentController : MonoBehaviour
 
         UIManager.Instance.ShowActiveCanvas(true);
         dialController.EnableContinueText(false);
-        dialController.ChangeNameText(name);
+        dialController.ChangeNameText(agentName);
         
         
         foreach (var feedback in feedbacks)

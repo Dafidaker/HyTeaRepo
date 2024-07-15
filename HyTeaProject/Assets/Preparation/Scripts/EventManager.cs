@@ -24,16 +24,21 @@ public static class EventManager
    public static UnityEvent StartedVolumeAnalysis = new();
    public static UnityEvent FinishedVolumeAnalysis = new();
    
-   public static UnityEvent<int> ChangedMicrophone = new();
+   public static UnityEvent<int> DifferentMicrophoneSelectedInUI = new();
    public static UnityEvent PopulateMicrophoneList = new();
    public static UnityEvent<bool> ClickedPlaybackButton = new();
 
    public static UnityEvent StartedNewRecording = new();
+   public static UnityEvent StoppedRecording = new();
+   
    public static UnityEvent<float> ChangedGain = new();
    
-   public static UnityEvent<bool> OnPauseStateChanged = new();
+   public static readonly UnityEvent<float> OnPauseDone = new();
+   public static readonly UnityEvent PauseStarted = new();
+   //public static readonly UnityEvent PauseStopped = new();
    public static readonly UnityEvent<float> LatestLoudnessCaptured = new();
    
+   public static readonly UnityEvent<AudioClip> NewAudioClipFinished = new();
    
    ///////////////////////////*Gestures*//////////////////////////////////////
    public static readonly UnityEvent<float, float, GesturesEnum> GestureCaptured = new();

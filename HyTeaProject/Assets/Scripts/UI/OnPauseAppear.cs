@@ -11,16 +11,23 @@ public class OnPauseAppear : MonoBehaviour
 
     private void OnEnable()
     {
-        EventManager.OnPauseStateChanged.AddListener(UpdateVisability);
+        EventManager.PauseStarted.AddListener(EnableText);
+        EventManager.OnPauseDone.AddListener((n ) => DisableText());
     }
     
     private void OnDisable()
     {
-        EventManager.OnPauseStateChanged.RemoveListener(UpdateVisability);
+        EventManager.PauseStarted.RemoveListener(EnableText);
+        EventManager.OnPauseDone.AddListener((n ) => DisableText());
     }
 
-    private void UpdateVisability(bool pausing)
+    private void EnableText()
     {
-        text.enabled = pausing;
+        text.enabled = true;
+    }
+
+    private void DisableText()
+    {
+        text.enabled = false;
     }
 }

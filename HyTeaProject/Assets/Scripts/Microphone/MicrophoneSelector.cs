@@ -56,6 +56,6 @@ public class MicrophoneSelector : MonoBehaviour
     public void ChooseMicrophone(int optionIndex)
     {
         _chooseDeviceIndex = optionIndex;
-        EventManager.ChangedMicrophone.Invoke(_chooseDeviceIndex);
+        EventManager.DifferentMicrophoneSelectedInUI.Invoke(_chooseDeviceIndex);
     }
 }

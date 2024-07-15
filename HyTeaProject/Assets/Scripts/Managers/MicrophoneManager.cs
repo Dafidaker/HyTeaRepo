@@ -7,42 +7,52 @@ public class MicrophoneManager : Singleton<MicrophoneManager>
 {
     private int _microphoneIndex;
     private string _microphoneString;
+    private float Gain = 0;
+    
     private bool _isRecording;
     
     public AudioClip microphoneClip;
-    private List<AudioClip> _previousAudioClips;
+    public List<AudioClip> _previousAudioClips;
 
-    private float Gain;
     private string[] _previousMicrophoneDevices;
 
+    private Coroutine _trackingCoroutine;
+
+    private AudioLoudnessDetection _audioLoudnessDetection;
+    
+    public VolumeAnalyzer _volumeAnalyzer;
+    
+    
     private void OnEnable()
     {
-        EventManager.ChangedMicrophone.AddListener(ChangeSelectedMicrophone);
+        EventManager.DifferentMicrophoneSelectedInUI.AddListener(ChangeSelectedMicrophone);
     }
 
     private void OnDisable()
     {
-        EventManager.ChangedMicrophone.RemoveListener(ChangeSelectedMicrophone);
+        EventManager.DifferentMicrophoneSelectedInUI.RemoveListener(ChangeSelectedMicrophone);
     }
-
     
     private void Awake()
     {
         _isRecording = false;
         _previousAudioClips = new List<AudioClip>();
-        _previousMicrophoneDevices = Microphone.devices;
+        
+        _audioLoudnessDetection = gameObject.AddComponent<AudioLoudnessDetection>();
+        
+        _volumeAnalyzer = _volumeAnalyzer = new VolumeAnalyzer(0.1f,0.5f,0,1);
+        //_previousMicrophoneDevices = Microphone.devices;
         
         // Select the first microphone initially
         ChangeSelectedMicrophone(0);
         
-        //RecordMicrophone();
-
         InicializeMicrophoneData();
         
         // Start coroutine to check for microphone changes
         StartCoroutine(CheckForMicrophoneChanges());
         
     }
+
 
     public void SetGain(float newGain)
     {
@@ -53,6 +63,16 @@ public class MicrophoneManager : Singleton<MicrophoneManager>
     public float GetGain()
     {
         return Gain;
+    }
+
+    public List<AudioClip> GetAllAudioClips()
+    {
+        return _previousAudioClips;
+    }
+
+    public AudioLoudnessDetection GetAudioDetection()
+    {
+        return _audioLoudnessDetection;
     }
 
     private void AddGainToMicrophone()
@@ -77,21 +97,40 @@ public class MicrophoneManager : Singleton<MicrophoneManager>
 
     public void RecordMicrophone()
     {
-        StopRecordingTheMicrophone();
+        _trackingCoroutine = StartCoroutine(RecordMicrohponeCoroutine());
+    }
+
+    private IEnumerator RecordMicrohponeCoroutine()
+    {
+        int clipLength = 20;
         
-        microphoneClip = Microphone.Start(_microphoneString, true, 10, AudioSettings.outputSampleRate);
+        StopRecordingTheMicrophone();
+        AddToPreviousAudioClips();
+            
+        microphoneClip = Microphone.Start(_microphoneString, true, clipLength, AudioSettings.outputSampleRate);
         microphoneClip.name = Time.time + " by " + _microphoneString;
 
         if (microphoneClip != null)
         {
             _isRecording = true;
             EventManager.StartedNewRecording.Invoke();
-        } 
+        }
+
+        yield return new WaitForSeconds(clipLength);
+
+        RecordMicrophone();
+    }
+
+    private void StopMicrophoneCoroutine()
+    {
+        if (_trackingCoroutine != null)
+        {
+            StopCoroutine(_trackingCoroutine);
+        }
     }
     
     private void StopRecordingTheMicrophone()
     {
-        //_isRecording = false;
         Microphone.End(_microphoneString);
     }
     
@@ -99,6 +138,21 @@ public class MicrophoneManager : Singleton<MicrophoneManager>
     {
         _isRecording = false;
         Microphone.End(_microphoneString);
+        StopMicrophoneCoroutine();
+
+        AddToPreviousAudioClips();
+        EventManager.StoppedRecording.Invoke();
+    }
+
+    private void AddToPreviousAudioClips()
+    {
+        if (microphoneClip == null) return;
+        
+        if (_previousAudioClips != null && !_previousAudioClips.Contains(microphoneClip))
+        {
+            _previousAudioClips?.Add(microphoneClip);
+            EventManager.NewAudioClipFinished.Invoke(microphoneClip);
+        }
     }
 
     public bool IsMicrophoneRecording()
@@ -119,8 +173,6 @@ public class MicrophoneManager : Singleton<MicrophoneManager>
     
     private void ChangeSelectedMicrophone(int newIndex)
     {
-        //var wasRecording = IsMicrophoneRecording();
-        
         StopRecordingTheMicrophone();
 
         UpdateMicrophoneVariables(newIndex);

@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Object = UnityEngine.Object;
 
-class VolumeAnalyzer : Object
+public class VolumeAnalyzer : Object
 {
     public VolumeAnalyzer(float threshold, float minAcceptable, float maxAcceptable)
     {
