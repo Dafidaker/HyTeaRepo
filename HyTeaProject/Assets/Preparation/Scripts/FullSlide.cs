@@ -8,7 +8,7 @@ public class FullSlide : ScriptableObject
     public Section CorrespondingSection;
     public GameObject FullSlidePrefab;
     public string Title;
-    public List<string> TextOptions;
+    [TextArea] public List<string> TextOptions;
     public List<GameObject> AvailableImages;
     public Sprite MiscOption;
 }

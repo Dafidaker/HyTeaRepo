@@ -37,6 +37,7 @@ public class PresentationBuildingManager : MonoBehaviour
 
     [SerializeField] private List<GameObject> _fullSlidesGameObjects;
     private int _indexOfCurrentSlide;
+    private bool _SlidesReady;
     
     
     [Header("Sections")]
@@ -149,6 +150,27 @@ public class PresentationBuildingManager : MonoBehaviour
         if (_indexOfCurrentSlide < 0) _indexOfCurrentSlide = _fullSlidesGameObjects.Count - 1;
         if (_indexOfCurrentSlide >= _fullSlidesGameObjects.Count) _indexOfCurrentSlide = 0;
         _fullSlidesGameObjects[_indexOfCurrentSlide].SetActive(true);
+    }
+
+    public void FinishCustomization()
+    {
+        int completedSlides = 0;
+        for (int i = 0; i < _fullSlidesGameObjects.Count; i++)
+        {
+            if (_fullSlidesGameObjects[i].GetComponent<FullSlideManager>().HasTextOptionSelected)
+            {
+                completedSlides++;
+            }
+        }
+
+        if (completedSlides == _fullSlidesGameObjects.Count)
+        {
+            Debug.Log("FINISH!");
+        }
+        else
+        {
+            Debug.Log("THERE ARE STILL INCOMPLETED SLIDES");
+        }
     }
 
     private void DisplaySectionPreviews()
@@ -279,6 +301,7 @@ public class PresentationBuildingManager : MonoBehaviour
     {
         EventManager.AddSectionToOrderEvent.AddListener(AddSectionToOrder);
         _drawingLine = false;
+        _SlidesReady = false;
     }
 
     private void OnDisable()

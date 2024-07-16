@@ -29,8 +29,11 @@ public class FullSlideManager : MonoBehaviour
    [SerializeField] private Sprite DefaultBorderSprite;
 
    [SerializeField] private Transform ImageStart;
+   [SerializeField] private GameObject TextDesc;
+   [SerializeField] private GameObject ImageDesc;
    
    public bool HasMiscOption;
+   public bool HasTextOptionSelected;
    
    
 
@@ -112,14 +115,16 @@ public class FullSlideManager : MonoBehaviour
 
    public void CloseImageMenu(GameObject image)
    {
-      OptionImageMenu.SetActive(false);
       UpdateSelectedImage(image);
+      
+      OptionImageMenu.SetActive(false);
    }
 
    public void RemoveImage()
    {
       OptionImageSlot.GetComponent<UnityEngine.UI.Image>().sprite = DefaultBorderSprite;
       OptionImageMenu.SetActive(false);
+      ImageDesc.SetActive(true);
    }
 
    private void UpdateTextOptions()
@@ -137,20 +142,27 @@ public class FullSlideManager : MonoBehaviour
 
    private void UpdateImageOptions()
    {
-      float horizontalSpacing = 505 + Screen.width / 100;
-      int count = ImageOptions.Count;
-      float totalWidth = count * horizontalSpacing;
-     
-      Vector3 startPosition = ImageStart.position;
-      startPosition.x -= (totalWidth - horizontalSpacing) / 2;
-
-      for (int i = 0; i < count; i++)
+      if (ImageStart.childCount == 0)
       {
-         var go = Instantiate(ImageOptions[i], ImageStart);
-         go.GetComponent<Button>().onClick.AddListener(() => CloseImageMenu(go));
+         float horizontalSpacing = ImageOptions[0].GetComponent<RectTransform>().rect.width + 150 + Screen.width / 100;
+         int count = ImageOptions.Count;
+         float totalWidth = count * horizontalSpacing;
+     
+         Vector3 startPosition = ImageStart.position;
+         startPosition.x -= (totalWidth - horizontalSpacing) / 2;
 
-         Vector3 newPosition = startPosition + new Vector3(i * horizontalSpacing, 0, 0);
-         go.transform.position = newPosition;
+         for (int i = 0; i < count; i++)
+         {
+            var go = Instantiate(ImageOptions[i], ImageStart);
+            go.GetComponent<Button>().onClick.AddListener(() => CloseImageMenu(go));
+
+            Vector3 newPosition = startPosition + new Vector3(i * horizontalSpacing, 0, 0);
+            go.transform.position = newPosition;
+         }
+      }
+      else
+      {
+         Debug.Log("Images already created");
       }
    }
 
@@ -168,11 +180,15 @@ public class FullSlideManager : MonoBehaviour
          transform.Find("OptionTextSlot").GetComponent<UnityEngine.UI.Image>().sprite = MiscOptionSpirte;
          SelectedTextOption.GetComponent<TextMeshProUGUI>().text = "";
       }
+      
+      TextDesc.SetActive(false);
+      HasTextOptionSelected = true;
    }
 
    private void UpdateSelectedImage(GameObject image)
    {
       OptionImageSlot.GetComponent<UnityEngine.UI.Image>().sprite = image.GetComponent<UnityEngine.UI.Image>().sprite;
+      ImageDesc.SetActive(false);
    }
 }
 
