@@ -18,6 +18,8 @@ public static class EventManager
 
    public static UnityEvent<int> SetNumOfSectionsAdded = new UnityEvent<int>();
    public static UnityEvent<Section, Vector2> AddSectionToOrderEvent = new UnityEvent<Section, Vector2>();
+
+   public static UnityEvent<List<GameObject>> GetCompletedSlides = new UnityEvent<List<GameObject>>();
    
    ///////////////////////////*Audio Events*//////////////////////////////////////
    public static UnityEvent PressedVolumeAnalysisButton = new();

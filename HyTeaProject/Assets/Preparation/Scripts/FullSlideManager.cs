@@ -34,6 +34,7 @@ public class FullSlideManager : MonoBehaviour
    
    public bool HasMiscOption;
    public bool HasTextOptionSelected;
+   public bool HasImageSelected;
    
    
 
@@ -125,6 +126,7 @@ public class FullSlideManager : MonoBehaviour
       OptionImageSlot.GetComponent<UnityEngine.UI.Image>().sprite = DefaultBorderSprite;
       OptionImageMenu.SetActive(false);
       ImageDesc.SetActive(true);
+      HasImageSelected = false;
    }
 
    private void UpdateTextOptions()
@@ -189,6 +191,7 @@ public class FullSlideManager : MonoBehaviour
    {
       OptionImageSlot.GetComponent<UnityEngine.UI.Image>().sprite = image.GetComponent<UnityEngine.UI.Image>().sprite;
       ImageDesc.SetActive(false);
+      HasImageSelected = true;
    }
 }
 

@@ -166,11 +166,20 @@ public class PresentationBuildingManager : MonoBehaviour
         if (completedSlides == _fullSlidesGameObjects.Count)
         {
             Debug.Log("FINISH!");
+            for (int i = 0; i < _fullSlidesGameObjects.Count; i++)
+            {
+                _fullSlidesGameObjects[i].SetActive(false);
+            }
+            _fullSlidesGameObjects[0].SetActive(true);
         }
         else
         {
             Debug.Log("THERE ARE STILL INCOMPLETED SLIDES");
         }
+        
+        EventManager.GetCompletedSlides.Invoke(_fullSlidesGameObjects);
+        
+        SlideCustomizationSection.SetActive(false);
     }
 
     private void DisplaySectionPreviews()

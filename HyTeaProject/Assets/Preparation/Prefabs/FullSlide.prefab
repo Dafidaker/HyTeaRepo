@@ -608,7 +608,7 @@ GameObject:
   - component: {fileID: 5234574603560733135}
   - component: {fileID: 3985033403863875296}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1645,6 +1645,8 @@ MonoBehaviour:
   TextDesc: {fileID: 8955056336321658333}
   ImageDesc: {fileID: 3555357951353426543}
   HasMiscOption: 0
+  HasTextOptionSelected: 0
+  HasImageSelected: 0
 --- !u!1 &7712969697733380004
 GameObject:
   m_ObjectHideFlags: 0
@@ -1826,7 +1828,7 @@ GameObject:
   - component: {fileID: 4369608169041873894}
   - component: {fileID: 1354934333815943200}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
