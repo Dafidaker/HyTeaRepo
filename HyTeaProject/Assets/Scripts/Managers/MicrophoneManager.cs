@@ -7,7 +7,7 @@ public class MicrophoneManager : Singleton<MicrophoneManager>
 {
     private int _microphoneIndex;
     private string _microphoneString;
-    private float Gain = 0;
+    private float Gain = 1;
     
     private bool _isRecording;
     
@@ -32,9 +32,10 @@ public class MicrophoneManager : Singleton<MicrophoneManager>
     {
         EventManager.DifferentMicrophoneSelectedInUI.RemoveListener(ChangeSelectedMicrophone);
     }
-    
-    private void Awake()
+
+    protected override void Awake()
     {
+        base.Awake();
         _isRecording = false;
         _previousAudioClips = new List<AudioClip>();
         

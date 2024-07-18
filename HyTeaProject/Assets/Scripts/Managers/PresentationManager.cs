@@ -10,10 +10,27 @@ public class PresentationManager : Singleton<PresentationManager>
     [field: SerializeField] private GameObject presentationUIPrefab;
     private PresentationEvaluationUIController _presentationEvaluationUIController;
     private PresentationEvaluation _presentationEvaluation;
+    private PresentationStartSettings _presentationStartSettings;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        _presentationEvaluation = GetComponent<PresentationEvaluation>();
+        if (_presentationEvaluation == null)
+        {
+            _presentationEvaluation = gameObject.AddComponent<PresentationEvaluation>();
+        }
+    }
+
 
     public PresentationData GetPresentationData()
     {
         return presentationData;
+    }
+    
+    public PresentationStartSettings GetPresentationStartSettings()
+    {
+        return _presentationStartSettings;
     }
     
     private void CreateEvalutationUI()
@@ -22,20 +39,17 @@ public class PresentationManager : Singleton<PresentationManager>
         _presentationEvaluationUIController = go.GetComponent<PresentationEvaluationUIController>();
     }
 
-    public void StartPresentation()
+    public void StartPresentation(PresentationStartSettings presentationStartSettings)
     {
+        if (presentationStartSettings != null) _presentationStartSettings = presentationStartSettings; 
+        
         presentationData =  gameObject.AddComponent<PresentationData>();
-        // create a presentation data 
 
-        //start record the mic
         MicrophoneManager.Instance.RecordMicrophone();
         
         MicrophoneManager.Instance.GetAudioDetection().StartDetectingLoudness();
         
         presentationData.StartPresentation();
-        
-        //todo
-        //record loudness
         
         //start getting the gestures
     }
@@ -47,8 +61,6 @@ public class PresentationManager : Singleton<PresentationManager>
 
     public IEnumerator EndPresentation()
     {
-        _presentationEvaluation = gameObject.AddComponent<PresentationEvaluation>();
-        
         MicrophoneManager.Instance.StopRecording();
         
         yield return StartCoroutine(MicrophoneManager.Instance.GetAudioDetection().StopDetectingLoudness());
@@ -58,10 +70,11 @@ public class PresentationManager : Singleton<PresentationManager>
         yield return StartCoroutine(presentationData.SanitizeAudioClips());
         
         _presentationEvaluation.EvaluatePresentation();
+        
+        EventManager.ChangeToNextSlide.RemoveListener(GameManager.Instance.EndPresentation);
     }
     
     
-
     public void FeedbackTriggerTriggered()
     {
         AIManager.Instance.InitiateFeedback();

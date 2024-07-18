@@ -98,7 +98,7 @@ public class AgentController : MonoBehaviour
         
         foreach (var feedback in feedbacks)
         {
-            dialController.ChangeDialogueText(feedback.TextFeedback);
+            dialController.ChangeDialogueText(feedback.textFeedback);
             yield return new WaitForSeconds(1f);
             dialController.EnableContinueText(true);
             

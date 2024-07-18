@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UIManager : Singleton<UIManager>
 {
@@ -10,6 +11,7 @@ public class UIManager : Singleton<UIManager>
     [field: SerializeField] private Canvas configureMicrohphoneCanvas;
     [field: SerializeField] private Canvas dialogueCanvas;
     [field: SerializeField] private GameObject baseCanvasPrefab;
+    
 
     public void CloseCanvas(Canvas canvas)
     {
@@ -38,7 +40,7 @@ public class UIManager : Singleton<UIManager>
     
     public void ClickedStartButton()
     {
-        
+        SceneManager.LoadScene(1);
     }
     
     public void ClickedOptionsButton()

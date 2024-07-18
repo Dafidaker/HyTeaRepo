@@ -156,6 +156,7 @@ MonoBehaviour:
   activeCanvas:
   - {fileID: 8063016266915513151}
   configureMicrohphoneCanvas: {fileID: 2894912440315652902, guid: 2e603f2128cbe1a47805766bd39f7b67, type: 3}
+  dialogueCanvas: {fileID: 0}
   baseCanvasPrefab: {fileID: 4306629119994819403, guid: 611daff4074c41c4e8683165add56801, type: 3}
 --- !u!4 &62873691
 Transform:
@@ -215,6 +216,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   microphoneClip: {fileID: 0}
+  _previousAudioClips: []
+  _volumeAnalyzer: {fileID: 0}
 --- !u!4 &507020209
 Transform:
   m_ObjectHideFlags: 0
@@ -538,6 +541,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentCamera: {fileID: 0}
+  keepValue: 8
 --- !u!4 &1989881770
 Transform:
   m_ObjectHideFlags: 0
