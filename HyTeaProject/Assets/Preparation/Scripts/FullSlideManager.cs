@@ -193,5 +193,6 @@ public class FullSlideManager : MonoBehaviour
       ImageDesc.SetActive(false);
       HasImageSelected = true;
    }
+   
 }
 
