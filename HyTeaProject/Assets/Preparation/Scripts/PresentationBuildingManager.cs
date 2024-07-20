@@ -6,7 +6,9 @@ using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Serialization;
-using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
+using Image = UnityEngine.UI.Image;
 using Random = UnityEngine.Random;
 
 
@@ -34,8 +36,10 @@ public class PresentationBuildingManager : MonoBehaviour
     [Header("Slide Customization Section")] 
     [SerializeField] private List<FullSlide> ListOfFullSlides;
     [SerializeField] private GameObject FullSlideParent;
-
     [SerializeField] private List<GameObject> _fullSlidesGameObjects;
+
+    [SerializeField] private Transform SlideTransfer;
+    
     private int _indexOfCurrentSlide;
     private bool _SlidesReady;
     
@@ -169,17 +173,18 @@ public class PresentationBuildingManager : MonoBehaviour
             for (int i = 0; i < _fullSlidesGameObjects.Count; i++)
             {
                 _fullSlidesGameObjects[i].SetActive(false);
+                _fullSlidesGameObjects[i].transform.SetParent(SlideTransfer);
             }
             _fullSlidesGameObjects[0].SetActive(true);
+            
+            DontDestroyOnLoad(SlideTransfer);
+            
+            SceneManager.LoadScene("DataTransferTestScene");
         }
         else
         {
             Debug.Log("THERE ARE STILL INCOMPLETED SLIDES");
         }
-        
-        EventManager.GetCompletedSlides.Invoke(_fullSlidesGameObjects);
-        
-        SlideCustomizationSection.SetActive(false);
     }
 
     private void DisplaySectionPreviews()

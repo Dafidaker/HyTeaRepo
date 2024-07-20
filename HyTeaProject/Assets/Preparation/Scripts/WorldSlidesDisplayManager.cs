@@ -1,23 +1,21 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class WorldSlidesDisplayManager : MonoBehaviour
 {
     [SerializeField] private List<GameObject> CompletedSlides;
     [SerializeField] private Transform SlideParent;
+    [SerializeField] private GameObject SlideTransfer;
 
     private List<GameObject> _slideGameObjects;
     private int _indexOfCurrentSlide;
-
-    private void SetCompletedSlides(List<GameObject> slides)
-    {
-        CompletedSlides = slides;
-        DisplaySlidesInWorld();
-    }
-
+    
+    
     private void DisplaySlidesInWorld()
     {
         for (int i = 0; i < CompletedSlides.Count; i++)
@@ -34,7 +32,46 @@ public class WorldSlidesDisplayManager : MonoBehaviour
             _slideGameObjects.Add(go);
         }
 
+        for (int i = 0; i < _slideGameObjects.Count; i++)
+        {
+            _slideGameObjects[i].transform.localPosition = new Vector2(0, 0);
+        }
+
         _indexOfCurrentSlide = 0;
+    }
+
+    void Start()
+    {
+        if (SlideTransferManager.Instance != null)
+        {
+            foreach (GameObject persistentObject in SlideTransferManager.Instance.gameObjectsToPersist)
+            {
+                MoveToActiveScene(persistentObject);
+            }
+        }
+        else
+        {
+            Debug.LogError("PersistentManager instance not found!");
+        }
+
+        SlideTransfer = GameObject.Find("FullSlideTransfer");
+
+        for (int i = 0; i < SlideTransfer.transform.childCount; i++)
+        {
+            CompletedSlides.Add(SlideTransfer.transform.GetChild(i).gameObject);
+        }
+        //SlideTransfer.SetActive(false);
+        
+        DisplaySlidesInWorld();
+        
+        Destroy(SlideTransfer);
+
+    }
+
+    void MoveToActiveScene(GameObject obj)
+    {
+        Scene currentScene = SceneManager.GetActiveScene();
+        SceneManager.MoveGameObjectToScene(obj, currentScene);
     }
 
     private void Update()
@@ -64,12 +101,12 @@ public class WorldSlidesDisplayManager : MonoBehaviour
 
     private void OnEnable()
     {
-        EventManager.GetCompletedSlides.AddListener(SetCompletedSlides);
+        CompletedSlides = new List<GameObject>();
         _slideGameObjects = new List<GameObject>();
     }
 
     private void OnDisable()
     {
-        EventManager.GetCompletedSlides.RemoveListener(SetCompletedSlides);
+        
     }
 }
