@@ -62,7 +62,7 @@ public class SkeletonVisualization : MonoBehaviour
                 }
                 else
                 {
-                    PositionSkeletonPointFromLandmarkRelativeToImage(i, landMarkList.Landmark[i]);
+                    //PositionSkeletonPointFromLandmarkRelativeToImage(i, landMarkList.Landmark[i]);
                 }
             }
         }

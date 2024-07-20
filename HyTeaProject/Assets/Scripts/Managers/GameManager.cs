@@ -7,8 +7,6 @@ public enum GameState
     
 }
 
-
-
 public class GameManager : Singleton<GameManager>
 {
     public Camera currentCamera;
@@ -18,7 +16,6 @@ public class GameManager : Singleton<GameManager>
     public GameObject Player { get; private set; }
     
     public PlayerCam PlayerCam { get; private set; }
-    
     
     #region Setters
 
@@ -52,12 +49,23 @@ public class GameManager : Singleton<GameManager>
 
     #endregion
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         currentCamera = Camera.main;
         EventManager.CameraWasChanged.Invoke(currentCamera);
     }
+    
+    private void OnEnable()
+    {
+        EventManager.ChangeToNextSlide.AddListener(EndPresentation);
+    }
 
+    private void OnDisable()
+    {
+        EventManager.ChangeToNextSlide.RemoveListener(EndPresentation);
+    }
+    
     public void LockPlayerCameraOnTarget(Transform target)
     {
         if (PlayerCam == null) return;
@@ -70,5 +78,27 @@ public class GameManager : Singleton<GameManager>
         if (PlayerCam == null) return;
 
         PlayerCam.UnlockOnTarget(target);
+    }
+
+    public void StartPresentation(PresentationStartSettings presentationStartSettings)
+    {
+        if (presentationStartSettings != null)
+        {
+            LockPlayerCameraOnTarget(presentationStartSettings.lookAtTransform);
+        }
+        //make player not be able to move
+        //make player move the place 
+        
+        
+        PresentationManager.Instance.StartPresentation(presentationStartSettings);
+    }
+
+    public void EndPresentation()
+    {
+        UnlockPlayerCameraOnTarget(PresentationManager.Instance.GetPresentationStartSettings().lookAtTransform);
+        //make player not be able to move
+        //make player move the place 
+
+        PresentationManager.Instance.HandleEndPresentation();
     }
 }

@@ -25,17 +25,17 @@ public class PresentationEvaluationUIController : MonoBehaviour
         
         foreach (var selectedFeedback in AllFeedback)
         {
-            if (typeOfFeedbacksCompleted.Contains(selectedFeedback.TypeOfFeedback))
+            if (typeOfFeedbacksCompleted.Contains(selectedFeedback.typeOfFeedback))
             {
                 continue;
             }
             
             UsedFeedback.Add(selectedFeedback);
-            typeOfFeedbacksCompleted.Add(selectedFeedback.TypeOfFeedback);
+            typeOfFeedbacksCompleted.Add(selectedFeedback.typeOfFeedback);
             
             foreach (var feedback in AllFeedback)
             {
-                if (feedback != selectedFeedback && feedback.TypeOfFeedback == selectedFeedback.TypeOfFeedback)
+                if (feedback != selectedFeedback && feedback.typeOfFeedback == selectedFeedback.typeOfFeedback)
                 {
                     UsedFeedback.Add(feedback);
                 }
@@ -59,7 +59,7 @@ public class PresentationEvaluationUIController : MonoBehaviour
             UsedFeedback.Add(selectedFeedback);
             foreach (var feedback in AllFeedback)
             {
-                if (feedback.TypeOfFeedback == selectedFeedback.TypeOfFeedback)
+                if (feedback.typeOfFeedback == selectedFeedback.typeOfFeedback)
                 {
                     UsedFeedback.Add(selectedFeedback);
                 }
@@ -75,7 +75,7 @@ public class PresentationEvaluationUIController : MonoBehaviour
     {
         if (UsedFeedback.Count <= 0) return;
 
-        AddTitle(VerticalLayout, UsedFeedback[0].TypeOfFeedback);
+        AddTitle(VerticalLayout, UsedFeedback[0].typeOfFeedback);
         
         foreach (var feedback in UsedFeedback)
         {
@@ -96,7 +96,7 @@ public class PresentationEvaluationUIController : MonoBehaviour
     {
         var selectedPrefab = NeutralThing;
 
-        switch (feedback.FeedbackPolarity)
+        switch (feedback.feedbackPolarity)
         {
             case FeedbackPolarity.Negative:
                 selectedPrefab = NegativeThing;
@@ -111,7 +111,7 @@ public class PresentationEvaluationUIController : MonoBehaviour
         
         var go = Instantiate(selectedPrefab, VerticalLayout.transform);
 
-        go.GetComponentInChildren<TextMeshProUGUI>().text = feedback.TextFeedback;
+        go.GetComponentInChildren<TextMeshProUGUI>().text = feedback.textFeedback;
     }
     
     

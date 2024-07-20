@@ -9,11 +9,10 @@ using UnityEngine.UI;
 
 public class SpeechRecognitionUtill : Singleton<SpeechRecognitionUtill>
 {
-    private string errorResponse = "!error!";
+    public const string ErrorResponse = "!error!";
     private string currentResponse = "";
     private bool _receivedResponse;
     [TextArea] public string resultString = "";
-    
     
     public IEnumerator SendPreRecordedRecording(AudioClipInfo audioClipInfo, List<AudioClipInfo> sanitizedAudio)
     {
@@ -55,9 +54,9 @@ public class SpeechRecognitionUtill : Singleton<SpeechRecognitionUtill>
                 // Optionally save the file locally for debugging
                 //File.WriteAllBytes(Application.dataPath + "/test.wav", curBytes);
 
-                string response = errorResponse;
+                string response = ErrorResponse;
 
-                while (response == errorResponse && tries < 3)
+                while (response == ErrorResponse && tries < 3)
                 {
                     SendRecording(curBytes);
 
@@ -66,11 +65,13 @@ public class SpeechRecognitionUtill : Singleton<SpeechRecognitionUtill>
                     tries++;
                 }
 
-                if (response != errorResponse)
+                speechStr = response;
+
+                /*if (response != ErrorResponse)
                 {
                     //speechStr += " ";
                     speechStr += response;
-                }
+                }*/
 
                 currentClipInfo.transcription = speechStr;
 
@@ -126,7 +127,6 @@ public class SpeechRecognitionUtill : Singleton<SpeechRecognitionUtill>
         HuggingFaceAPI.AutomaticSpeechRecognition(_bytes, 
             response => 
         {
-
             currentResponse = response;
             _receivedResponse = true;
         }, 

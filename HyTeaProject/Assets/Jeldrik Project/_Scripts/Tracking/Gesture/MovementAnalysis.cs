@@ -36,7 +36,7 @@ public class MovementAnalysis : MonoBehaviour
         {
             foreach (var landMark in gestureHolder.GetNeededTrackers())
             {
-                Debug.Log(landMark);
+                //Debug.Log(landMark);
                 await TrackingProvider.Instance.StartLandMarkTracker(landMark);
             }
         }

@@ -1,14 +1,16 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class AudioLoudnessDetection : MonoBehaviour
 {
     private int _sampleWindow;
     
-    [field:SerializeField] private float Gain;
-    [field:SerializeField] private float threashold = 0.001f;
+    [field:SerializeField] private float gain;
+    [field:SerializeField] private float threshold = 0.001f;
     [field:SerializeField] private TextMeshProUGUI loudnessText;
+    [field:SerializeField] private float _loudnessSensitivity = 150f;
 
     public float currentLoudness;
     private bool _pauseHappening = false;
@@ -25,29 +27,43 @@ public class AudioLoudnessDetection : MonoBehaviour
     
     private void OnEnable()
     {
-        Gain = MicrophoneManager.Instance.GetGain();
+        gain = MicrophoneManager.Instance.GetGain();
         EventManager.ChangedGain.AddListener(SetGain);
         EventManager.StartedNewRecording.AddListener(ResetDetectingLoudness);
         EventManager.StoppedRecording.AddListener(HandleStopRecording);
+        EventManager.ChangedLoudnessMultiplier.AddListener(SetSensitivity);
     }
-
+    
     private void OnDisable()
     {
         EventManager.ChangedGain.RemoveListener(SetGain);
         EventManager.StartedNewRecording.RemoveListener(ResetDetectingLoudness);
         EventManager.StoppedRecording.RemoveListener(HandleStopRecording);
+        EventManager.ChangedLoudnessMultiplier.RemoveListener(SetSensitivity);
     }
-
-    /*private bool HaveAllCoroutinesEnded()
+    
+    private void SetSensitivity(float sensitivity)
     {
-        return _loudnessTractCoroutine == null && _pauseTractCoroutine == null;
-    }*/
+        _loudnessSensitivity = sensitivity;
+    }
+    
+    private void SetGain(float newGain)
+    {
+        gain = newGain;
+    }
     
     private void HandleStopRecording()
     {
         StartCoroutine(StopDetectingLoudness());
     }
+    
+    private void ResetDetectingLoudness()
+    {
+        StopDetectingLoudness();
 
+        StartDetectingLoudness();
+    }
+    
     public void StartDetectingLoudness()
     {
         _loudnessTractCoroutine ??= StartCoroutine(UpdateLoudness());
@@ -67,18 +83,6 @@ public class AudioLoudnessDetection : MonoBehaviour
             yield return null;
         }
     }
-
-    public void ResetDetectingLoudness()
-    {
-        StopDetectingLoudness();
-
-        StartDetectingLoudness();
-    }
-
-    private void SetGain(float newGain)
-    {
-        Gain = newGain;
-    }
     
     private float GetLoudnessFromMicrophone()
     {
@@ -89,7 +93,7 @@ public class AudioLoudnessDetection : MonoBehaviour
     {
         yield return new WaitForSeconds(0.1f);
 
-        currentLoudness = GetLoudnessFromMicrophone();
+        currentLoudness = GetLoudnessFromMicrophone() * _loudnessSensitivity;
 
         EventManager.LatestLoudnessCaptured.Invoke(currentLoudness);
         
@@ -127,7 +131,6 @@ public class AudioLoudnessDetection : MonoBehaviour
     {
         float duration = elapsedTime; 
         
-        //EventManager.OnPauseDone.Invoke(_pauseHappening);
         EventManager.PauseStarted.Invoke();
         
         while (_pauseHappening)
@@ -161,7 +164,7 @@ public class AudioLoudnessDetection : MonoBehaviour
         {
             var valueToAdd = AddingGainToAudio(waveData[i]);;
             
-            if (!(valueToAdd >= threashold)) continue;
+            if (!(valueToAdd >= threshold)) continue;
             
             valueToAdd = Mathf.Clamp(valueToAdd, -1.0f, 1.0f);
             
@@ -177,7 +180,7 @@ public class AudioLoudnessDetection : MonoBehaviour
 
     private float AddingGainToAudio(float data)
     {
-        return Mathf.Abs(data * Gain);
+        return Mathf.Abs(data * gain);
     }
 }
 

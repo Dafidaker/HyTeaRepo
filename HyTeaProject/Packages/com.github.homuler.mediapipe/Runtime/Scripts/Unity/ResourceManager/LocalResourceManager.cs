@@ -70,7 +70,7 @@ namespace Mediapipe.Unity
     protected static byte[] GetResourceContents(string path)
     {
       // TODO: try AsyncReadManager
-      Logger.LogDebug($"{path} is requested");
+      //Logger.LogDebug($"{path} is requested");
 
       var cachePath = PathToResourceAsFile(path);
       return File.ReadAllBytes(cachePath);

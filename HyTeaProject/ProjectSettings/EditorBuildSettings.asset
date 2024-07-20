@@ -6,9 +6,17 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+<<<<<<< HEAD
     path: Assets/Scenes/DataTransferTestScene.unity
     guid: 8446bf90ffbd7f34ba416ce6eb9789ce
   - enabled: 1
     path: Assets/Scenes/AfonsoScene.unity
     guid: ce04e1bc61c7fae4a93a11946e0a1073
+=======
+    path: Assets/Scenes/MainMenu.unity
+    guid: 3eaccf78cb3080841b97a908443efe02
+  - enabled: 1
+    path: Assets/Scenes/Game.unity
+    guid: 08b8e786c3dbb844691e166379cdf507
+>>>>>>> 662c8fdee46016280d0ec23560d9666b91703c70
   m_configObjects: {}

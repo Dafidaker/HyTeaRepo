@@ -17,6 +17,8 @@ public class PlaybackMicrophone : MonoBehaviour
         _playbackAudioSource = gameObject.AddComponent<AudioSource>();
 
         _startTime = 0f;
+        
+        SetGain(MicrophoneManager.Instance.GetGain());
     }
 
     private void OnEnable()
