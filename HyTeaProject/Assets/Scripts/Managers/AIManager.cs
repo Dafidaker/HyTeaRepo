@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -8,24 +7,34 @@ public class AIManager : Singleton<AIManager>
     [field: SerializeField] private List<AgentController> aiAgents;
     private AgentController feedbackRobot;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         aiAgents = new List<AgentController>();
     }
 
-    public void InitiateFeedback()
+    public void InitiateFeedback(AgentController robot)
     {
-        GameObject Player = GameManager.Instance.Player;
-        if (Player == null) return;
+        GameObject player = GameManager.Instance.Player;
+        if (player == null) return;
         
-        EventManager.ArrivedAtTarget.AddListener(RobotArrivedThePlayer);
+        //EventManager.ArrivedAtTarget.AddListener(RobotArrivedThePlayer);
         EventManager.FeedbackWasGiven.AddListener(FeedbackHasBeenGiven);
         
-        SetFeedbackRobot();
-        SendRobotToFollowTarget(Player.transform, feedbackRobot);
+        SetFeedbackRobot(robot);
+        
+        GameManager.Instance.LockPlayerCameraOnTarget(robot.dialogueCameraLookAt);
+        /*SendRobotToFollowTarget(player.transform, feedbackRobot);*/
+        feedbackRobot.GiveFeedback(PresentationManager.Instance._feedbacks, UIManager.Instance.CreateDialogueCanvas());
     }
 
-    public void RobotArrivedThePlayer(AgentController robot, Transform playerTransform)
+    public void RobotTalkToPlayer(AgentController robot)
+    {
+        GameManager.Instance.LockPlayerCameraOnTarget(robot.dialogueCameraLookAt);
+        robot.StartDialogue(robot.DialogueStrings,UIManager.Instance.CreateDialogueCanvas());
+    }
+
+    private void RobotArrivedThePlayer(AgentController robot, Transform playerTransform)
     {
         GameObject Player = GameManager.Instance.Player;
         if (Player == null) return;
@@ -39,7 +48,7 @@ public class AIManager : Singleton<AIManager>
         
     }
 
-    public void FeedbackHasBeenGiven(AgentController robot)
+    private void FeedbackHasBeenGiven(AgentController robot)
     {
         if (feedbackRobot == null && robot != feedbackRobot) return;
         
@@ -48,7 +57,7 @@ public class AIManager : Singleton<AIManager>
         GameManager.Instance.UnlockPlayerCameraOnTarget(feedbackRobot.dialogueCameraLookAt);
     }
 
-    public void SendRandomRobotToPosition(Vector3 position)
+   /* public void SendRandomRobotToPosition(Vector3 position)
     {
         if (aiAgents.Count <= 0)
         {
@@ -58,8 +67,8 @@ public class AIManager : Singleton<AIManager>
 
         aiAgents[Random.Range(0,aiAgents.Count)].GetComponent<AgentController>().MoveTo(position);
     }
-    
-    public AgentController SendRobotToFollowTarget(Transform targetTransform, AgentController robot = null)
+
+    private AgentController SendRobotToFollowTarget(Transform targetTransform, AgentController robot = null)
     {
         AgentController selectedController = robot;
 
@@ -76,9 +85,9 @@ public class AIManager : Singleton<AIManager>
         selectedController.GetComponent<AgentController>().FollowTarget(targetTransform);
 
         return selectedController;
-    }
+    }*/
 
-    public AgentController SetFeedbackRobot(AgentController robot = null)
+    private AgentController SetFeedbackRobot(AgentController robot = null)
     {
         feedbackRobot = robot;
 
@@ -90,7 +99,7 @@ public class AIManager : Singleton<AIManager>
         return feedbackRobot;
     }
 
-    public AgentController GetRandomRobot()
+    private AgentController GetRandomRobot()
     {
         if (aiAgents.Count > 0) return aiAgents[Random.Range(0, aiAgents.Count)];
         

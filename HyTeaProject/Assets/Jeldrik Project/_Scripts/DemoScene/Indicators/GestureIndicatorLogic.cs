@@ -14,8 +14,10 @@ public class GestureIndicatorLogic : MonoBehaviour
 
     private void ReactToGesture(GestureHolder gesture)
     {
-        
         Debug.Log("gesture done: " + gesture.Name);
-        NotificationProvider.Instance.SpawnNotification(gesture.Name, 1.5f);
+        if (NotificationProvider.Instance)
+        {
+            NotificationProvider.Instance.SpawnNotification(gesture.Name, 1.5f);
+        }
     }
 }

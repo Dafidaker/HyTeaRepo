@@ -1,26 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Serialization;
 
-[RequireComponent(typeof(NavMeshAgent))]
+[RequireComponent(typeof(AudioSource))]
 public class AgentController : MonoBehaviour
 {
     public Transform dialogueCameraLookAt;
     [FormerlySerializedAs("name")] [field: SerializeField]private string agentName;
+    [SerializeField] private AudioClip[] voiceClip;
+
+    [TextArea]public List<string> DialogueStrings = new();
     
-    private NavMeshAgent _navMeshAgent;
+    private AudioSource audioSource;
     private Coroutine _followCoroutine;
     
     private bool _canContinue = false;
-    
-    void Awake()
+    private int curTextIndex = 0;
+    private string curFullText;
+
+    private void Awake()
     {
-        _navMeshAgent = GetComponent<NavMeshAgent>();
+        audioSource = GetComponent<AudioSource>();
     }
     
-    public void FollowTarget(Transform target)
+    /*public void FollowTarget(Transform target)
     {
         if (_followCoroutine != null)
         {
@@ -73,21 +79,27 @@ public class AgentController : MonoBehaviour
             _followCoroutine = null;
         }
         _navMeshAgent.SetDestination(position);
+    }*/
+
+    public void GiveFeedback(List<Feedback> feedbacks,DialogueUIController dialController)
+    {
+        var DialogueLines = feedbacks.Select(feedback => feedback.textFeedback).ToList();
+        StartCoroutine(StartDialogueCoroutine(DialogueLines,dialController,true));
+    }
+    
+    public void StartDialogue(List<string> dialogueLines, DialogueUIController dialController)
+    {
+        StartCoroutine(StartDialogueCoroutine(dialogueLines,dialController,true));
     }
 
-    public void GiveFeedback(List<Feedback> feedbacks,DialogueUIController dialController )
+    private IEnumerator StartDialogueCoroutine(List<string> dialogue, DialogueUIController dialController, bool isItFeedback = false )
     {
-        StartCoroutine(GiveFeedbackCourotine(feedbacks,dialController));
-    }
-
-    private IEnumerator GiveFeedbackCourotine(List<Feedback> feedbacks,DialogueUIController dialController )
-    {
-        var coroutine= StartCoroutine(UIManager.Instance.CheckForMousePress());
-        EventManager.MouseWasPressed.AddListener((() => _canContinue = true));
+        var coroutine = StartCoroutine(UIManager.Instance.CheckForMousePress());
+        EventManager.MouseWasPressed.AddListener(() => _canContinue = true);
         
-        if (feedbacks == null || dialController == null)
+        if (dialogue == null || dialController == null)
         {
-            EventManager.FeedbackWasGiven.Invoke(this);
+            if(isItFeedback) EventManager.FeedbackWasGiven.Invoke(this);
             yield break;
         }
 
@@ -96,26 +108,100 @@ public class AgentController : MonoBehaviour
         dialController.ChangeNameText(agentName);
         
         
-        foreach (var feedback in feedbacks)
+        foreach (var str in dialogue)
         {
-            dialController.ChangeDialogueText(feedback.textFeedback);
+            /*dialController.ChangeDialogueText(str);
             yield return new WaitForSeconds(1f);
             dialController.EnableContinueText(true);
             
             yield return new WaitUntil(() => _canContinue);
+            _canContinue = false;*/
+
+            yield return StartCoroutine(ShowDialogue(str, dialController));
+            _canContinue = false;
+            dialController.EnableContinueText(true);
+            yield return new WaitUntil(() => _canContinue);
             _canContinue = false;
         }
         
-        dialController.ChangeDialogueText("Thank you for the presentation");
+        /*dialController.ChangeDialogueText("Thank you for the presentation");
         yield return new WaitForSeconds(1f);
         dialController.EnableContinueText(true);
             
         yield return new WaitUntil(() => _canContinue);
-        _canContinue = false;
+        _canContinue = false;*/
+
+        if (isItFeedback) EventManager.FeedbackWasGiven.Invoke(this);
+        EventManager.MouseWasPressed.RemoveListener(() => _canContinue = true);
         
-        EventManager.FeedbackWasGiven.Invoke(this);
-        EventManager.MouseWasPressed.RemoveListener((() => _canContinue = true));
         if (coroutine != null) StopCoroutine(coroutine);
+        GameManager.Instance.UnlockPlayerCameraOnTarget(dialogueCameraLookAt);
         UIManager.Instance.CloseUpperCanvas();
     }
+
+    private IEnumerator ShowDialogue(string fullText, DialogueUIController dialController)
+    {
+        EventManager.MouseWasPressed.AddListener((() => _canContinue = true));
+        
+        dialController.EnableContinueText(false);
+        
+        curFullText = fullText;
+
+        if (voiceClip.Length > 0)
+        {
+            audioSource.clip = voiceClip[Random.Range(0,voiceClip.Length)];
+            audioSource.Play();
+        }
+        
+        for (curTextIndex = 0; curTextIndex <= curFullText.Length; curTextIndex++)
+        {
+            if (_canContinue & curTextIndex <= curFullText.Length * 0.2)
+            {
+                curTextIndex = curFullText.Length;
+            }
+            
+            var currentText = curFullText.Substring(0, curTextIndex);
+            dialController.ChangeDialogueText(currentText);
+            
+            if (currentText.Length > 0)
+            {
+                char lastChar = currentText[^1];
+
+                switch (lastChar)
+                {
+                    case '.':
+                        audioSource.Pause();
+                        yield return new WaitForSeconds(1f);
+                        audioSource.Play();
+                        break;
+                    case ',':
+                        audioSource.Pause();
+                        yield return new WaitForSeconds(0.3f);
+                        audioSource.Play();
+                        break;
+                    default:
+                        yield return new WaitForSeconds(0.005f);
+                        break;
+                }
+            }
+            else
+            {
+                yield return new WaitForSeconds(0.005f);
+            }
+        }
+        audioSource.Stop();
+        
+        EventManager.MouseWasPressed.RemoveListener((() => _canContinue = true));
+        yield return null;
+    }
+    
+    
+    
+        
+        
+        
+    
+
+
+
 }

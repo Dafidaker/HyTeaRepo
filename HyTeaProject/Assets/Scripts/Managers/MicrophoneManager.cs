@@ -12,7 +12,7 @@ public class MicrophoneManager : Singleton<MicrophoneManager>
     private bool _isRecording;
     
     public AudioClip microphoneClip;
-    public List<AudioClip> _previousAudioClips;
+    public List<AudioClip> previousAudioClips;
 
     private string[] _previousMicrophoneDevices;
 
@@ -20,7 +20,7 @@ public class MicrophoneManager : Singleton<MicrophoneManager>
 
     private AudioLoudnessDetection _audioLoudnessDetection;
     
-    public VolumeAnalyzer _volumeAnalyzer;
+    public VolumeAnalyzer volumeAnalyzer;
     
     
     private void OnEnable()
@@ -37,11 +37,11 @@ public class MicrophoneManager : Singleton<MicrophoneManager>
     {
         base.Awake();
         _isRecording = false;
-        _previousAudioClips = new List<AudioClip>();
+        previousAudioClips = new List<AudioClip>();
         
         _audioLoudnessDetection = gameObject.AddComponent<AudioLoudnessDetection>();
         
-        _volumeAnalyzer = _volumeAnalyzer = new VolumeAnalyzer(0.1f,0.5f,0,1);
+        volumeAnalyzer = volumeAnalyzer = new VolumeAnalyzer(0.1f,0.5f,0,1);
         //_previousMicrophoneDevices = Microphone.devices;
         
         // Select the first microphone initially
@@ -52,6 +52,12 @@ public class MicrophoneManager : Singleton<MicrophoneManager>
         // Start coroutine to check for microphone changes
         StartCoroutine(CheckForMicrophoneChanges());
         
+    }
+
+    private void OnDestroy()
+    {
+        StopAllCoroutines();
+        if (_trackingCoroutine != null) StopCoroutine(_trackingCoroutine);
     }
 
 
@@ -68,7 +74,7 @@ public class MicrophoneManager : Singleton<MicrophoneManager>
 
     public List<AudioClip> GetAllAudioClips()
     {
-        return _previousAudioClips;
+        return previousAudioClips;
     }
 
     public AudioLoudnessDetection GetAudioDetection()
@@ -149,9 +155,9 @@ public class MicrophoneManager : Singleton<MicrophoneManager>
     {
         if (microphoneClip == null) return;
         
-        if (_previousAudioClips != null && !_previousAudioClips.Contains(microphoneClip))
+        if (previousAudioClips != null && !previousAudioClips.Contains(microphoneClip))
         {
-            _previousAudioClips?.Add(microphoneClip);
+            previousAudioClips?.Add(microphoneClip);
             EventManager.NewAudioClipFinished.Invoke(microphoneClip);
         }
     }

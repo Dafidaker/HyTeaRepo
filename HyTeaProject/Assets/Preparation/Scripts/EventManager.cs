@@ -34,14 +34,18 @@ public static class EventManager
    public static UnityEvent StoppedRecording = new();
    
    public static UnityEvent<float> ChangedGain = new();
+   public static UnityEvent<float> ChangedLoudnessMultiplier = new();
    
    public static readonly UnityEvent<float> OnPauseDone = new();
    public static readonly UnityEvent PauseStarted = new();
-   //public static readonly UnityEvent PauseStopped = new();
    public static readonly UnityEvent<float> LatestLoudnessCaptured = new();
    
    public static readonly UnityEvent<AudioClip> NewAudioClipFinished = new();
    
+   
+   public static readonly UnityEvent CalibrationHasFinished = new();
+   public static readonly UnityEvent CalibrationHasStarted = new();
+
    ///////////////////////////*Gestures*//////////////////////////////////////
    public static readonly UnityEvent<float, float, GesturesEnum> GestureCaptured = new();
    

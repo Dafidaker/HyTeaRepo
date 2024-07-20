@@ -1,8 +1,10 @@
+using System.Linq;
 using UnityEngine;
 
-public class FeedbackTriggerController : MonoBehaviour
+public class DialogueTriggerController : MonoBehaviour
 {
     [SerializeField] private AgentController robotController;
+    [SerializeField, TextArea] private string[] dialogueStrings;
     
     private void OnTriggerEnter(Collider other)
     {
@@ -14,7 +16,8 @@ public class FeedbackTriggerController : MonoBehaviour
         
         if (other.CompareTag("Player"))
         {
-            AIManager.Instance.InitiateFeedback(robotController);
+            robotController.DialogueStrings = dialogueStrings.ToList();
+            AIManager.Instance.RobotTalkToPlayer(robotController);
             gameObject.SetActive(false);
         }
     }

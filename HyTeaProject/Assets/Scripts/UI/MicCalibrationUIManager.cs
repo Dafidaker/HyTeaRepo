@@ -39,7 +39,8 @@ public class MicCalibrationUIManager : MonoBehaviour
         EventManager.StartedVolumeAnalysis.RemoveListener(DisableElements);
         EventManager.FinishedVolumeAnalysis.RemoveListener(EnableElements);
     }
-
+    
+    
     private void DisableElements()
     {
         microphoneDropdown.interactable = false;

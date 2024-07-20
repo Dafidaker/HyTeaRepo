@@ -2,15 +2,15 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class PresentationManager : Singleton<PresentationManager>
 {
-    [field: SerializeField] private PresentationData presentationData;
-    [field: SerializeField] public List<Feedback> _feedbacks;
-    [field: SerializeField] private GameObject presentationUIPrefab;
-    private PresentationEvaluationUIController _presentationEvaluationUIController;
+    [SerializeField] private PresentationData presentationData;
+    [SerializeField] public List<Feedback> _feedbacks;
     private PresentationEvaluation _presentationEvaluation;
     private PresentationStartSettings _presentationStartSettings;
+    [HideInInspector] public bool isCalibrationDone = false;
 
     protected override void Awake()
     {
@@ -20,6 +20,24 @@ public class PresentationManager : Singleton<PresentationManager>
         {
             _presentationEvaluation = gameObject.AddComponent<PresentationEvaluation>();
         }
+    }
+    
+    private void OnDisable()
+    {
+        EventManager.CalibrationHasStarted.AddListener(() => isCalibrationDone = false);
+        EventManager.CalibrationHasFinished.AddListener(() => isCalibrationDone = true);
+    }
+
+    public void ListenToCalibration()
+    {
+        EventManager.CalibrationHasStarted.AddListener(() => isCalibrationDone = false);
+        EventManager.CalibrationHasFinished.AddListener(() => isCalibrationDone = true);
+    }
+    
+    public void StopListeningToCalibration()
+    {
+        EventManager.CalibrationHasStarted.AddListener(() => isCalibrationDone = false);
+        EventManager.CalibrationHasFinished.AddListener(() => isCalibrationDone = true);
     }
 
 
@@ -33,11 +51,11 @@ public class PresentationManager : Singleton<PresentationManager>
         return _presentationStartSettings;
     }
     
-    private void CreateEvalutationUI()
+    /*private void CreateEvalutationUI()
     {
         var go = Instantiate(presentationUIPrefab);
         _presentationEvaluationUIController = go.GetComponent<PresentationEvaluationUIController>();
-    }
+    }*/
 
     public void StartPresentation(PresentationStartSettings presentationStartSettings)
     {
@@ -59,7 +77,7 @@ public class PresentationManager : Singleton<PresentationManager>
         StartCoroutine(EndPresentation());
     }
 
-    public IEnumerator EndPresentation()
+    private IEnumerator EndPresentation()
     {
         MicrophoneManager.Instance.StopRecording();
         
@@ -75,8 +93,4 @@ public class PresentationManager : Singleton<PresentationManager>
     }
     
     
-    public void FeedbackTriggerTriggered()
-    {
-        AIManager.Instance.InitiateFeedback();
-    }
 }

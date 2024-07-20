@@ -108,11 +108,11 @@ public class VolumeAnalyzer : Object
 
 public class SliderVoiceLoudness : MonoBehaviour
 {   
-    public AudioLoudnessDetection detection;
+    private AudioLoudnessDetection _detection;
 
     public Slider slider;
-    private RectTransform handleRectTransform;
     public Slider everytimeSlider;
+    private RectTransform handleRectTransform;
 
     private List<GameObject> _dividingBars;
 
@@ -159,9 +159,14 @@ public class SliderVoiceLoudness : MonoBehaviour
         
         _volumeAnalyzer = new VolumeAnalyzer(0.1f,0.5f,Min,Max);
         _dividingBars = _volumeAnalyzer.CreateDividors(slider, divisionBarPrefab);
+
+        if (_detection == null)
+        {
+            _detection = MicrophoneManager.Instance.GetAudioDetection();
+        }
         
         _isInstructionTextNull = instructionText == null;
-        _isDetectionNull = detection == null;
+        _isDetectionNull = _detection == null;
         
         _loudnessHistory = new List<float>();
         _loudnessTestHistory = new List<float>();
@@ -180,7 +185,7 @@ public class SliderVoiceLoudness : MonoBehaviour
     {
         if (_isDetectionNull) return;
         
-        float loudness = detection.currentLoudness * loudnessSensitivity;
+        float loudness = _detection.currentLoudness /** loudnessSensitivity*/;
 
         /*string loudnessInText = _volumeAnalyzer.GetSpeakingVolume(loudness).ToString();
         
@@ -296,6 +301,9 @@ public class SliderVoiceLoudness : MonoBehaviour
 
     private IEnumerator GetLoudnessLimits(float duration)
     {
+        PresentationManager.Instance.ListenToCalibration();
+        EventManager.CalibrationHasStarted.Invoke();
+        
         yield return StartCoroutine(GetWhisperingLoudness("Whisper for the next few seconds", duration));
         yield return new WaitForSeconds(2f);
         yield return StartCoroutine(GetProjectingLoudness("Project you voice for the next few seconds", duration));
@@ -341,7 +349,10 @@ public class SliderVoiceLoudness : MonoBehaviour
             yield return new WaitForSeconds(3f);
             instructionText.text = "";
         }
+        
         EventManager.FinishedVolumeAnalysis.Invoke();
+        EventManager.CalibrationHasFinished.Invoke();
+        PresentationManager.Instance.StopListeningToCalibration();
     }
 
     private IEnumerator GetWhisperingLoudness(string instruction, float duration)

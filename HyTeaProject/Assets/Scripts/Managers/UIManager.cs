@@ -40,7 +40,10 @@ public class UIManager : Singleton<UIManager>
     
     public void ClickedStartButton()
     {
-        SceneManager.LoadScene(1);
+        if (PresentationManager.Instance.isCalibrationDone)
+        {
+            SceneManager.LoadScene(1);
+        }
     }
     
     public void ClickedOptionsButton()

@@ -144,7 +144,7 @@ public class PresentationEvaluation : MonoBehaviour
       var loudnessFeedback = "loudness in the beginning middle and end where ";
       foreach (var loudness in loudnessAverages)
       {
-         loudnessFeedback += MicrophoneManager.Instance._volumeAnalyzer.GetSpeakingVolume(loudness) + " ";
+         loudnessFeedback += MicrophoneManager.Instance.volumeAnalyzer.GetSpeakingVolume(loudness) + " ";
       }
       
       Debug.Log(loudnessFeedback);
@@ -289,6 +289,8 @@ public class PresentationEvaluation : MonoBehaviour
       
       
       _feedbacks.Add(new Feedback(FeedbackPolarity.Neutral,TypeOfFeedback.Neutral,"Thank you for the presentation"));
+
+      PresentationManager.Instance._feedbacks = _feedbacks;
    }
 
    #region Create Feedback Funtions
@@ -310,7 +312,7 @@ public class PresentationEvaluation : MonoBehaviour
       
       foreach (var loudness in _averageLoudnesses)
       {
-         averageLoudnessesHelpers.Add(new LoudnessFeedbackHelper(MicrophoneManager.Instance._volumeAnalyzer.GetSpeakingVolume(loudness)));
+         averageLoudnessesHelpers.Add(new LoudnessFeedbackHelper(MicrophoneManager.Instance.volumeAnalyzer.GetSpeakingVolume(loudness)));
       }
 
       for (var i = 0; i < averageLoudnessesHelpers.Count; i++)
@@ -474,7 +476,6 @@ public class PresentationEvaluation : MonoBehaviour
       }
       
       float percentage = Mathf.Clamp(amountOfValidWordsSaid / (amountOfValidWords / 100f),0f,100f);
-      percentage = 60;
 
       if (percentage >= 95)
       {

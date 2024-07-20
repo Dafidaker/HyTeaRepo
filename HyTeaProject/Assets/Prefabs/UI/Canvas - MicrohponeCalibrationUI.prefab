@@ -1,80 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &152057646999427186
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2379048699295296848}
-  - component: {fileID: 1412613075110026706}
-  - component: {fileID: 190704733028698776}
-  - component: {fileID: 4851439721422270679}
-  m_Layer: 0
-  m_Name: MicrophoneManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2379048699295296848
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 152057646999427186}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 45.238342, y: -21, z: 295.43573}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 8515525017809638745}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1412613075110026706
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 152057646999427186}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac0427caf9f80074b946d6b1fbcd6aef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  microphoneClip: {fileID: 0}
---- !u!114 &190704733028698776
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 152057646999427186}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f236dbc3c27c0e646beb4beedd965694, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &4851439721422270679
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 152057646999427186}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37f0b470b535d6f4cae59cfb1fd54c24, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Gain: 0
-  threashold: 0.001
-  loudnessText: {fileID: 0}
-  currentLoudness: 0
 --- !u!1 &296067975729787346
 GameObject:
   m_ObjectHideFlags: 0
@@ -1814,7 +1739,6 @@ GameObject:
   - component: {fileID: 6028754709059908422}
   - component: {fileID: 1856664835324066897}
   - component: {fileID: 2907857374527667758}
-  - component: {fileID: 7355130221427311758}
   - component: {fileID: 3584362924841759647}
   m_Layer: 5
   m_Name: Canvas - MicrohponeCalibrationUI
@@ -1836,7 +1760,6 @@ RectTransform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6706297271236399508}
-  - {fileID: 2379048699295296848}
   - {fileID: 4134558899073171018}
   - {fileID: 1758264987251005549}
   - {fileID: 631339998947511167}
@@ -1931,22 +1854,6 @@ MonoBehaviour:
   microphoneDropdown: {fileID: 3498959033174737812}
   microphoneCalibration: {fileID: 1834874409025058362}
   microphoneGain: {fileID: 2976428720979645521}
---- !u!114 &7355130221427311758
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4345068296912362055}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37f0b470b535d6f4cae59cfb1fd54c24, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Gain: 0
-  threashold: 0.001
-  loudnessText: {fileID: 4580914987927504113}
-  currentLoudness: 0
 --- !u!114 &3584362924841759647
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1959,7 +1866,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afcb5ff8428ec3e4ebd849fb0bd59d8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detection: {fileID: 0}
   slider: {fileID: 9213413345001060769}
   everytimeSlider: {fileID: 590216235815718891}
   instructionText: {fileID: 8064588703986942952}
@@ -2716,6 +2622,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2722859010223239405}
   - component: {fileID: 1834874409025058362}
+  - component: {fileID: 5288217573966507550}
   m_Layer: 5
   m_Name: MicCalibrationSlider
   m_TagString: Untagged
@@ -2808,6 +2715,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &5288217573966507550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6085494143247502146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2316957f2f56e20479cd6193cb6ccab9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6170297684425686090
 GameObject:
   m_ObjectHideFlags: 0
@@ -3855,6 +3774,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8618475931227931376}
   - component: {fileID: 2976428720979645521}
+  - component: {fileID: 2475146875081849071}
   m_Layer: 5
   m_Name: MicGainSlider
   m_TagString: Untagged
@@ -3929,15 +3849,15 @@ MonoBehaviour:
   m_HandleRect: {fileID: 2752276169725138167}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 2
+  m_MaxValue: 3
   m_WholeNumbers: 0
   m_Value: 2
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1412613075110026706}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: MicrophoneManager, Assembly-CSharp
-        m_MethodName: SetGain
+        m_MethodName: 
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3947,6 +3867,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &2475146875081849071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7941171195686348408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae015c3d698a73849ab3bc06d9e73108, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8079766697674191446
 GameObject:
   m_ObjectHideFlags: 0

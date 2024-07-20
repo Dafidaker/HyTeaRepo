@@ -7,8 +7,6 @@ public enum GameState
     
 }
 
-
-
 public class GameManager : Singleton<GameManager>
 {
     public Camera currentCamera;
