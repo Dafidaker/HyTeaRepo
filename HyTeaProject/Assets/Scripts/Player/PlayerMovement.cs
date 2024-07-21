@@ -39,6 +39,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        if (GameManager.Instance.GameState != GameState.Gameplay) return; 
+        
         _grounded = IsPlayerGrounded();
         
         MyInput();

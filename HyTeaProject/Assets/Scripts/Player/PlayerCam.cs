@@ -28,8 +28,7 @@ public class PlayerCam : MonoBehaviour
     private void Awake()
     {
         GameManager.Instance.SetPlayerCam(this);
-        _lookAtTranforms = new List<Transform>();
-        _lookAtTranforms.Add(lookAtTranformLockedCamera);
+        _lookAtTranforms = new List<Transform> { lookAtTranformLockedCamera };
     }
 
     private void Start()
@@ -99,7 +98,7 @@ public class PlayerCam : MonoBehaviour
 
     private void RotateLockedCamera()
     {
-        if (cameraIsMoving) return;
+        if (cameraIsMoving || GameManager.Instance.GameState != GameState.Presentation) return;
             
         LookToTransform();
         

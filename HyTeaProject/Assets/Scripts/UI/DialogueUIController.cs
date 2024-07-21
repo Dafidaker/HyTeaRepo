@@ -1,11 +1,13 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 public class DialogueUIController : MonoBehaviour
 {
     [field: SerializeField] private TextMeshProUGUI nameText;
     [field: SerializeField] private TextMeshProUGUI dialogueText;
-    [field: SerializeField] private TextMeshProUGUI continueText;
+    [FormerlySerializedAs("continueText")] [field: SerializeField] private Image continueImg;
     
     public void ChangeNameText(string str)
     {
@@ -21,6 +23,10 @@ public class DialogueUIController : MonoBehaviour
 
     public void EnableContinueText(bool value)
     {
-        continueText.enabled = value;
+        if (continueImg == null)
+        {
+            return;
+        }
+        continueImg.enabled = value;
     }
 }

@@ -11,8 +11,23 @@ public class UIManager : Singleton<UIManager>
     [field: SerializeField] private Canvas configureMicrohphoneCanvas;
     [field: SerializeField] private Canvas dialogueCanvas;
     [field: SerializeField] private GameObject baseCanvasPrefab;
-    
 
+    protected override void Awake()
+    {
+        base.Awake();
+        activeCanvas ??= new List<Canvas>();
+    }
+
+    public void DeactivateCanvas(Canvas canvas)
+    {
+        canvas.gameObject.SetActive(false);
+    }
+    
+    public void ActivateCanvas(Canvas canvas)
+    {
+        canvas.gameObject.SetActive(true);
+    }
+    
     public void CloseCanvas(Canvas canvas)
     {
         activeCanvas.Remove(canvas);
@@ -42,6 +57,7 @@ public class UIManager : Singleton<UIManager>
     {
         if (PresentationManager.Instance.isCalibrationDone)
         {
+            GameManager.Instance.SetGameState(GameState.Gameplay);
             SceneManager.LoadScene(1);
         }
     }
@@ -66,16 +82,29 @@ public class UIManager : Singleton<UIManager>
         
     }
 
-    public DialogueUIController CreateDialogueCanvas()
+    public Canvas CreateDialogueCanvas(Canvas DialogueCanvas = null)
     {
-        var temp = Instantiate(dialogueCanvas, baseCanvas.transform);
-        
-        activeCanvas.Add(temp);
+        if (DialogueCanvas == null) DialogueCanvas = dialogueCanvas;
 
-        var component = temp.gameObject.GetComponent<DialogueUIController>();
+        var temp = Instantiate(DialogueCanvas, baseCanvas == null ? transform : baseCanvas.transform);
+        
+        DeactivateCanvas(temp);
+        
+        //activeCanvas.Add(temp);
+
+        //var component = temp.gameObject.GetComponent<DialogueUIController>();
+
+        return temp;
+    }
+
+    public DialogueUIController GetDialogueUIController(Canvas DialogueCanvas)
+    {
+        var component = DialogueCanvas.gameObject.GetComponent<DialogueUIController>();
 
         return component;
     }
+    
+    
     
     
     public IEnumerator CheckForMousePress()

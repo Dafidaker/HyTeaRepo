@@ -61,11 +61,13 @@ public static class EventManager
    public static readonly UnityEvent CameraWasUnlocked = new();
    
    ///////////////////////////*AI*//////////////////////////////////
-   public static readonly UnityEvent<AgentController,Transform> ArrivedAtTarget = new();
-   public static readonly UnityEvent<AgentController> FeedbackWasGiven = new();
+   public static readonly UnityEvent<RobotController,Transform> ArrivedAtTarget = new();
+   public static readonly UnityEvent<RobotController> FeedbackWasGiven = new();
    
    
    ///////////////////////////*Input*//////////////////////////////////
    public static readonly UnityEvent MouseWasPressed = new();
+   
+   public static readonly UnityEvent<DialogueID> DialogueWasEnded = new();
    
 }
