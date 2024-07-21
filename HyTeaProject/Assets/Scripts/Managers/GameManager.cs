@@ -4,7 +4,9 @@ using UnityEngine;
 
 public enum GameState
 {
-    
+    Dialogue,
+    Gameplay,
+    Presentation,
 }
 
 public class GameManager : Singleton<GameManager>
@@ -54,6 +56,7 @@ public class GameManager : Singleton<GameManager>
         base.Awake();
         currentCamera = Camera.main;
         EventManager.CameraWasChanged.Invoke(currentCamera);
+        SetGameState(GameState.Gameplay);
     }
     
     private void OnEnable()
@@ -82,6 +85,7 @@ public class GameManager : Singleton<GameManager>
 
     public void StartPresentation(PresentationStartSettings presentationStartSettings)
     {
+        SetGameState(GameState.Presentation);
         if (presentationStartSettings != null)
         {
             LockPlayerCameraOnTarget(presentationStartSettings.lookAtTransform);
@@ -95,10 +99,38 @@ public class GameManager : Singleton<GameManager>
 
     public void EndPresentation()
     {
+        SetGameState(GameState.Gameplay);
         UnlockPlayerCameraOnTarget(PresentationManager.Instance.GetPresentationStartSettings().lookAtTransform);
         //make player not be able to move
         //make player move the place 
 
         PresentationManager.Instance.HandleEndPresentation();
+    }
+
+    public void SetUpNewCamera(Camera newMainCamera)
+    {
+        if (newMainCamera == null)
+        {
+            Debug.LogError("New Main Camera is not assigned!");
+            return;
+        }
+        
+        
+        Camera oldMainCamera = Camera.main;
+
+        if (oldMainCamera == newMainCamera)  return; 
+            
+        if (oldMainCamera != null)
+        {
+            oldMainCamera.tag = "Untagged"; 
+            oldMainCamera.gameObject.SetActive(false); 
+        }
+            
+        newMainCamera.tag = "MainCamera";
+        currentCamera = newMainCamera;
+        currentCamera.gameObject.SetActive(true);
+        
+        EventManager.CameraWasChanged.Invoke(currentCamera);
+        
     }
 }

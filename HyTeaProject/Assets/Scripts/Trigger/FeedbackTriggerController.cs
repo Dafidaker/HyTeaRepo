@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class FeedbackTriggerController : MonoBehaviour
 {
-    [SerializeField] private AgentController robotController;
+    [SerializeField] private RobotController robotController;
     
     private void OnTriggerEnter(Collider other)
     {

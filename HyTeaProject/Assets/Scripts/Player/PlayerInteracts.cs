@@ -28,14 +28,14 @@ public class PlayerInteracts : MonoBehaviour
     {
         EventManager.CameraWasLocked.AddListener(() => { _interactThoroughMouse = true; });
         EventManager.CameraWasUnlocked.AddListener(() => { _interactThoroughMouse = false; });
-        EventManager.CameraWasChanged.AddListener((cam) => { playerCamera = cam; });
+        //EventManager.CameraWasChanged.AddListener((cam) => { playerCamera = cam; });
     }
 
     private void OnDisable()
     {
         EventManager.CameraWasLocked.RemoveListener(() => { _interactThoroughMouse = true; });
         EventManager.CameraWasUnlocked.RemoveListener(() => { _interactThoroughMouse = false; });
-        EventManager.CameraWasChanged.RemoveListener((cam) => { playerCamera = cam; });
+        //EventManager.CameraWasChanged.RemoveListener((cam) => { playerCamera = cam; });
     }
 
     private void Update()
