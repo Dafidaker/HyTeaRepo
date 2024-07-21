@@ -64,7 +64,7 @@ public class WorldSlidesDisplayManager : MonoBehaviour
         
         DisplaySlidesInWorld();
         
-        Destroy(SlideTransfer);
+        SlideTransfer.SetActive(false);
 
     }
 

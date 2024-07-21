@@ -234,6 +234,7 @@ public class PresentationBuildingManager : MonoBehaviour
         slide.GetComponent<FullSlideManager>().SetOptions(ListOfFullSlides[num].TextOptions);
         slide.GetComponent<FullSlideManager>().SetMiscOption(ListOfFullSlides[num].MiscOption);
         slide.GetComponent<FullSlideManager>().SetImages(ListOfFullSlides[num].AvailableImages);
+        slide.GetComponent<FullSlideManager>().SetOptionScore(ListOfFullSlides[num].OptionScore);
         slide.GetComponent<Image>().color = section.GetColor();
     }
 

@@ -21,6 +21,8 @@ public class FullSlideManager : MonoBehaviour
    [SerializeField] private GameObject OptionImageMenu;
    [SerializeField] private List<string> TextOptions;
    [SerializeField] private List<GameObject> ImageOptions;
+
+   [SerializeField] private List<int> OptionScores;
    
    [SerializeField] private GameObject MiscOption;
    [SerializeField] private Sprite MiscOptionSpirte;
@@ -35,6 +37,8 @@ public class FullSlideManager : MonoBehaviour
    public bool HasMiscOption;
    public bool HasTextOptionSelected;
    public bool HasImageSelected;
+
+   public int SlideScore;
    
    
 
@@ -88,10 +92,21 @@ public class FullSlideManager : MonoBehaviour
       return MiscOptionSpirte;
    }
 
+   public void SetOptionScore(List<int> scores)
+   {
+      OptionScores = scores;
+   }
+
+   public List<int> GetOptionScore()
+   {
+      return OptionScores;
+   }
+
    private void OnEnable()
    {
       TextOptions ??= new List<string>();
       ImageOptions ??= new List<GameObject>();
+      OptionScores ??= new List<int>();
    }
 
    public void OpenTextMenu()
@@ -174,6 +189,8 @@ public class FullSlideManager : MonoBehaviour
       {
          SelectedTextOption.GetComponent<TextMeshProUGUI>().text = option.GetComponent<TextMeshProUGUI>().text;
          transform.Find("OptionTextSlot").GetComponent<UnityEngine.UI.Image>().enabled = false;
+         SlideScore = 0;
+         SlideScore += OptionScores[TextOptions.IndexOf(option.GetComponent<TextMeshProUGUI>().text)];
       }
       else
       {
@@ -181,10 +198,14 @@ public class FullSlideManager : MonoBehaviour
          transform.Find("OptionTextSlot").GetComponent<UnityEngine.UI.Image>().enabled = true;
          transform.Find("OptionTextSlot").GetComponent<UnityEngine.UI.Image>().sprite = MiscOptionSpirte;
          SelectedTextOption.GetComponent<TextMeshProUGUI>().text = "";
+         SlideScore = 0;
+         SlideScore += OptionScores[OptionScores.Count - 1];
       }
       
       TextDesc.SetActive(false);
       HasTextOptionSelected = true;
+      
+      Debug.Log(SlideScore);
    }
 
    private void UpdateSelectedImage(GameObject image)
