@@ -19,6 +19,7 @@ MonoBehaviour:
   - "\u2022 Rick Grimes\n\u2022 Loves coral rifts\n\u2022 Depicted here, estactic
     next to a coral rift"
   - As you can see, Rick Grimes is absolutely ecstatic as he observes a coral rift.
+  OptionScore: 640000006400000064000000
   AvailableImages:
   - {fileID: 6172086528769134804, guid: 43d2d8061e35a4c4f83a747624ae4b23, type: 3}
   - {fileID: 6172086528769134804, guid: c33c0814c2c9e9e49bc76bd995f605e1, type: 3}

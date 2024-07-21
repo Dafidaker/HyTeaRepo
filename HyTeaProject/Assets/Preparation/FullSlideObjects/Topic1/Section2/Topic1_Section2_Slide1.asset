@@ -18,6 +18,7 @@ MonoBehaviour:
   TextOptions:
   - Full Text
   - Bullet Points
+  OptionScore: 6400000032000000
   AvailableImages:
   - {fileID: 6172086528769134804, guid: b27655ba2427a7f44afb9540ad92ac04, type: 3}
   MiscOption: {fileID: 0}

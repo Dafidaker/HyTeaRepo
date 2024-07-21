@@ -18,6 +18,7 @@ MonoBehaviour:
   TextOptions:
   - Option 1
   - Option 2
+  OptionScore: 320000005a000000
   AvailableImages:
   - {fileID: 6172086528769134804, guid: 43d2d8061e35a4c4f83a747624ae4b23, type: 3}
   MiscOption: {fileID: 0}
