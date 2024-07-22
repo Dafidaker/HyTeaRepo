@@ -37,7 +37,6 @@ public class MicCalibrationUIManager : MonoBehaviour
         EventManager.StartedVolumeAnalysis.AddListener(DisableElements);
         EventManager.FinishedVolumeAnalysis.AddListener(EnableElements);
         
-        EventManager.PressedVolumeAnalysisButton.AddListener(CheckMicrophone);
         EventManager.StartedVolumeAnalysis.AddListener(DoMicrophoneVolumeTest);
     }
 
@@ -46,7 +45,6 @@ public class MicCalibrationUIManager : MonoBehaviour
         EventManager.StartedVolumeAnalysis.RemoveListener(DisableElements);
         EventManager.FinishedVolumeAnalysis.RemoveListener(EnableElements);
         
-        EventManager.PressedVolumeAnalysisButton.RemoveListener(CheckMicrophone);
         EventManager.StartedVolumeAnalysis.AddListener(DoMicrophoneVolumeTest);
     }
     
