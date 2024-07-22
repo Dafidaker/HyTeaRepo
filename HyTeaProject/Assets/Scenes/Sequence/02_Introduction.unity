@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: b9c50458146ddc54581763ce0615674d, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
+  m_IndirectSpecularColor: {r: 0.027660938, g: 0.024891386, b: 0.02366861, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1577,8 +1577,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc38d068910b5d64ea685391b9ee013d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueID: 2
-  nextSceneName: Game
+  dialogues:
+  - dialogueID: 0
+    dialogueInfo:
+      DialogueCamera: {fileID: 1597171588}
+    robotsInfo:
+    - robotID: Captain Bot
+      RobotController: {fileID: 1780279326}
+      RobotUIController: {fileID: 0}
+      RobotUIPrefab: {fileID: 338740989}
+      RobotGoTo: {fileID: 955717967}
+    dialogueStructure:
+    - robotID: Captain Bot
+      dialogueLines:
+      - whileSpeaking: 0
+        dialogueStrings: Human, welcome! We've been expecting you!
+        afterSpeaking: 1
+      - whileSpeaking: 0
+        dialogueStrings: The name is Robert Optimus Tron, Rob O. T. for short, but
+          you can call me the captain. This wonderful vessel is the Intergalactic
+          Voyager, my pride and joy.
+        afterSpeaking: 1
+      - whileSpeaking: 0
+        dialogueStrings: We are so happy you applied for the position of tour guide,
+          and that you could come here on such short notice.
+        afterSpeaking: 3
+      - whileSpeaking: 0
+        dialogueStrings: Our last human tour guide sadly... could not handle space,
+          if you know what I mean.
+        afterSpeaking: 3
+      - whileSpeaking: 3
+        dialogueStrings: ...
+        afterSpeaking: 3
+      - whileSpeaking: 0
+        dialogueStrings: But you are different! I can tell from your bone structure.
+          Those are space-compatible bones if I ever saw any.
+        afterSpeaking: 1
+      - whileSpeaking: 0
+        dialogueStrings: Now, let us stop dilly dallying around and get you set up,
+          shall we?
+        afterSpeaking: 3
+      - whileSpeaking: 0
+        dialogueStrings: "To the SoundCaptureUnit\u2122!"
+        afterSpeaking: 3
+  nextSceneName: 03_Calibration
 --- !u!4 &1423449446
 Transform:
   m_ObjectHideFlags: 0
