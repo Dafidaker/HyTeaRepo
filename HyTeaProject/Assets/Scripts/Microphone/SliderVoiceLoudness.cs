@@ -184,33 +184,17 @@ public class SliderVoiceLoudness : MonoBehaviour
     private void Update()
     {
         if (_isDetectionNull) return;
-        
-        float loudness = _detection.currentLoudness /** loudnessSensitivity*/;
 
-        /*string loudnessInText = _volumeAnalyzer.GetSpeakingVolume(loudness).ToString();
-        
-        if (loudnessInText != null)
-        {
-            loudnessText.text = loudnessInText;
-        }
-        else
-        {
-            loudnessText.text = loudness.ToString(CultureInfo.InvariantCulture);
-        }*/
-        
-
-        //if (loudness < threshold) { loudness = 0; }
-
-        if(_isEverytimeSliderNotNull) everytimeSlider.value = RoundUpToOneDecimalPlace(loudness);
+        float loudness = _detection.currentLoudness;
     
         _loudnessHistory.Add(loudness);
         _loudnessTestHistory.Add(loudness);
     }
     
-    private static float RoundUpToOneDecimalPlace(float value)
+    /*private static float RoundUpToOneDecimalPlace(float value)
     {
         return Mathf.Ceil(value * 100f) / 100f;
-    }
+    }*/
 
     public void UpdateSensitivity(float sensitivity)
     {
