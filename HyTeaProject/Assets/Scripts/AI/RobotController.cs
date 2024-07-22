@@ -133,7 +133,6 @@ public class RobotController : MonoBehaviour
             
             DisplayEmotion(str.afterSpeaking);
             
-            _canContinue = false;
             dialController.EnableContinueImg(true);
             yield return new WaitUntil(() => _canContinue);
             _canContinue = false;
@@ -217,7 +216,6 @@ public class RobotController : MonoBehaviour
             {
                 audioSource.Stop();
                 EventManager.MouseWasPressed.RemoveListener(() => _canContinue = true);
-                _canContinue = false;
                 yield break;
             }
             
