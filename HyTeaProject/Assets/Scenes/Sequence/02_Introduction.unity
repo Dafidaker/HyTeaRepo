@@ -1582,13 +1582,13 @@ MonoBehaviour:
     dialogueInfo:
       DialogueCamera: {fileID: 1597171588}
     robotsInfo:
-    - robotID: Captain Bot
+    - robotID: The Captain
       RobotController: {fileID: 1780279326}
       RobotUIController: {fileID: 0}
       RobotUIPrefab: {fileID: 338740989}
       RobotGoTo: {fileID: 955717967}
     dialogueStructure:
-    - robotID: Captain Bot
+    - robotID: The Captain
       dialogueLines:
       - whileSpeaking: 0
         dialogueStrings: Human, welcome! We've been expecting you!
@@ -4199,7 +4199,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueCameraLookAt: {fileID: 0}
-  agentName: Big Robot
+  agentName: The Captain
   robotTransform: {fileID: 1780279329}
   visualRepresentation:
   - {fileID: 1674541699}

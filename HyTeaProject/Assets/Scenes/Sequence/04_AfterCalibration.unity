@@ -244,6 +244,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f0c0a7eadac67743bb7cfa097789021, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dialogues:
+  - dialogueID: 1
+    dialogueInfo:
+      DialogueCamera: {fileID: 0}
+    robotsInfo:
+    - robotID: 
+      RobotController: {fileID: 0}
+      RobotUIController: {fileID: 0}
+      RobotUIPrefab: {fileID: 0}
+      RobotGoTo: {fileID: 0}
+    dialogueStructure: []
 --- !u!4 &194590433
 Transform:
   m_ObjectHideFlags: 0
