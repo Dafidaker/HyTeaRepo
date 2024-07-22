@@ -54,4 +54,12 @@ public class MicCalibrationUIManager : MonoBehaviour
         microphoneCalibration.interactable = true;
         microphoneGain.interactable = true;
     }
+
+    private void HandleStartVolumeAnalysis()
+    {
+        DisableElements();
+        //prep for whipser
+        
+    }
+    
 }

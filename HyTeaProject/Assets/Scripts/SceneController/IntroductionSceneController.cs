@@ -1,10 +1,23 @@
-using System;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class SceneController : MonoBehaviour
+public class IntroductionSceneController : MonoBehaviour
 {
-    [SerializeField]private DialogueID dialogueID;
+    [SerializeField] private Dialogue[] dialogues;
+    
+    private Dialogue GetDialogueFromID(DialogueID dialogueID)
+    {
+        foreach (var dialogue in dialogues)
+        {
+            if (dialogue.dialogueID == dialogueID)
+            {
+                return dialogue;
+            }
+
+        }
+
+        return null;
+    }
+    
     [SerializeField] private string nextSceneName;
     
     private void OnEnable()
@@ -20,12 +33,12 @@ public class SceneController : MonoBehaviour
     private void Start()
     {
         GameManager.Instance.SetGameState(GameState.Dialogue);
-        DialogueManager.Instance.HandleStartDialogue(dialogueID);
+        DialogueManager.Instance.HandleStartDialogue(GetDialogueFromID(DialogueID.InitialDialogue));
     }
 
     private void HandleDialogueEnding(DialogueID _dialogueID)
     {
-        if (_dialogueID != dialogueID ) return;
+        if (_dialogueID != DialogueID.InitialDialogue ) return;
         
         MSceneManager.Instance.FadeToScene(nextSceneName);
         

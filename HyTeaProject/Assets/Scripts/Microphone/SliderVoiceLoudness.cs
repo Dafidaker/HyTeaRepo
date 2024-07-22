@@ -157,8 +157,8 @@ public class SliderVoiceLoudness : MonoBehaviour
         slider.minValue = Min;
         slider.maxValue = Max;
         
-        _volumeAnalyzer = new VolumeAnalyzer(0.1f,0.5f,Min,Max);
-        _dividingBars = _volumeAnalyzer.CreateDividors(slider, divisionBarPrefab);
+        //_volumeAnalyzer = new VolumeAnalyzer(0.1f,0.5f,Min,Max);
+        //_dividingBars = _volumeAnalyzer.CreateDividors(slider, divisionBarPrefab);
 
         if (_detection == null)
         {
