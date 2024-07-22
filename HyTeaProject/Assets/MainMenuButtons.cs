@@ -19,7 +19,7 @@ public class MainMenuButtons : MonoBehaviour
     
     public void ClickStart()
     {
-        SceneManager.LoadScene("02_Introduction");
+        MSceneManager.Instance.FadeToScene("02_Introduction");
     }
     
     public void ClickOptions()

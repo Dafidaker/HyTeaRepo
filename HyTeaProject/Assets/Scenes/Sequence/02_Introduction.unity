@@ -1620,7 +1620,7 @@ MonoBehaviour:
       - whileSpeaking: 0
         dialogueStrings: "To the SoundCaptureUnit\u2122!"
         afterSpeaking: 3
-  nextSceneName: 03_Calibration
+  nextSceneName: Scenes/Sequence/03_Calibration
 --- !u!4 &1423449446
 Transform:
   m_ObjectHideFlags: 0
