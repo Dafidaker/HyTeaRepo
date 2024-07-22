@@ -337,10 +337,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a65768be04f8b30498cebbda9d9c9918, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  beginningCalibration:
-    dialogueID: 0
+  dialogues:
+  - dialogueID: 3
     dialogueInfo:
-      DialogueCamera: {fileID: 462093580}
+      DialogueCamera: {fileID: 0}
     robotsInfo:
     - robotID: big
       RobotController: {fileID: 1485602733}
@@ -351,19 +351,9 @@ MonoBehaviour:
     - robotID: big
       dialogueLines:
       - whileSpeaking: 0
-        dialogueStrings: "This wonderful machine is able to transmit your voice throughout
-          the entire room, and it\u2019s what makes [cruiseship name] the best of
-          all intergalactic space cruises!"
+        dialogueStrings: there is a calibration
         afterSpeaking: 3
-      - whileSpeaking: 0
-        dialogueStrings: Please feel free to move the gain,source and sensitivity
-          in order for the machine to capute you voice correctly
-        afterSpeaking: 3
-      - whileSpeaking: 0
-        dialogueStrings: Make sure you can understand what you are saying and that
-          the bar is onyl moving when you are talking
-        afterSpeaking: 3
-  tablet: {fileID: 4231843}
+  tabletGameObject: {fileID: 4231843}
   tabletCurrentLocation: {fileID: 1024471279}
   tabletLocations:
   - {fileID: 1024471279}

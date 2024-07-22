@@ -1,10 +1,13 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class CalibrationSceneController : MonoBehaviour
 {
     [SerializeField] private Dialogue[] dialogues;
-    [SerializeField] private GameObject tablet;
+    
+    
+    [FormerlySerializedAs("tablet")] [SerializeField, Header("Tablet"), Space(5)] private GameObject tabletGameObject;
     [SerializeField] private Transform tabletCurrentLocation;
     [SerializeField] private Transform[] tabletLocations;
     [SerializeField] private FloatingMovement tabletFloatingMovement;
@@ -60,7 +63,7 @@ public class CalibrationSceneController : MonoBehaviour
 
         if (targetLocation == null) return;
         
-        StartCoroutine(LerpTransform(tablet.transform, targetLocation, 1.5f));
+        StartCoroutine(LerpTransform(tabletGameObject.transform, targetLocation, 1.5f));
     }
     
     private IEnumerator LerpPosition(Vector3 start, Vector3 end, float duration)
@@ -71,14 +74,14 @@ public class CalibrationSceneController : MonoBehaviour
         {
             float t = time / duration;
 
-            tablet.transform.position = Vector3.Lerp(start, end, t);
+            tabletGameObject.transform.position = Vector3.Lerp(start, end, t);
 
             time += Time.deltaTime;
 
             yield return null;
         }
 
-        tablet.transform.position = end;
+        tabletGameObject.transform.position = end;
     }
     
     private IEnumerator LerpTransform(Transform target, Transform end, float duration)
