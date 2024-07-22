@@ -21,7 +21,7 @@ public class DialogueUIController : MonoBehaviour
         dialogueText.text = str;
     }
 
-    public void EnableContinueText(bool value)
+    public void EnableContinueImg(bool value)
     {
         if (continueImg == null)
         {

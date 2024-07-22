@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -59,7 +60,7 @@ public class RobotController : MonoBehaviour
     public void TeleportRobot(Transform transform)
     {
         if (robotTransform == null) return;
-
+        
         robotTransform.position = transform.position;
         robotTransform.rotation = transform.rotation;
     }
@@ -86,7 +87,7 @@ public class RobotController : MonoBehaviour
             yield break;
         }
 
-        dialController.EnableContinueText(false);
+        dialController.EnableContinueImg(false);
         dialController.ChangeNameText(agentName);
         
         
@@ -96,7 +97,7 @@ public class RobotController : MonoBehaviour
             yield return StartCoroutine(ShowDialogue(str, dialController));
             DisplayEmotion(RobotFace.Blink);
             _canContinue = false;
-            dialController.EnableContinueText(true);
+            dialController.EnableContinueImg(true);
             yield return new WaitUntil(() => _canContinue);
             _canContinue = false;
         }
@@ -121,16 +122,19 @@ public class RobotController : MonoBehaviour
             yield break;
         }
 
-        dialController.EnableContinueText(false);
+        dialController.EnableContinueImg(false);
         dialController.ChangeNameText(agentName);
         
         foreach (var str in dialogueSection.dialogueLines)
         {
             DisplayEmotion(str.whileSpeaking);
+            
             yield return StartCoroutine(ShowDialogue(str.dialogueStrings, dialController));
+            
             DisplayEmotion(str.afterSpeaking);
+            
             _canContinue = false;
-            dialController.EnableContinueText(true);
+            dialController.EnableContinueImg(true);
             yield return new WaitUntil(() => _canContinue);
             _canContinue = false;
         }
@@ -151,7 +155,7 @@ public class RobotController : MonoBehaviour
 
         var punctuation = true;
         
-        dialController.EnableContinueText(false);
+        dialController.EnableContinueImg(false);
         
         curFullText = fullText;
 
@@ -184,10 +188,7 @@ public class RobotController : MonoBehaviour
                 {
                     case '.':
                         audioSource.Pause();
-                        /*audioSource.loop = false;
-                        yield return new WaitWhile(() => audioSource.isPlaying);*/
                         yield return new WaitForSeconds(0.5f);
-                        //audioSource.loop = true;
                         audioSource.Play();
                         break;
                     case ',':
@@ -205,9 +206,25 @@ public class RobotController : MonoBehaviour
                 punctuation = true;
             }
         }
-        
+
+        dialController.EnableContinueImg(true);
+        _canContinue = false;
         audioSource.loop = false;
-        yield return new WaitWhile(() => audioSource.isPlaying);
+
+        while (audioSource.isPlaying)
+        {
+            if (_canContinue)
+            {
+                audioSource.Stop();
+                EventManager.MouseWasPressed.RemoveListener(() => _canContinue = true);
+                _canContinue = false;
+                yield break;
+            }
+            
+            yield return null;
+        }
+        
+        
         audioSource.Stop();
         
         EventManager.MouseWasPressed.RemoveListener(() => _canContinue = true);

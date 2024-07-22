@@ -66,7 +66,7 @@ public class LoudnessController : MonoBehaviour
 
         /*if (_isSliderNotNull)
         {
-            slider.value = _averageLoudnessRecurring;
+            loudnessSlider.value = _averageLoudnessRecurring;
         }
 
         string loudnessInText = _volumeAnalyzer.GetSpeakingVolume(_averageLoudnessRecurring).ToString();

@@ -25,6 +25,8 @@ public static class EventManager
    public static UnityEvent PressedVolumeAnalysisButton = new();
    public static UnityEvent StartedVolumeAnalysis = new();
    public static UnityEvent FinishedVolumeAnalysis = new();
+
+   public static readonly UnityEvent<VolumeAnalyzer> UpdatedVolumeAnalyzer = new();
    
    public static UnityEvent<int> DifferentMicrophoneSelectedInUI = new();
    public static UnityEvent PopulateMicrophoneList = new();

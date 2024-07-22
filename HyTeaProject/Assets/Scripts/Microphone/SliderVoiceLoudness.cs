@@ -23,6 +23,8 @@ public class VolumeAnalyzer : Object
         _maxAcceptable = Mathf.Clamp(projectingLoudness + 0.15f, min, max);
         _minValue = min;
         _maxValue = max;
+        
+        EventManager.UpdatedVolumeAnalyzer.Invoke(this);
     }
 
     public List<GameObject> CreateDividors(Slider slider,GameObject dividorPrefab)
@@ -158,7 +160,7 @@ public class SliderVoiceLoudness : MonoBehaviour
         slider.maxValue = Max;
         
         //_volumeAnalyzer = new VolumeAnalyzer(0.1f,0.5f,Min,Max);
-        //_dividingBars = _volumeAnalyzer.CreateDividors(slider, divisionBarPrefab);
+        //_dividingBars = _volumeAnalyzer.CreateDividors(loudnessSlider, divisionBarPrefab);
 
         if (_detection == null)
         {
@@ -242,12 +244,12 @@ public class SliderVoiceLoudness : MonoBehaviour
     
         _loudnessHistory.Clear();
 
-        if (_isSliderNotNull)
+        /*if (_isSliderNotNull)
         {
             slider.value = _averageLoudnessRecurring;
-        }
-
-        string loudnessInText = _volumeAnalyzer.GetSpeakingVolume(_averageLoudnessRecurring).ToString();
+        }*/
+        
+        /*string loudnessInText = _volumeAnalyzer.GetSpeakingVolume(_averageLoudnessRecurring).ToString();
         
         if (loudnessInText != null)
         {
@@ -256,7 +258,7 @@ public class SliderVoiceLoudness : MonoBehaviour
         else
         {
             loudnessText.text = _averageLoudnessRecurring.ToString(CultureInfo.InvariantCulture);
-        }
+        }*/
 
         
         StartCoroutine(GetLoudnessRecurring());

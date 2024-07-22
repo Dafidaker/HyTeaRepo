@@ -3,7 +3,9 @@ guid: c7c9c8f07bff4b343905e3a9600abdab
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - canvasGroup: {instanceID: 0}
+  - blackScreen: {fileID: 6608507394972347385, guid: a65447529f06bb64d90af5420fd49ad8, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

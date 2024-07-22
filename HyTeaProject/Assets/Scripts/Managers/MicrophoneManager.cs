@@ -26,11 +26,13 @@ public class MicrophoneManager : Singleton<MicrophoneManager>
     private void OnEnable()
     {
         EventManager.DifferentMicrophoneSelectedInUI.AddListener(ChangeSelectedMicrophone);
+        EventManager.UpdatedVolumeAnalyzer.AddListener(SetVolumeAnalyzer);
     }
-
+    
     private void OnDisable()
     {
         EventManager.DifferentMicrophoneSelectedInUI.RemoveListener(ChangeSelectedMicrophone);
+        EventManager.UpdatedVolumeAnalyzer.RemoveListener(SetVolumeAnalyzer);
     }
 
     protected override void Awake()
@@ -60,6 +62,10 @@ public class MicrophoneManager : Singleton<MicrophoneManager>
         if (_trackingCoroutine != null) StopCoroutine(_trackingCoroutine);
     }
 
+    private void SetVolumeAnalyzer(VolumeAnalyzer volumeAnalyzer)
+    {
+        volumeAnalyzer = volumeAnalyzer;
+    }
 
     public void SetGain(float newGain)
     {

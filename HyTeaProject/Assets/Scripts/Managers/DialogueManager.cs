@@ -127,7 +127,8 @@ public class DialogueManager : Singleton<DialogueManager>
             robot.RobotUIPrefab = UIManager.Instance.CreateDialogueCanvas(robot.RobotUIPrefab);
             robot.RobotUIController = UIManager.Instance.GetDialogueUIController(robot.RobotUIPrefab);
             robot.RobotController.HideRobot();
-            robot.RobotController.TeleportRobot(robot.RobotGoTo);
+            if (robot.RobotGoTo != null) robot.RobotController.TeleportRobot(robot.RobotGoTo);
+            else Debug.LogWarning(robot.robotID + " does not have a to go transform in the dialogue");
         }
         
         

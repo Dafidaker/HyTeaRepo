@@ -1,12 +1,45 @@
+using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 
 public class CalibrationSceneController : MonoBehaviour
 {
+    private IEnumerator CheckAndLoadScene(string sceneName)
+    {
+        if (!IsSceneLoaded(sceneName))
+        {
+            AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
+
+            while (!asyncLoad.isDone)
+            {
+                yield return null;
+            }
+            Debug.Log("Scene loaded additively: " + sceneName);
+        }
+        else
+        {
+            Debug.Log("Scene is already loaded: " + sceneName);
+        }
+    }
+
+    private bool IsSceneLoaded(string sceneName)
+    {
+        // Loop through all the loaded scenes and check if the target scene is loaded
+         for (int i = 0; i < SceneManager.sceneCount; i++)
+        {
+            Scene scene = SceneManager.GetSceneAt(i);
+            if (scene.name == sceneName)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    
     [SerializeField] private Dialogue[] dialogues;
-    
-    
     [FormerlySerializedAs("tablet")] [SerializeField, Header("Tablet"), Space(5)] private GameObject tabletGameObject;
     [SerializeField] private Transform tabletCurrentLocation;
     [SerializeField] private Transform[] tabletLocations;
@@ -34,6 +67,11 @@ public class CalibrationSceneController : MonoBehaviour
     private void OnDisable()
     {
         EventManager.DialogueWasEnded.RemoveListener(HandleDialogueEnding);
+    }
+
+    private void Awake()
+    {
+        StartCoroutine(CheckAndLoadScene("LoadAdditively"));
     }
 
 

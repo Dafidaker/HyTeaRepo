@@ -1821,7 +1821,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &1856664835324066897
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1854,6 +1854,13 @@ MonoBehaviour:
   microphoneDropdown: {fileID: 3498959033174737812}
   microphoneCalibration: {fileID: 1834874409025058362}
   microphoneGain: {fileID: 2976428720979645521}
+  OptionsSection: {fileID: 0}
+  instructionText: {fileID: 0}
+  instructionCountdownText: {fileID: 0}
+  loudnessController: {fileID: 0}
+  startCalibrationButton: {fileID: 0}
+  loudnessSlider: {fileID: 0}
+  divisionBarPrefab: {fileID: 0}
 --- !u!114 &3584362924841759647
 MonoBehaviour:
   m_ObjectHideFlags: 0

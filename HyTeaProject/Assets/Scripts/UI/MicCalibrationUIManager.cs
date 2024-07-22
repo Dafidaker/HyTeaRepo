@@ -7,6 +7,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Rendering;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class MicCalibrationUIManager : MonoBehaviour
@@ -14,17 +15,35 @@ public class MicCalibrationUIManager : MonoBehaviour
     [SerializeField] private TMP_Dropdown microphoneDropdown;
     [SerializeField] private Slider microphoneCalibration;
     [SerializeField] private Slider microphoneGain;
-    [SerializeField] private GameObject OptionsSection;
+    [SerializeField] private LoudnessController loudnessController;
     
-    [field:SerializeField] private TextMeshProUGUI instructionText;
-    [field:SerializeField] private LoudnessController loudnessController;
+    [SerializeField,Header("Sections")] private GameObject BeforeCalibrationSection;
+    [SerializeField] private GameObject CalibrationSection;
+    [SerializeField] private GameObject AfterCalibrationSection;
+    
+    [SerializeField, Header("During Calibration Text")] private TextMeshProUGUI instructionText;
+    [SerializeField] private TextMeshProUGUI instructionCountdownText;
     
     private AudioLoudnessDetection _detection;
     private float _whisperingLoudness;
     private float _projectingLoudness;
     
-    private bool _isDetectionNull;
     private bool _isInstructionTextNull;
+    private bool _calibrationComplete;
+    
+    public Slider loudnessSlider;
+
+    private List<GameObject> _dividingBars;
+    [field:SerializeField] private GameObject divisionBarPrefab;
+    
+    private float _averageLoudness;
+    private float _averageLoudnessRecurring;
+
+    private const float Min = 0f;
+    private const float Max = 1f;
+
+    private VolumeAnalyzer _volumeAnalyzer;
+    private bool _isSliderNotNull;
     
     private void OnDestroy()
     {
@@ -34,16 +53,14 @@ public class MicCalibrationUIManager : MonoBehaviour
 
     private void OnEnable()
     {
-        EventManager.StartedVolumeAnalysis.AddListener(DisableElements);
-        EventManager.FinishedVolumeAnalysis.AddListener(EnableElements);
+        EventManager.StartedVolumeAnalysis.AddListener(UpdateUIForCalibration);
         
         EventManager.StartedVolumeAnalysis.AddListener(DoMicrophoneVolumeTest);
     }
 
     private void OnDisable()
     {
-        EventManager.StartedVolumeAnalysis.RemoveListener(DisableElements);
-        EventManager.FinishedVolumeAnalysis.RemoveListener(EnableElements);
+        EventManager.StartedVolumeAnalysis.RemoveListener(UpdateUIForCalibration);
         
         EventManager.StartedVolumeAnalysis.AddListener(DoMicrophoneVolumeTest);
     }
@@ -56,51 +73,75 @@ public class MicCalibrationUIManager : MonoBehaviour
         _detection = MicrophoneManager.Instance.GetAudioDetection();
         
         _isInstructionTextNull = instructionText == null;
-        _isDetectionNull = _detection == null;
     }
 
     private void Start()
     {
         MicrophoneManager.Instance.RecordMicrophone();
     }
-    
-    private void Update()
-    {
-    }
-    
-    private void DisableElements()
-    {
-        microphoneDropdown.interactable = false;
-        microphoneCalibration.interactable = false;
-        microphoneGain.interactable = false;
-    }
-    
-    private void HideElements()
-    {
-        OptionsSection.SetActive(false);
-    }
-    
-    private void EnableElements()
-    {
-        microphoneDropdown.interactable = true;
-        microphoneCalibration.interactable = true;
-        microphoneGain.interactable = true;
-    }
-    
-    private void ShowElements()
-    {
-        OptionsSection.SetActive(true);
-    }
 
-    private void HandleStartVolumeAnalysis()
-    {
-        DisableElements();
-        HideElements();
 
-        //prep for whipser
+    #region ButtonOnClick
+
+    public void RedoCalibration()
+    {
+        DestroyDividingBars();
+        _calibrationComplete = false;
+        BeforeCalibrationSection.SetActive(true);
         
-        EnableElements();
-        ShowElements();
+        AfterCalibrationSection.SetActive(false);
+        CalibrationSection.SetActive(false);
+    }
+
+    public void ContinueCalibration()
+    {
+        MSceneManager.Instance.FadeToNextScene();
+    }
+
+    #endregion
+
+    #region UIEnabling&Disabling
+
+    
+    
+    private void UpdateUIForCalibration()
+    {
+        BeforeCalibrationSection.SetActive(false);
+        AfterCalibrationSection.SetActive(false);
+        
+        CalibrationSection.SetActive(true);
+    }
+    
+    private void UpdateUIAfterCalibration()
+    {
+        CalibrationSection.SetActive(false);
+        
+        if (_calibrationComplete)
+        {
+            AfterCalibrationSection.SetActive(true);
+        }
+        else
+        {
+            BeforeCalibrationSection.SetActive(false);
+        }
+        
+    }
+        
+
+    #endregion
+    
+    public void HandleStartVolumeAnalysis()
+    {
+        StartCoroutine(StartVolumeAnalysis());
+    }
+
+    private IEnumerator StartVolumeAnalysis()
+    {
+        UpdateUIForCalibration();
+        
+        yield return StartCoroutine(GetLoudnessLimits(5));
+
+        UpdateUIAfterCalibration();
     }
 
     #region MicrophoneCalibration
@@ -116,18 +157,27 @@ public class MicCalibrationUIManager : MonoBehaviour
         EventManager.CalibrationHasStarted.Invoke();
         
         yield return StartCoroutine(GetWhisperingLoudness("Whisper for the next few seconds", duration));
-        yield return new WaitForSeconds(2f);
+        
+        instructionText.text = "Well done";
+        instructionCountdownText.text = " ";
+        yield return new WaitForSeconds(1.5f);
+        instructionText.text = "And now";
+        yield return new WaitForSeconds(1.5f);
+        
         yield return StartCoroutine(GetProjectingLoudness("Project you voice for the next few seconds", duration));
         
-        StartCoroutine(ResultsOfLoudnessTest());
+        instructionCountdownText.text = " ";
+        yield return StartCoroutine(ResultsOfLoudnessTest());
     }
     
     private IEnumerator ResultsOfLoudnessTest()
     {
+        _projectingLoudness = 0.7f;
+        _whisperingLoudness = 0.3f;
+        
+        _calibrationComplete = false;
+        
         var isProjectingLouderThanWhispering = _projectingLoudness > _whisperingLoudness;
-        //var whisperingAndProjectingDifferenceIsNoticeable = Mathf.Abs(_projectingLoudness - _whisperingLoudness) >= 0.15f;
-        
-        
         var whisperingAndProjectingDifferenceIsNoticeable = _projectingLoudness / _whisperingLoudness >= 2f;
         
         instructionText.text = "Calculating the Data ...";
@@ -155,11 +205,13 @@ public class MicCalibrationUIManager : MonoBehaviour
         }
         else
         {
+            _calibrationComplete = true;
             CreateVolumeAnalyzer();
             instructionText.text = "Microphone is Calibrated :)";
             yield return new WaitForSeconds(3f);
             instructionText.text = "";
         }
+        
         
         EventManager.FinishedVolumeAnalysis.Invoke();
         EventManager.CalibrationHasFinished.Invoke();
@@ -171,6 +223,7 @@ public class MicCalibrationUIManager : MonoBehaviour
         if (_isInstructionTextNull) yield break;
     
         instructionText.text = instruction;
+        instructionCountdownText.text = duration.ToString("0");
     
         yield return new WaitForSeconds(1.5f);
 
@@ -178,19 +231,21 @@ public class MicCalibrationUIManager : MonoBehaviour
     
         while (duration >= 1)
         {
-            instructionText.text = duration.ToString(CultureInfo.CurrentCulture);
+            instructionCountdownText.text = duration.ToString("0");
+            //instructionText.text = duration.ToString(CultureInfo.CurrentCulture);
             yield return new WaitForSeconds(1f);
             duration -= 1;
         }
 
         if (duration > 0)
         {
-            instructionText.text = duration.ToString(CultureInfo.CurrentCulture);
+            instructionCountdownText.text = duration.ToString("0");
+            //instructionText.text = duration.ToString(CultureInfo.CurrentCulture);
             yield return new WaitForSeconds(duration);
         }
 
         _whisperingLoudness = loudnessController.GetLoudness();
-        instructionText.text = "Whispering loudness is " + _whisperingLoudness;
+        //instructionText.text = "Whispering loudness is " + _whisperingLoudness;
 
     }
 
@@ -199,61 +254,53 @@ public class MicCalibrationUIManager : MonoBehaviour
         if (_isInstructionTextNull) yield break;
     
         instructionText.text = instruction;
-    
+        instructionCountdownText.text = duration.ToString("0");
+        
         yield return new WaitForSeconds(1.5f);
 
         loudnessController.loudnessTestHistory.Clear();
     
         while (duration >= 1)
         {
-            instructionText.text = duration.ToString(CultureInfo.CurrentCulture);
+            instructionCountdownText.text = duration.ToString("0");
+            //instructionText.text = duration.ToString(CultureInfo.CurrentCulture);
             yield return new WaitForSeconds(1f);
             duration -= 1;
         }
 
         if (duration > 0)
         {
-            instructionText.text = duration.ToString(CultureInfo.CurrentCulture);
+            instructionCountdownText.text = duration.ToString("0");
+            //instructionText.text = duration.ToString(CultureInfo.CurrentCulture);
             yield return new WaitForSeconds(duration);
         }
 
         _projectingLoudness = loudnessController.GetLoudness();
-        instructionText.text = "Projecting loudness is " + _projectingLoudness;
+        //instructionText.text = "Projecting loudness is " + _projectingLoudness;
 
     }
     
+    #endregion
+    
+    
     private void CreateVolumeAnalyzer()
     {
+        DestroyDividingBars();
+        
+        _volumeAnalyzer = new VolumeAnalyzer(_whisperingLoudness,_projectingLoudness,Min,Max);
+        _dividingBars = _volumeAnalyzer.CreateDividors(loudnessSlider,divisionBarPrefab);
+    }
+
+    private void DestroyDividingBars()
+    {
+        _dividingBars ??= new List<GameObject>();
+        
         foreach (var dividingBar in _dividingBars)
         {
             Destroy(dividingBar);
         }
         _dividingBars.Clear();
-        _volumeAnalyzer = new VolumeAnalyzer(_whisperingLoudness,_projectingLoudness,Min,Max);
-        _dividingBars = _volumeAnalyzer.CreateDividors(slider,divisionBarPrefab);
     }
-
-    #endregion
-    
-
-    
-    public Slider slider;
-    private RectTransform handleRectTransform;
-
-    private List<GameObject> _dividingBars;
-
-    [field:SerializeField] private TextMeshProUGUI loudnessText;
-    [field:SerializeField] private GameObject divisionBarPrefab;
-    
-    private float _averageLoudness;
-    private float _averageLoudnessRecurring;
-
-    private const float Min = 0f;
-    private const float Max = 1f;
-
-    private VolumeAnalyzer _volumeAnalyzer;
-    private bool _isSliderNotNull;
-    
     
     /*private IEnumerator GetLoudnessRecurring()
     {
@@ -277,7 +324,7 @@ public class MicCalibrationUIManager : MonoBehaviour
 
         if (_isSliderNotNull)
         {
-            slider.value = _averageLoudnessRecurring;
+            loudnessSlider.value = _averageLoudnessRecurring;
         }
 
         string loudnessInText = _volumeAnalyzer.GetSpeakingVolume(_averageLoudnessRecurring).ToString();
