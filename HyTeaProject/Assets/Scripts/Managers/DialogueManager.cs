@@ -20,7 +20,7 @@ public class RobotInformation
     
     [SerializeField] public Canvas RobotUIPrefab;
     
-    [SerializeField] public Transform RobotPosition;
+    [FormerlySerializedAs("RobotPosition")] [SerializeField] public Transform RobotGoTo;
     
 }
 
@@ -52,7 +52,8 @@ public enum DialogueID
 {
     InitialDialogue,
     AfterCalibration,
-    test
+    test,
+    BeginningCalibration,
     
 }
 
@@ -95,19 +96,28 @@ public class DialogueManager : Singleton<DialogueManager>
 
     public void HandleStartDialogue(DialogueID dialogueID)
     {
-        StartCoroutine(StartDialogue(dialogueID));
-    }
-    
-    public IEnumerator StartDialogue(DialogueID dialogueID)
-    {
         Dialogue dialogue = GetDialogueFromID(dialogueID);
-
+        
         if (dialogue == null)
         {
             EventManager.DialogueWasEnded.Invoke(dialogueID);
-            yield break;
         }
         
+        StartCoroutine(StartDialogue(dialogue));
+    }
+    
+    public void HandleStartDialogue(Dialogue dialogue)
+    {
+        if (dialogue == null)
+        {
+            EventManager.DialogueWasEnded.Invoke(dialogue.dialogueID);
+        }
+        
+        StartCoroutine(StartDialogue(dialogue));
+    }
+    
+    public IEnumerator StartDialogue(Dialogue dialogue)
+    {
         GameManager.Instance.SetGameState(GameState.Dialogue);
         
         GameManager.Instance.SetUpNewCamera(dialogue.dialogueInfo.DialogueCamera);
@@ -117,6 +127,7 @@ public class DialogueManager : Singleton<DialogueManager>
             robot.RobotUIPrefab = UIManager.Instance.CreateDialogueCanvas(robot.RobotUIPrefab);
             robot.RobotUIController = UIManager.Instance.GetDialogueUIController(robot.RobotUIPrefab);
             robot.RobotController.HideRobot();
+            robot.RobotController.TeleportRobot(robot.RobotGoTo);
         }
         
         
@@ -142,9 +153,16 @@ public class DialogueManager : Singleton<DialogueManager>
         }
         
         
-        EventManager.DialogueWasEnded.Invoke(dialogueID);
-        GameManager.Instance.SetGameState(GameState.Gameplay);
+        foreach (var robot in dialogue.robotsInfo)
+        {
+            robot.RobotController.HideRobot();
+        }
+        
+        EventManager.DialogueWasEnded.Invoke(dialogue.dialogueID);
+        GameManager.Instance.SetGameState(GameState.Walking);
     }
+    
+    
 
     private Dialogue GetDialogueFromID(DialogueID dialogueID)
     {

@@ -14,7 +14,7 @@ public class RobotInformation
 {
     [SerializeField] public int robotID;
     [SerializeField] public RobotController RobotController;
-    [SerializeField] public Transform RobotPosition;
+    [SerializeField] public Transform RobotGoTo;
     [SerializeField] public Canvas RobotUIPrefab;
     [HideInInspector] public DialogueUIController RobotUIController;
 }

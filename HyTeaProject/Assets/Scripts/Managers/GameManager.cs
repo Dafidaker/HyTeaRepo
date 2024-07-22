@@ -5,8 +5,9 @@ using UnityEngine;
 public enum GameState
 {
     Dialogue,
-    Gameplay,
+    Walking,
     Presentation,
+    Calibration
 }
 
 public class GameManager : Singleton<GameManager>
@@ -56,7 +57,7 @@ public class GameManager : Singleton<GameManager>
         base.Awake();
         currentCamera = Camera.main;
         EventManager.CameraWasChanged.Invoke(currentCamera);
-        SetGameState(GameState.Gameplay);
+        SetGameState(GameState.Walking);
     }
     
     private void OnEnable()
@@ -99,7 +100,7 @@ public class GameManager : Singleton<GameManager>
 
     public void EndPresentation()
     {
-        SetGameState(GameState.Gameplay);
+        SetGameState(GameState.Walking);
         UnlockPlayerCameraOnTarget(PresentationManager.Instance.GetPresentationStartSettings().lookAtTransform);
         //make player not be able to move
         //make player move the place 
@@ -114,7 +115,6 @@ public class GameManager : Singleton<GameManager>
             Debug.LogError("New Main Camera is not assigned!");
             return;
         }
-        
         
         Camera oldMainCamera = Camera.main;
 

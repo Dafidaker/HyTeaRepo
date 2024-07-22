@@ -67,7 +67,7 @@ public static class EventManager
    
    ///////////////////////////*Input*//////////////////////////////////
    public static readonly UnityEvent MouseWasPressed = new();
-   
+   public static readonly UnityEvent SpaceWasPressed = new();
    public static readonly UnityEvent<DialogueID> DialogueWasEnded = new();
    
 }

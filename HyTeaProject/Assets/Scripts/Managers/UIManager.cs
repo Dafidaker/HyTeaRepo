@@ -57,7 +57,7 @@ public class UIManager : Singleton<UIManager>
     {
         if (PresentationManager.Instance.isCalibrationDone)
         {
-            GameManager.Instance.SetGameState(GameState.Gameplay);
+            GameManager.Instance.SetGameState(GameState.Walking);
             SceneManager.LoadScene(1);
         }
     }
@@ -105,8 +105,6 @@ public class UIManager : Singleton<UIManager>
     }
     
     
-    
-    
     public IEnumerator CheckForMousePress()
     {
         while (true)
@@ -114,6 +112,18 @@ public class UIManager : Singleton<UIManager>
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
                 EventManager.MouseWasPressed.Invoke();
+            }
+            yield return null;
+        }
+    }
+    
+    public IEnumerator CheckForSpacePress()
+    {
+        while (true)
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                EventManager.SpaceWasPressed.Invoke();
             }
             yield return null;
         }

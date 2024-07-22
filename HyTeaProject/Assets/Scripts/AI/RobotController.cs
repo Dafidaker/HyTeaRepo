@@ -18,6 +18,7 @@ public class RobotController : MonoBehaviour
 {
     public Transform dialogueCameraLookAt;
     [field: SerializeField] private string agentName;
+    [SerializeField] private Transform robotTransform;
     [SerializeField] private Renderer[] visualRepresentation;
     [SerializeField] private AudioClip[] voiceClip;
     [SerializeField] private Animator animator;
@@ -54,6 +55,14 @@ public class RobotController : MonoBehaviour
             vRenderer.enabled = false;
         }
     }
+
+    public void TeleportRobot(Transform transform)
+    {
+        if (robotTransform == null) return;
+
+        robotTransform.position = transform.position;
+        robotTransform.rotation = transform.rotation;
+    }
     
     public void GiveFeedback(List<Feedback> feedbacks,DialogueUIController dialController)
     {
@@ -68,8 +77,8 @@ public class RobotController : MonoBehaviour
 
     public IEnumerator StartDialogueCoroutine(List<string> dialogue, DialogueUIController dialController, bool isItFeedback = false )
     {
-        var coroutine = StartCoroutine(UIManager.Instance.CheckForMousePress());
-        EventManager.MouseWasPressed.AddListener(() => _canContinue = true);
+        var coroutine = StartCoroutine(UIManager.Instance.CheckForSpacePress());
+        EventManager.SpaceWasPressed.AddListener(() => _canContinue = true);
         
         if (dialogue == null || dialController == null)
         {
@@ -93,18 +102,18 @@ public class RobotController : MonoBehaviour
         }
 
         if (isItFeedback) EventManager.FeedbackWasGiven.Invoke(this);
-        EventManager.MouseWasPressed.RemoveListener(() => _canContinue = true);
+        EventManager.SpaceWasPressed.RemoveListener(() => _canContinue = true);
         
         
         if (coroutine != null) StopCoroutine(coroutine);
-        GameManager.Instance.SetGameState(GameState.Gameplay);
+        GameManager.Instance.SetGameState(GameState.Walking);
         GameManager.Instance.UnlockPlayerCameraOnTarget(dialogueCameraLookAt);
     }
 
     public IEnumerator StartDialogueCoroutine1(DialogueSection dialogueSection, DialogueUIController dialController, bool isItFeedback = false )
     {
-        var coroutine = StartCoroutine(UIManager.Instance.CheckForMousePress());
-        EventManager.MouseWasPressed.AddListener(() => _canContinue = true);
+        var coroutine = StartCoroutine(UIManager.Instance.CheckForSpacePress());
+        EventManager.SpaceWasPressed.AddListener(() => _canContinue = true);
         
         if (dialogueSection == null || dialController == null)
         {
@@ -127,11 +136,11 @@ public class RobotController : MonoBehaviour
         }
 
         if (isItFeedback) EventManager.FeedbackWasGiven.Invoke(this);
-        EventManager.MouseWasPressed.RemoveListener(() => _canContinue = true);
+        EventManager.SpaceWasPressed.RemoveListener(() => _canContinue = true);
         
         
         if (coroutine != null) StopCoroutine(coroutine);
-        GameManager.Instance.SetGameState(GameState.Gameplay);
+        GameManager.Instance.SetGameState(GameState.Walking);
         GameManager.Instance.UnlockPlayerCameraOnTarget(dialogueCameraLookAt);
     }
     private IEnumerator ShowDialogue(string fullText, DialogueUIController dialController)

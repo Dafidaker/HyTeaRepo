@@ -1028,11 +1028,11 @@ Transform:
   m_GameObject: {fileID: 955717966}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.34463868, z: -0, w: 0.9387354}
-  m_LocalPosition: {x: 0.2, y: 0.62, z: -8.41}
+  m_LocalPosition: {x: -9.820546, y: 1.8657076, z: 10.958275}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1513472669}
   m_LocalEulerAnglesHint: {x: 0, y: -40.32, z: 0}
 --- !u!1001 &981628334
 PrefabInstance:
@@ -1600,7 +1600,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1513472669}
     m_Modifications:
     - target: {fileID: 52536624590929188, guid: 86acf1bc57f21314a8ef5d328e8dd583, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2792,15 +2792,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6159257770598672658, guid: 86acf1bc57f21314a8ef5d328e8dd583, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.37
+      value: -11.390546
       objectReference: {fileID: 0}
     - target: {fileID: 6159257770598672658, guid: 86acf1bc57f21314a8ef5d328e8dd583, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.98
+      value: 2.2257075
       objectReference: {fileID: 0}
     - target: {fileID: 6159257770598672658, guid: 86acf1bc57f21314a8ef5d328e8dd583, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -10.28
+      value: 9.088275
       objectReference: {fileID: 0}
     - target: {fileID: 6159257770598672658, guid: 86acf1bc57f21314a8ef5d328e8dd583, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2808,15 +2808,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6159257770598672658, guid: 86acf1bc57f21314a8ef5d328e8dd583, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6159257770598672658, guid: 86acf1bc57f21314a8ef5d328e8dd583, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6159257770598672658, guid: 86acf1bc57f21314a8ef5d328e8dd583, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6159257770598672658, guid: 86acf1bc57f21314a8ef5d328e8dd583, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -3424,6 +3424,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueCameraLookAt: {fileID: 0}
   agentName: Little Robot
+  robotTransform: {fileID: 1455572536}
   visualRepresentation:
   - {fileID: 412546956}
   - {fileID: 72234532}
@@ -3542,6 +3543,11 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 259582169815774056, guid: 86acf1bc57f21314a8ef5d328e8dd583, type: 3}
   m_PrefabInstance: {fileID: 1455572531}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &1455572536 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6159257770598672658, guid: 86acf1bc57f21314a8ef5d328e8dd583, type: 3}
+  m_PrefabInstance: {fileID: 1455572531}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1513472667
 GameObject:
   m_ObjectHideFlags: 0
@@ -3580,7 +3586,7 @@ MonoBehaviour:
       RobotController: {fileID: 1780279326}
       RobotUIController: {fileID: 0}
       RobotUIPrefab: {fileID: 338740989}
-      RobotPosition: {fileID: 955717967}
+      RobotGoTo: {fileID: 955717967}
     dialogueStructure:
     - robotID: big
       dialogueLines:
@@ -3621,12 +3627,12 @@ MonoBehaviour:
       RobotController: {fileID: 1780279326}
       RobotUIController: {fileID: 0}
       RobotUIPrefab: {fileID: 338740989}
-      RobotPosition: {fileID: 955717967}
+      RobotGoTo: {fileID: 955717967}
     - robotID: small
       RobotController: {fileID: 1455572533}
       RobotUIController: {fileID: 0}
       RobotUIPrefab: {fileID: 261097429}
-      RobotPosition: {fileID: 1698570407}
+      RobotGoTo: {fileID: 1698570407}
     dialogueStructure:
     - robotID: big
       dialogueLines:
@@ -3691,7 +3697,7 @@ MonoBehaviour:
       RobotController: {fileID: 1780279326}
       RobotUIController: {fileID: 0}
       RobotUIPrefab: {fileID: 338740989}
-      RobotPosition: {fileID: 955717967}
+      RobotGoTo: {fileID: 955717967}
     dialogueStructure:
     - robotID: big
       dialogueLines:
@@ -3710,7 +3716,12 @@ Transform:
   m_LocalPosition: {x: 10.020546, y: -1.2457076, z: -19.368275}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1455572536}
+  - {fileID: 1780279329}
+  - {fileID: 1597171589}
+  - {fileID: 955717967}
+  - {fileID: 1698570407}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1597171586
@@ -3739,7 +3750,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1597171586}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &1597171588
 Camera:
   m_ObjectHideFlags: 0
@@ -3800,11 +3811,11 @@ Transform:
   m_GameObject: {fileID: 1597171586}
   serializedVersion: 2
   m_LocalRotation: {x: 0.009131696, y: 0.9718235, z: -0.03818301, w: 0.2324174}
-  m_LocalPosition: {x: -3.26, y: 2.37, z: -3.63}
+  m_LocalPosition: {x: -13.280546, y: 3.6157074, z: 15.738275}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1513472669}
   m_LocalEulerAnglesHint: {x: 4.5, y: 153.1, z: 0}
 --- !u!114 &1597171590
 MonoBehaviour:
@@ -3954,12 +3965,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1698570406}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.37, y: 0.98, z: -10.28}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -11.390546, y: 2.2257075, z: 9.088275}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1513472669}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1732835354
 GameObject:
@@ -4051,7 +4062,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1513472669}
     m_Modifications:
     - target: {fileID: 847933353385002704, guid: e0dcd208e015d06459382f3bc46ec870, type: 3}
       propertyPath: m_Enabled
@@ -4075,15 +4086,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6711588511000419498, guid: e0dcd208e015d06459382f3bc46ec870, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.2
+      value: -9.820546
       objectReference: {fileID: 0}
     - target: {fileID: 6711588511000419498, guid: e0dcd208e015d06459382f3bc46ec870, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.62
+      value: 1.8657076
       objectReference: {fileID: 0}
     - target: {fileID: 6711588511000419498, guid: e0dcd208e015d06459382f3bc46ec870, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -8.41
+      value: 12.688274
       objectReference: {fileID: 0}
     - target: {fileID: 6711588511000419498, guid: e0dcd208e015d06459382f3bc46ec870, type: 3}
       propertyPath: m_LocalRotation.w
@@ -4147,6 +4158,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueCameraLookAt: {fileID: 0}
   agentName: Big Robot
+  robotTransform: {fileID: 1780279329}
   visualRepresentation:
   - {fileID: 1674541699}
   - {fileID: 612186584}
@@ -4264,6 +4276,11 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 847933353385002704, guid: e0dcd208e015d06459382f3bc46ec870, type: 3}
   m_PrefabInstance: {fileID: 1780279324}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &1780279329 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6711588511000419498, guid: e0dcd208e015d06459382f3bc46ec870, type: 3}
+  m_PrefabInstance: {fileID: 1780279324}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2021459442
 GameObject:
   m_ObjectHideFlags: 0
@@ -4315,16 +4332,11 @@ Transform:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 1597171589}
   - {fileID: 981628334}
-  - {fileID: 1455572531}
-  - {fileID: 1780279324}
   - {fileID: 338740990}
   - {fileID: 32474133}
   - {fileID: 261097430}
   - {fileID: 1513472669}
-  - {fileID: 955717967}
-  - {fileID: 1698570407}
   - {fileID: 1423449446}
   - {fileID: 15635318}
   - {fileID: 2021459444}

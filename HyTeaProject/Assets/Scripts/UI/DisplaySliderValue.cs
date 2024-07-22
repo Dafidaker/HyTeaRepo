@@ -36,6 +36,6 @@ public class DisplaySliderValue : MonoBehaviour
 
     private void UpdateValue(float value)
     {
-        _textMeshProUGUI.text = value.ToString();
+        _textMeshProUGUI.text = value.ToString("F1");
     }
 }

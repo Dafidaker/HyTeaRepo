@@ -39,7 +39,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if (GameManager.Instance.GameState != GameState.Gameplay) return; 
+        if (GameManager.Instance.GameState != GameState.Walking) return; 
         
         _grounded = IsPlayerGrounded();
         
