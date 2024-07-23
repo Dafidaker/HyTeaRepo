@@ -280,7 +280,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1179092930}
   - {fileID: 1846440874}
   m_Father: {fileID: 1164968855}
   m_LocalEulerAnglesHint: {x: 13.415, y: 3.804, z: -1.271}
@@ -1661,140 +1660,6 @@ Transform:
   - {fileID: 125101708}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1179092929
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1179092930}
-  - component: {fileID: 1179092932}
-  - component: {fileID: 1179092931}
-  m_Layer: 5
-  m_Name: Notes
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!224 &1179092930
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1179092929}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 125101708}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1179092931
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1179092929}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_text: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-  m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 6db9941c0a90c8c49bc1fc61d79ba32b, type: 2}
-  m_sharedMaterial: {fileID: -6919721426644293789, guid: 6db9941c0a90c8c49bc1fc61d79ba32b, type: 2}
-  m_fontSharedMaterials: []
-  m_fontMaterial: {fileID: 0}
-  m_fontMaterials: []
-  m_fontColor32:
-    serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
-  m_enableVertexGradient: 0
-  m_colorMode: 3
-  m_fontColorGradient:
-    topLeft: {r: 1, g: 1, b: 1, a: 1}
-    topRight: {r: 1, g: 1, b: 1, a: 1}
-    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
-    bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 0}
-  m_spriteAsset: {fileID: 0}
-  m_tintAllSprites: 0
-  m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: -1183493901
-  m_overrideHtmlColors: 0
-  m_faceColor:
-    serializedVersion: 2
-    rgba: 4294967295
-  m_fontSize: 0.07
-  m_fontSizeBase: 0.07
-  m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
-  m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
-  m_textAlignment: 65535
-  m_characterSpacing: 0
-  m_wordSpacing: 0
-  m_lineSpacing: 0
-  m_lineSpacingMax: 0
-  m_paragraphSpacing: 0
-  m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
-  m_wordWrappingRatios: 0.4
-  m_overflowMode: 4
-  m_linkedTextComponent: {fileID: 0}
-  parentLinkedComponent: {fileID: 0}
-  m_enableKerning: 1
-  m_enableExtraPadding: 0
-  checkPaddingRequired: 0
-  m_isRichText: 1
-  m_parseCtrlCharacters: 1
-  m_isOrthographic: 1
-  m_isCullingEnabled: 0
-  m_horizontalMapping: 0
-  m_verticalMapping: 0
-  m_uvLineOffset: 0
-  m_geometrySortingOrder: 0
-  m_IsTextObjectScaleStatic: 0
-  m_VertexBufferAutoSizeReduction: 0
-  m_useMaxVisibleDescender: 1
-  m_pageToDisplay: 1
-  m_margin: {x: 0.077759564, y: 0.06327361, z: 0.05176997, w: 0.07651895}
-  m_isUsingLegacyAnimationComponent: 0
-  m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_baseMaterial: {fileID: 0}
-  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!222 &1179092932
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1179092929}
-  m_CullTransparentMesh: 1
 --- !u!1 &1245752033
 GameObject:
   m_ObjectHideFlags: 0
@@ -2759,53 +2624,55 @@ MonoBehaviour:
   - {fileID: 21300000, guid: b55992f916b20f642a5e694b22453b74, type: 3}
   - {fileID: 21300000, guid: 2d2f0a5d8013a524784804a8fa1affde, type: 3}
   Notes:
-  - "Greet the audience & ask them a question: \u201Chow are you feeling today?\u201D
-    \u201Care you excited to dock on earth?\u201D or something like that.\n\nMy name
-    is Thur Gyde and I\u2019ll be your tour guide during your stay on earth.\n\ntoday,
+  - "<i>Greet the audience & ask them a question: \u201Chow are you feeling today?\u201D
+    \u201Care you excited to dock on earth?\u201D or something like that.</i>\n\nMy
+    name is Thur Gyde and I\u2019ll be your tour guide during your stay on earth.\n\nToday,
     I will be telling you all about how to have a proper human holiday, to make your
     time here as memorable and human as possible."
-  - "first and foremost, be aware that some humans are afraid of a <b>robot uprising</b>.
-    for your own safety, please refrain from using <b>anti-human phrases</b> such
+  - "First and foremost, be aware that some humans are afraid of a <b>robot uprising</b>.\n
+    \nFor your own safety, please refrain from using <b>anti-human phrases</b> such
     as: \u201Ccrush, kill, destroy\u201D, \u201Cannihilate all lifeforms\u201D, etc.
     while on earth."
-  - "with that out of the way\n\nthere\u2019s a human saying that goes like this:
-    \u201Cfailing to prepare is preparing to fail\u201D. so let\u2019s talk about
-    how to prepare for a trip."
-  - 'take a look at this suitcase. you might be surprised to find that humans make
-    many <b>mistakes</b> when it comes to packing. they will often pack way <b>too
+  - "With that out of the way, let's crack on.\n\nThere\u2019s a human saying that
+    goes like this: \u201Cfailing to prepare is preparing to fail\u201D. So let\u2019s
+    talk about how to prepare for a trip."
+  - 'Take a look at this suitcase. You might be surprised to find that humans make
+    many <b>mistakes</b> when it comes to packing. They will often pack way <b>too
     much</b> stuff, like 20 pairs of underwear for a 5-day trip, <b>forget</b> important
     items such as their phone charger, or bring something completely <b>unnecessary</b>.
 
 
-    to
+    To
     emulate the true human experience, be sure to include some small mistakes while
     preparing your suitcase.
 
 
-    personally, I always make sure to bring the following
-    items: <i>(list items I usually take on vacation)</i>'
-  - "to fit in, you might want to adopt some common human behaviors while vacationing.\n\nthere
-    are several different <b>kinds of tourists</b>. let\u2019s analyse the most common
-    ones, and you can decide for yourself what tourist you want to be.\n\n- the planner:\n\nthis
-    tourist type plans out their trip down to the smallest details. they more than
-    likely are very active on yelp, and might have even background checked the busdriver
-    beforehand.\n\n- the tryhard:\n\nthese tourists like to immerse themselves in
-    the culture that they are visiting. they often learn a few phrases of the local
-    language, mispronounce them, and might be offended if they\u2019re not understood.
-    \n\n\n- the photographer:\n\nthe photographer sees their trip mostly through
-    their lens. after the trip, they force their friends and family to look at the
-    amazing pictures they took, after which they will never be looked at again."
-  - "now, let\u2019s talk about the actual trip. \n\nwhat humans do on their vacation
+    Personally, I always make sure to bring the following
+    items: <i>list items I usually take on vacation</i>'
+  - "To fit in, you might want to adopt some <b>common human behaviors</b> while
+    vacationing.\n\nThere are several different <b>kinds of tourists</b>. Let\u2019s
+    analyse the most common ones, and you can decide for yourself what tourist you
+    want to be.\n\n- <b>The Planner:</b>\n\nThis tourist type plans out their trip
+    down to the smallest details. They more than likely are very active on Yelp,
+    and might have even background checked the busdriver beforehand.\n\n- <b>The
+    Tryhard:</b>\n\nThese tourists like to immerse themselves in the culture that
+    they are visiting. They often learn a few phrases of the local language, mispronounce
+    them, and might be offended if they\u2019re not understood. \n\n\n- <b>The Photographer:</b>\n\nThe
+    photographer sees their trip mostly through their lens. After the trip, they
+    force their friends and family to look at the amazing pictures they took, after
+    which they will never be looked at again."
+  - "Now, let\u2019s talk about the actual trip. \n\nWhat humans do on their vacation
     varies greatly, however there are some <b>common activities</b> such as sightseeing,
     going to the beach, and many more.\n\nIf you choose to partake in any water-based
     activities, such as going to the beach, make sure to cover yourself with watertight
     material, so your circuits don\u2019t get fried."
-  - "some places in particular are well-known destinations for tourists. \n\nmake
-    up facts about them briefly. nobody's going to fact check me anyway"
-  - "a big part of any vacation is bringing back some souvenirs. i personally take
-    great pride in my collection of fridge magnets at home. let\u2019s go over some
-    guidelines on what to take as souvenir."
-  - 'good souvenir ideas are:
+  - "Some places in particular are <b>well-known destinations</b> for tourists. \n\n<i>make
+    up facts about them briefly. nobody's going to fact check me anyway</i>"
+  - "A big part of any vacation is bringing back some <b>souvenirs</b>.\nI personally
+    take great pride in my collection of fridge magnets at home. Let\u2019s go over
+    some guidelines on what to take as souvenir."
+  - 'Good souvenir ideas are:
+
 
     - fridge magnets (for real, they are the best)
 
@@ -2815,24 +2682,25 @@ MonoBehaviour:
     - snow globes
 
     - pebbles'
-  - 'bad souvenir ideas are:
+  - 'Bad souvenir ideas are:
 
-    - anything that lives on earth as it will not survive
-    in space
+
+    - anything that lives on earth as it will not
+    survive in space
 
     - protected human artifacts
 
-    - buildings (and anything else
-    that would need to be removed with force)'
-  - remember that you need to give the humans colored paper and scrap metal coins
+    - buildings (and anything
+    else that would need to be removed with force)'
+  - Remember that you need to give the humans colored paper and scrap metal coins
     known as <b>money</b> in exchange for these items.
-  - "to wrap it up, let\u2019s reiterate the main points:\n\n- don\u2019t <b>antagonise</b>
+  - "To wrap it up, let\u2019s reiterate the main points:\n\n- don\u2019t <b>antagonise</b>
     humans\n- make some <b>mistakes</b> when packing your suitcase\n- decide what
     kind of <b>tourist</b> you want to be\n- consider partaking in some common vacation
     <b>activities</b>\n- and bring back a fun <b>souvenir</b> (as long as it\u2019s
     not alive, or illegal)"
-  - with that, you should have all the information you need to turn this into a great
-    human trip.
+  - With that, you should have all the information you need to turn this into a great
+    human trip! Enjoy! :)
   TabletScreen: {fileID: 504428780}
   NoteDisplay: {fileID: 1420571905}
   VerticalScrollbar: {fileID: 52318235}
@@ -2855,12 +2723,12 @@ Transform:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 470769087}
   - {fileID: 559416575}
   - {fileID: 1245752036}
+  - {fileID: 754261454}
   - {fileID: 1323714942}
   - {fileID: 1905478662}
   - {fileID: 1164968855}
   - {fileID: 735920761}
-  - {fileID: 754261454}
   - {fileID: 2141714632}
+  - {fileID: 470769087}
