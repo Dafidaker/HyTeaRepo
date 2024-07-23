@@ -39,7 +39,7 @@ public class PlayerCam : MonoBehaviour
     
     private void Update()
     {
-        LockInput();
+        //LockInput();
         
         if (cameraIsLocked) return;
         

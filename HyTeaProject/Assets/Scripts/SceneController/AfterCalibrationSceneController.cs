@@ -1,10 +1,30 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AfterCalibrationSceneController : MonoBehaviour
 {
     [SerializeField] private Dialogue[] dialogues;
+    void Start()
+    {
+        DialogueManager.Instance.HandleStartDialogue(GetDialogueFromID(DialogueID.AfterCalibration));
+    }
+
+    private void OnEnable()
+    {
+        EventManager.DialogueWasEnded.AddListener(HandleDialogueEnding);
+    }
+    
+    private void OnDisable()
+    {
+        EventManager.DialogueWasEnded.RemoveListener(HandleDialogueEnding);
+    }
+    
+    private void HandleDialogueEnding(DialogueID id)
+    {
+        if (id == DialogueID.AfterCalibration)
+        {
+            MSceneManager.Instance.FadeToNextScene();
+        }
+    }
     
     private Dialogue GetDialogueFromID(DialogueID dialogueID)
     {
@@ -18,17 +38,5 @@ public class AfterCalibrationSceneController : MonoBehaviour
         }
 
         return null;
-    }
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

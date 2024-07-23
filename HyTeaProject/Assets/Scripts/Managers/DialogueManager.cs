@@ -54,6 +54,8 @@ public enum DialogueID
     AfterCalibration,
     test,
     BeginningCalibration,
+    BeforePresentation,
+    PresentingPlayer
     
 }
 
@@ -159,8 +161,8 @@ public class DialogueManager : Singleton<DialogueManager>
             robot.RobotController.HideRobot();
         }
         
-        EventManager.DialogueWasEnded.Invoke(dialogue.dialogueID);
         GameManager.Instance.SetGameState(GameState.Walking);
+        EventManager.DialogueWasEnded.Invoke(dialogue.dialogueID);
     }
     
     

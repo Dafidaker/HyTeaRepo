@@ -37,7 +37,7 @@ public class GameManager : Singleton<GameManager>
         {
             GameState = gameState;
         }
-        
+         
         public void SetPlayer(GameObject player)
         {
             Player = player;
@@ -52,12 +52,13 @@ public class GameManager : Singleton<GameManager>
 
     #endregion
 
+    private Camera oldCamera;
+
     protected override void Awake()
     {
         base.Awake();
         currentCamera = Camera.main;
         EventManager.CameraWasChanged.Invoke(currentCamera);
-        SetGameState(GameState.Walking);
     }
     
     private void OnEnable()
@@ -110,13 +111,35 @@ public class GameManager : Singleton<GameManager>
 
     public void SetUpNewCamera(Camera newMainCamera)
     {
+        Camera[] cameras = FindObjectsOfType<Camera>();
+        if (cameras.Length <= 0) return;
+        
         if (newMainCamera == null)
         {
             Debug.LogError("New Main Camera is not assigned!");
             return;
         }
         
-        Camera oldMainCamera = Camera.main;
+        foreach (Camera cam in cameras)
+        {
+            if (cam == newMainCamera)
+            {
+                cam.tag = "MainCamera";
+                //cam.gameObject.SetActive(true);
+                cam.enabled = true;
+            }
+            else
+            {
+                if (cam.CompareTag("MainCamera"))
+                {
+                    cam.tag = "Untagged"; // Clear the previous main camera tag
+                }
+                //cam.gameObject.SetActive(false);
+                cam.enabled = false;
+            }
+        }
+        
+        /*Camera oldMainCamera = Camera.main;
 
         if (oldMainCamera == newMainCamera)  return; 
             
@@ -128,9 +151,10 @@ public class GameManager : Singleton<GameManager>
             
         newMainCamera.tag = "MainCamera";
         currentCamera = newMainCamera;
-        currentCamera.gameObject.SetActive(true);
+        currentCamera.gameObject.SetActive(true);*/
         
         EventManager.CameraWasChanged.Invoke(currentCamera);
         
     }
+
 }
