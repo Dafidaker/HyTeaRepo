@@ -47,7 +47,11 @@ public class SlideKeyWordManager : MonoBehaviour
             Debug.Log("END OF SLIDES");
         }
     }
-    
+
+    public List<GameObject> GetSlideKeyWords()
+    {
+        return _slideGameObjects;
+    }
 
     private void Update()
     {

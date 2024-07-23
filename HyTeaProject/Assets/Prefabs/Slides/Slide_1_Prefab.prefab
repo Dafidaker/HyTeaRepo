@@ -55,7 +55,7 @@ MonoBehaviour:
     endTime: 0
     wordInfo:
     - word:
-      - 
+      - holiday
       wasSaid: 0
     areTheWordsValid: 0
 --- !u!222 &8184473224529083427

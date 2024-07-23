@@ -51,7 +51,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   KeyWords:
-  - test
+    startTime: 0
+    endTime: 0
+    wordInfo:
+    - word:
+      - tourist
+      wasSaid: 0
+    areTheWordsValid: 0
 --- !u!222 &8184473224529083427
 CanvasRenderer:
   m_ObjectHideFlags: 0
