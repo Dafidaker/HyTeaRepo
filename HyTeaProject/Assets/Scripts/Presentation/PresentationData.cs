@@ -117,8 +117,10 @@ public class PresentationData : MonoBehaviour
         MovementAnalysis.OnGestureDetected += MovementAnalysisOnOnGestureDetected;
         EventManager.GestureCaptured.AddListener(StoreGesture);
         EventManager.NewAudioClipFinished.AddListener(SaveAudioClip);
+        EventManager.StartedLookingAtTheNotes.AddListener(HandleLookingAtNotes);
+        EventManager.StoppedLookingAtTheNotes.AddListener(HandleStoppedLookingAtNotes);
     }
-
+    
     public void PausePresentation()
     {
         _presentationOccuring = false;
@@ -132,7 +134,7 @@ public class PresentationData : MonoBehaviour
     public void EndPresentation()
     {
         _presentationOccuring = false;
-        if (_trackingCoroutine != null)  StopCoroutine(_trackingCoroutine); 
+        if (_trackingCoroutine != null)      StopCoroutine(_trackingCoroutine); 
         EndTime = Time.time;
         
         EventManager.LatestLoudnessCaptured.RemoveListener(StoreLoudness);
@@ -142,9 +144,9 @@ public class PresentationData : MonoBehaviour
         EventManager.NewAudioClipFinished.RemoveListener(SaveAudioClip);
     }
 
-    private void MovementAnalysisOnOnGestureDetected(GestureHolder obj)
+    private void MovementAnalysisOnOnGestureDetected(GestureHolder gesture)
     {
-        _timedGestures.Add(new TimedGestures(Time.time,  obj.Duration, obj.Name));
+        _timedGestures.Add(new TimedGestures(Time.time,  gesture.Duration, gesture.Name));
     }
 
     private IEnumerator TrackPresentationTime()
@@ -194,6 +196,21 @@ public class PresentationData : MonoBehaviour
       
     }
 
+    private void HandleLookingAtNotes()
+    {
+        _timedGestures.Add(new TimedGestures(Time.time,0,"lookingAtNotes"));
+    }
+    
+    private void HandleStoppedLookingAtNotes()
+    {
+        for (int i = _timedGestures.Count - 1; i >= 0; i--)
+        {
+            if (_timedGestures[i].GesturesName == "lookingAtNotes" && _timedGestures[i].Duration == 0)
+            {
+                _timedGestures[i].Duration = Time.time - _timedGestures[i].StartTime;
+            }
+        }
+    }
     
     private void SaveAudioClip(AudioClip clip)
     {

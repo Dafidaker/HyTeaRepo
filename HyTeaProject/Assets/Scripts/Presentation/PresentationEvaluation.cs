@@ -89,6 +89,7 @@ public class PresentationEvaluation : MonoBehaviour
    private float _maxScriptDuration;
 
    private int _amountOfWords;
+   
    /*private void DetermineAmountOfWords()
    {
       if (_presentationData == null) return;
@@ -291,6 +292,7 @@ public class PresentationEvaluation : MonoBehaviour
       _feedbacks.Add(new Feedback(FeedbackPolarity.Neutral,TypeOfFeedback.Neutral,"Thank you for the presentation"));
 
       PresentationManager.Instance._feedbacks = _feedbacks;
+      EventManager.FeedbackHasBeenCreated.Invoke();
    }
 
    #region Create Feedback Funtions

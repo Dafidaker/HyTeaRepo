@@ -37,6 +37,7 @@ public class NotepadInteractable : Interactable
             
             if (playerCam != null && playerCam.cameraIsLocked)
             {
+                EventManager.StartedLookingAtTheNotes.Invoke();
                 if (LookingAtNotepadMode == LookingAtNotepad.CameraMoves)
                 {
                     StartCoroutine(UninteractableForSeconds(0.5f));
@@ -66,6 +67,7 @@ public class NotepadInteractable : Interactable
             
             if (playerCam != null && playerCam.cameraIsLocked)
             {
+                EventManager.StoppedLookingAtTheNotes.Invoke();
                 if (LookingAtNotepadMode == LookingAtNotepad.CameraMoves)
                 {
                     playerCam.StopLookingAt(CameraLookAt);
