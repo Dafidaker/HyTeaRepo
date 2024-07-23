@@ -44,7 +44,6 @@ public static class EventManager
    
    public static readonly UnityEvent<AudioClip> NewAudioClipFinished = new();
    
-   
    public static readonly UnityEvent CalibrationHasFinished = new();
    public static readonly UnityEvent CalibrationHasStarted = new();
 
@@ -61,6 +60,11 @@ public static class EventManager
    public static readonly UnityEvent ChangeToNextSlide = new();
    public static readonly UnityEvent CameraWasLocked = new();
    public static readonly UnityEvent CameraWasUnlocked = new();
+   
+   public static readonly UnityEvent StartedLookingAtTheNotes = new();
+   public static readonly UnityEvent StoppedLookingAtTheNotes = new();
+   
+   public static readonly UnityEvent FeedbackHasBeenCreated = new();
    
    ///////////////////////////*AI*//////////////////////////////////
    public static readonly UnityEvent<RobotController,Transform> ArrivedAtTarget = new();

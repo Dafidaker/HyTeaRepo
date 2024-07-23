@@ -55,7 +55,8 @@ public enum DialogueID
     test,
     BeginningCalibration,
     BeforePresentation,
-    PresentingPlayer
+    PresentingPlayer,
+    Feedback
     
 }
 
@@ -117,12 +118,12 @@ public class DialogueManager : Singleton<DialogueManager>
         
         StartCoroutine(StartDialogue(dialogue));
     }
-    
-    public IEnumerator StartDialogue(Dialogue dialogue)
+
+    private IEnumerator StartDialogue(Dialogue dialogue)
     {
         GameManager.Instance.SetGameState(GameState.Dialogue);
         
-        GameManager.Instance.SetUpNewCamera(dialogue.dialogueInfo.DialogueCamera);
+        GameManager.Instance.SetUpNewCamera(dialogue.dialogueInfo.DialogueCamera);   
 
         foreach (var robot in dialogue.robotsInfo)
         {

@@ -27,6 +27,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Sequence/06_Presentation.unity
     guid: 0fb2b4cdf5ac25641b5214d7c66c80fd
   - enabled: 1
+    path: Assets/Scenes/Sequence/07_SecondLevelIntroduction.unity
+    guid: 50479b38398388d45b7eb35e228ba7bd
+  - enabled: 1
     path: Assets/Scenes/LoadAdditively.unity
     guid: 4acdaf3bd568c984a9b6a07439b8faa0
   m_configObjects: {}
