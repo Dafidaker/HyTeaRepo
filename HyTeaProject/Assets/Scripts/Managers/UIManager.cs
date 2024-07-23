@@ -82,11 +82,18 @@ public class UIManager : Singleton<UIManager>
         
     }
 
+    public void ClickedFinishButton()
+    {
+        MSceneManager.Instance.FadeToNextScene();
+    }
+
     public Canvas CreateDialogueCanvas(Canvas DialogueCanvas = null)
     {
         if (DialogueCanvas == null) DialogueCanvas = dialogueCanvas;
-
-        var temp = Instantiate(DialogueCanvas, baseCanvas == null ? transform : baseCanvas.transform);
+        
+        //var temp = Instantiate(DialogueCanvas, baseCanvas == null ? transform : baseCanvas.transform);
+        
+        var temp = Instantiate(DialogueCanvas,  transform );
         
         DeactivateCanvas(temp);
         
