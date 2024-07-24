@@ -96,7 +96,9 @@ public class PresentationData : MonoBehaviour
     [SerializeField] public List<AudioClipInfo> _sanatizedAudioClips = new();
     
     private float SumOfAllPausesDuration;
-
+    private bool StoppedLookingAtNotes = false;
+    private Coroutine TrackLookingAtNotes;
+    
     private void Awake()
     {
         //StartTime = Time.time;
@@ -129,12 +131,14 @@ public class PresentationData : MonoBehaviour
         EventManager.OnPauseDone.RemoveListener(AddPause);
         EventManager.GestureCaptured.RemoveListener(StoreGesture);
         EventManager.NewAudioClipFinished.RemoveListener(SaveAudioClip);
+        EventManager.StartedLookingAtTheNotes.RemoveListener(HandleLookingAtNotes);
+        EventManager.StoppedLookingAtTheNotes.RemoveListener(HandleStoppedLookingAtNotes);
     }
     
     public void EndPresentation()
     {
         _presentationOccuring = false;
-        if (_trackingCoroutine != null)      StopCoroutine(_trackingCoroutine); 
+        if (_trackingCoroutine != null) StopCoroutine(_trackingCoroutine); 
         EndTime = Time.time;
         
         EventManager.LatestLoudnessCaptured.RemoveListener(StoreLoudness);
@@ -142,6 +146,8 @@ public class PresentationData : MonoBehaviour
         EventManager.OnPauseDone.RemoveListener(AddPause);
         EventManager.GestureCaptured.RemoveListener(StoreGesture);
         EventManager.NewAudioClipFinished.RemoveListener(SaveAudioClip);
+        EventManager.StartedLookingAtTheNotes.RemoveListener(HandleLookingAtNotes);
+        EventManager.StoppedLookingAtTheNotes.RemoveListener(HandleStoppedLookingAtNotes);
     }
 
     private void MovementAnalysisOnOnGestureDetected(GestureHolder gesture)
@@ -198,18 +204,13 @@ public class PresentationData : MonoBehaviour
 
     private void HandleLookingAtNotes()
     {
-        _timedGestures.Add(new TimedGestures(Time.time,0,"lookingAtNotes"));
+        if (TrackLookingAtNotes != null) return;
+        TrackLookingAtNotes = StartCoroutine(CountUpLookingAtNotes(new TimedGestures(Time.time,0,"lookingAtNotes")));
     }
     
     private void HandleStoppedLookingAtNotes()
     {
-        for (int i = _timedGestures.Count - 1; i >= 0; i--)
-        {
-            if (_timedGestures[i].GesturesName == "lookingAtNotes" && _timedGestures[i].Duration == 0)
-            {
-                _timedGestures[i].Duration = Time.time - _timedGestures[i].StartTime;
-            }
-        }
+        StoppedLookingAtNotes = true;
     }
     
     private void SaveAudioClip(AudioClip clip)
@@ -224,5 +225,22 @@ public class PresentationData : MonoBehaviour
             yield return StartCoroutine(SpeechRecognitionUtill.Instance.SendPreRecordedRecording(audioClipInfo, _sanatizedAudioClips));
         }
         
+    }
+
+    private IEnumerator CountUpLookingAtNotes(TimedGestures timedGestures)
+    {
+        float duration = 0;
+
+        while (!StoppedLookingAtNotes)
+        {
+            duration += Time.deltaTime;
+            yield return null;
+        }
+
+        StoppedLookingAtNotes = false;
+        timedGestures.Duration = duration;
+        
+        _timedGestures.Add(timedGestures);
+        TrackLookingAtNotes = null;
     }
 }

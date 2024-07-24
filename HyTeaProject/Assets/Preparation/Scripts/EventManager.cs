@@ -66,6 +66,8 @@ public static class EventManager
    
    public static readonly UnityEvent FeedbackHasBeenCreated = new();
    
+   public static readonly UnityEvent PresentationHasEnded = new(); 
+   
    ///////////////////////////*AI*//////////////////////////////////
    public static readonly UnityEvent<RobotController,Transform> ArrivedAtTarget = new();
    public static readonly UnityEvent<RobotController> FeedbackWasGiven = new();

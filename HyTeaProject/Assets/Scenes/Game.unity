@@ -862,7 +862,7 @@ GameObject:
   m_Component:
   - component: {fileID: 166026336}
   m_Layer: 5
-  m_Name: GameObject
+  m_Name: Gesture Detection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1313,7 +1313,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueCameraLookAt: {fileID: 1376709078}
   agentName: little guy
+  robotTransform: {fileID: 0}
+  visualRepresentation: []
   voiceClip: []
+  animator: {fileID: 0}
   DialogueStrings: []
 --- !u!195 &182688744
 NavMeshAgent:
@@ -1536,8 +1539,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueCameraLookAt: {fileID: 1032148828}
   agentName: Igor the Instructor
+  robotTransform: {fileID: 0}
+  visualRepresentation: []
   voiceClip:
   - {fileID: 8300000, guid: a34a1e1b7dc633a4bb6f39c26798f08b, type: 3}
+  animator: {fileID: 0}
   DialogueStrings: []
 --- !u!82 &185520301
 AudioSource:
@@ -1699,7 +1705,7 @@ MonoBehaviour:
   - dialogueID: 0
     dialogueInfo:
       DialogueCamera: {fileID: 0}
-    speakersInfo: []
+    robotsInfo: []
     dialogueStructure: []
 --- !u!4 &207037642
 Transform:
@@ -2838,8 +2844,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueCameraLookAt: {fileID: 1607685536}
   agentName: Igor The Instructor
+  robotTransform: {fileID: 0}
+  visualRepresentation: []
   voiceClip:
   - {fileID: 8300000, guid: a34a1e1b7dc633a4bb6f39c26798f08b, type: 3}
+  animator: {fileID: 0}
   DialogueStrings:
   - Hii !!!
   - I hope you are ready for your first day as our tour guide.
@@ -2982,7 +2991,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueCameraLookAt: {fileID: 728046914}
   agentName: little guy
+  robotTransform: {fileID: 0}
+  visualRepresentation: []
   voiceClip: []
+  animator: {fileID: 0}
   DialogueStrings: []
 --- !u!195 &346644692
 NavMeshAgent:
@@ -3219,7 +3231,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueCameraLookAt: {fileID: 543807018}
   agentName: little guy
+  robotTransform: {fileID: 0}
+  visualRepresentation: []
   voiceClip: []
+  animator: {fileID: 0}
   DialogueStrings: []
 --- !u!195 &376525515
 NavMeshAgent:
@@ -3625,8 +3640,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueCameraLookAt: {fileID: 314722241}
   agentName: Igor the Instructor
+  robotTransform: {fileID: 0}
+  visualRepresentation: []
   voiceClip:
   - {fileID: 8300000, guid: a34a1e1b7dc633a4bb6f39c26798f08b, type: 3}
+  animator: {fileID: 0}
   DialogueStrings:
   - Hello, did you sleep well ?
   - I hope you are ready for your first day as our tour guide
@@ -4473,6 +4491,7 @@ GameObject:
   - component: {fileID: 603657125}
   - component: {fileID: 603657124}
   - component: {fileID: 603657123}
+  - component: {fileID: 603657129}
   m_Layer: 5
   m_Name: AnalysisHolder
   m_TagString: Untagged
@@ -4537,6 +4556,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 84f77c916c493994da526d2ae2886cc1, type: 2}
   - {fileID: 11400000, guid: a32fe71612c91614883d4c28eb0c7850, type: 2}
   - {fileID: 11400000, guid: 5c19a13411b4f9e44a51c7e311886f27, type: 2}
+  - {fileID: 11400000, guid: 3aac5893993636346a5699aa39344dd2, type: 2}
 --- !u!114 &603657125
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4602,6 +4622,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 603657121}
   m_CullTransparentMesh: 1
+--- !u!114 &603657129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 603657121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94c7ebbc685cabd44b21b61a3f095d20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _handToNoseMaxDistance: 0.15
 --- !u!1 &604482341
 GameObject:
   m_ObjectHideFlags: 0
@@ -5551,7 +5584,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueCameraLookAt: {fileID: 2128186251}
   agentName: little guy
+  robotTransform: {fileID: 0}
+  visualRepresentation: []
   voiceClip: []
+  animator: {fileID: 0}
   DialogueStrings: []
 --- !u!195 &933135907
 NavMeshAgent:
@@ -6403,7 +6439,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueCameraLookAt: {fileID: 1043909059}
   agentName: little guy
+  robotTransform: {fileID: 0}
+  visualRepresentation: []
   voiceClip: []
+  animator: {fileID: 0}
   DialogueStrings: []
 --- !u!195 &1116287457
 NavMeshAgent:
@@ -8622,8 +8661,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueCameraLookAt: {fileID: 618763084}
   agentName: Igor The Instructor
+  robotTransform: {fileID: 0}
+  visualRepresentation: []
   voiceClip:
   - {fileID: 8300000, guid: a34a1e1b7dc633a4bb6f39c26798f08b, type: 3}
+  animator: {fileID: 0}
   DialogueStrings:
   - With that pep in your step, I assume you have done your calibratation.
   - Hope you are ready your presentation, is on  how to have a human holiday.
@@ -9258,7 +9300,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueCameraLookAt: {fileID: 2111118949}
   agentName: little guy
+  robotTransform: {fileID: 0}
+  visualRepresentation: []
   voiceClip: []
+  animator: {fileID: 0}
   DialogueStrings: []
 --- !u!195 &1752093734
 NavMeshAgent:
@@ -10768,7 +10813,7 @@ Transform:
   m_GameObject: {fileID: 2055403879}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1517, y: 1.2, z: 25.23}
+  m_LocalPosition: {x: -1517, y: 1.2, z: 3.01}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -11246,7 +11291,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2134216241}
-  - component: {fileID: 2134216240}
   m_Layer: 0
   m_Name: SceneController
   m_TagString: Untagged
@@ -11254,18 +11298,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2134216240
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2134216239}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc38d068910b5d64ea685391b9ee013d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &2134216241
 Transform:
   m_ObjectHideFlags: 0
@@ -11429,8 +11461,8 @@ SceneRoots:
   - {fileID: 1031294688}
   - {fileID: 193527519}
   - {fileID: 166026336}
-  - {fileID: 1234603390}
   - {fileID: 841073323}
+  - {fileID: 1234603390}
   - {fileID: 1982034146}
   - {fileID: 296275242}
   - {fileID: 945992666}

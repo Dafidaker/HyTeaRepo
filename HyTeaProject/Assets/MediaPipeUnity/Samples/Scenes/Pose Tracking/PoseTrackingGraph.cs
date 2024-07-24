@@ -258,10 +258,10 @@ namespace Mediapipe.Unity.Sample.PoseTracking
       sidePacket.Emplace("enable_segmentation", Packet.CreateBool(enableSegmentation));
       sidePacket.Emplace("smooth_segmentation", Packet.CreateBool(smoothSegmentation));
 
-      Debug.Log($"Model Complexity = {modelComplexity}");
-      Debug.Log($"Smooth Landmarks = {smoothLandmarks}");
-      Debug.Log($"Enable Segmentation = {enableSegmentation}");
-      Debug.Log($"Smooth Segmentation = {smoothSegmentation}");
+      //Debug.Log($"Model Complexity = {modelComplexity}");
+      //Debug.Log($"Smooth Landmarks = {smoothLandmarks}");
+      //Debug.Log($"Enable Segmentation = {enableSegmentation}");
+      //Debug.Log($"Smooth Segmentation = {smoothSegmentation}");
 
       return sidePacket;
     }

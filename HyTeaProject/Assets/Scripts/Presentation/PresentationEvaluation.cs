@@ -4,6 +4,7 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 [Serializable]
 public class Feedback
@@ -79,7 +80,7 @@ class LoudnessFeedbackHelper
 public class PresentationEvaluation : MonoBehaviour
 {
    [FormerlySerializedAs("_presentationData")] [SerializeField] private PresentationData presentationData;
-   [SerializeField] private List<TimedWordList> timedWordLists;
+   [SerializeField] public List<TimedWordList> timedWordLists;
 
    private List<float> _averageLoudnesses = new();
 
@@ -287,8 +288,28 @@ public class PresentationEvaluation : MonoBehaviour
       _feedbacks.AddRange( CreateDurationFeedback());
       
       //gestures done 3 feedback (general, good things, bad things)
+
+      int randomNum = Random.Range(0, 4);
+      string feedbackString = "I think your body language could improve";
       
+      if (randomNum == 0 )
+      {
+         feedbackString = "Incorporating more expressive gestures could enhance your communication.";
+      }
+      else if (randomNum == 1)
+      {
+         feedbackString = "Using more gestures can help you appear more confident.";
+      }
+      else if (randomNum == 2)
+      {
+         feedbackString = "I think your body language could improve";
+      }
+      else if (randomNum == 3)
+      {
+         feedbackString = "Adopting a more open stance can make you appear more approachable.";
+      }
       
+      _feedbacks.Add(new Feedback(FeedbackPolarity.Neutral,TypeOfFeedback.Neutral,feedbackString));
       _feedbacks.Add(new Feedback(FeedbackPolarity.Neutral,TypeOfFeedback.Neutral,"Thank you for the presentation"));
 
       PresentationManager.Instance._feedbacks = _feedbacks;
@@ -482,12 +503,12 @@ public class PresentationEvaluation : MonoBehaviour
       if (percentage >= 95)
       {
          feedback.feedbackPolarity = FeedbackPolarity.Positive;
-         feedback.textFeedback = "Well done,you really cover the material well. I think you talked about all of the key points";
+         feedback.textFeedback = "Well done,you really covered the material well. I think you talked about all of the key points";
       }
       else if (percentage >= 80)
       {
          feedback.feedbackPolarity = FeedbackPolarity.Positive;
-         feedback.textFeedback = "You really cover the material well, I think you talked upon most of the key points. " +
+         feedback.textFeedback = "You really covered the material well, I think you talked upon most of the key points. " +
                                  " There are a few missing but you can do it";
       }
       else if (percentage < 20)

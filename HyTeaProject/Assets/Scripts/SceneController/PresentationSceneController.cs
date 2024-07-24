@@ -1,13 +1,13 @@
 using System.Collections.Generic;
-using Sirenix.Utilities;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class PresentationSceneController : MonoBehaviour
 {
     [SerializeField] private Dialogue[] dialogues;
-    [SerializeField] private PresentationStartSettings _settings;
+    [FormerlySerializedAs("_settings")] [SerializeField] private PresentationStartSettings settings;
     [SerializeField] private Camera playerCam;
+    [SerializeField] private Transform Notes;
     
     void Start()
     {
@@ -18,8 +18,15 @@ public class PresentationSceneController : MonoBehaviour
     {
         EventManager.DialogueWasEnded.AddListener(HandleDialogueEnding);
         EventManager.FeedbackHasBeenCreated.AddListener(HandleFeedbackWasCreated);
+        EventManager.PresentationHasEnded.AddListener(HandlePresentationEnded);
     }
-
+    private void OnDisable()
+    {
+        EventManager.DialogueWasEnded.RemoveListener(HandleDialogueEnding);
+        EventManager.FeedbackHasBeenCreated.RemoveListener(HandleFeedbackWasCreated);
+        EventManager.PresentationHasEnded.RemoveListener(HandlePresentationEnded);
+    }
+    
     private void HandleFeedbackWasCreated()
     {
         var feedbackDialogue = GetDialogueFromID(DialogueID.Feedback);
@@ -48,12 +55,6 @@ public class PresentationSceneController : MonoBehaviour
         
         DialogueManager.Instance.HandleStartDialogue(GetDialogueFromID(DialogueID.Feedback));
     }
-
-    private void OnDisable()
-    {
-        EventManager.DialogueWasEnded.RemoveListener(HandleDialogueEnding);
-        EventManager.FeedbackHasBeenCreated.RemoveListener(HandleFeedbackWasCreated);
-    }
     
     private Dialogue GetDialogueFromID(DialogueID dialogueID)
     {
@@ -68,6 +69,12 @@ public class PresentationSceneController : MonoBehaviour
         return null;
     }
     
+    private void HandlePresentationEnded()
+    {
+        if (Notes != null)  Notes.gameObject.SetActive(false);
+        else Debug.LogWarning("the notes tranform is not set in " + gameObject.name);
+    }
+    
     private void HandleDialogueEnding(DialogueID id)
     {
         if (id == DialogueID.PresentingPlayer)
@@ -79,7 +86,9 @@ public class PresentationSceneController : MonoBehaviour
             if (playerCam != null) GameManager.Instance.SetUpNewCamera(playerCam);
             else Debug.LogWarning("player cam is not assigned in the " + gameObject.name);
             //GameManager.Instance.SetGameState(GameState.Presentation);
-            GameManager.Instance.StartPresentation(_settings);
+            if (Notes != null)  Notes.gameObject.SetActive(true);
+            else Debug.LogWarning("the notes tranform is not set in " + gameObject.name);
+            GameManager.Instance.PrepareforPresentation(settings);
         }
         else if  (id == DialogueID.Feedback)
         {

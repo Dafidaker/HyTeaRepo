@@ -20,7 +20,7 @@ public class DisplaySlidesManager : MonoBehaviour
         _currentSlideIndex = 0;
         TabletScreen.sprite = LevelOneSlides[_currentSlideIndex];
         NoteDisplay.text = Notes[_currentSlideIndex];
-    }
+    }   
 
     public void CycleSlides(int num)
     {

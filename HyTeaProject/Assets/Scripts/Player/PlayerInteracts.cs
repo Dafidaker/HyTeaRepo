@@ -48,7 +48,8 @@ public class PlayerInteracts : MonoBehaviour
         
         var ray = (Ray) potentialRay;
         
-        Debug.DrawRay(ray.origin, ray.direction*100);
+        //Debug.DrawRay(ray.origin, ray.direction*100);
+        
         if (Physics.Raycast(ray, out RaycastHit hitInfo, interactRange))
         {
             _observedGameObject = hitInfo.collider.gameObject;

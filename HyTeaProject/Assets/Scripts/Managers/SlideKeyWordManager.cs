@@ -1,16 +1,45 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SlideKeyWordManager : MonoBehaviour
 {
     [SerializeField] private List<GameObject> Slides;
+    [SerializeField, TextArea] private List<string> Notes;
     [SerializeField] private Transform SlideParent;
-
+    
+    [SerializeField] private TextMeshProUGUI NoteDisplay;
+    
     private List<GameObject> _slideGameObjects;
     
     private int _currentSlideIndex;
+
+    private void OnEnable()
+    {
+        EventManager.PresentationHasEnded.AddListener(HandlePresentationEnd);
+    }
+
+    private void HandlePresentationEnd()
+    {
+        _slideGameObjects[^1].GetComponent<SlideKeyWordList>().KeyWords.endTime = Time.time;
+
+        List<TimedWordList> timedWordLists = new List<TimedWordList>();
+
+        foreach (var gameObject in _slideGameObjects)
+        {
+            timedWordLists.Add(gameObject.GetComponent<SlideKeyWordList>().KeyWords);
+        }
+
+        PresentationManager.Instance.GetPresentationEvaluation().timedWordLists = timedWordLists;
+    }
+
+    private void OnDisable()
+    {
+        EventManager.PresentationHasEnded.AddListener(HandlePresentationEnd);
+    }
 
     private void Start()
     {
@@ -29,6 +58,9 @@ public class SlideKeyWordManager : MonoBehaviour
         }
 
         _slideGameObjects[_currentSlideIndex].GetComponent<SlideKeyWordList>().KeyWords.startTime = Time.time;
+        
+        
+        NoteDisplay.text = Notes[_currentSlideIndex];
     }
 
     private void MoveSlides()
@@ -40,6 +72,8 @@ public class SlideKeyWordManager : MonoBehaviour
             _currentSlideIndex++;
             _slideGameObjects[_currentSlideIndex].SetActive(true);
             _slideGameObjects[_currentSlideIndex].GetComponent<SlideKeyWordList>().KeyWords.startTime = Time.time;
+            
+            NoteDisplay.text = Notes[_currentSlideIndex];
         }
         else
         {
@@ -55,7 +89,7 @@ public class SlideKeyWordManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.RightArrow))
+        if (Input.GetKeyDown(KeyCode.RightArrow) && GameManager.Instance.GameState == GameState.Presentation)
         {
             MoveSlides();
         }

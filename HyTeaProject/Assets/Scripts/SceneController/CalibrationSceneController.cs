@@ -71,7 +71,7 @@ public class CalibrationSceneController : MonoBehaviour
 
     private void Awake()
     {
-        StartCoroutine(CheckAndLoadScene("LoadAdditively"));
+        //StartCoroutine(CheckAndLoadScene("LoadAdditively"));
     }
 
 

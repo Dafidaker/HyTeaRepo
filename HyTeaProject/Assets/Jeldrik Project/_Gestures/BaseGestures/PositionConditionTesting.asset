@@ -17,14 +17,8 @@ MonoBehaviour:
     XStepLimits: {x: -0.005, y: 0.005}
     YStepLimits: {x: -0.005, y: 0.005}
     VisibilityThreshold: 0.7
-  DirectionPercentages:
-  - Direction: 2
-    MinimumPercentage: 0.2
-    MaximumPercentage: 1
+  DirectionPercentages: []
   PositionConditions:
-  - Landmark: 11
+  - Landmark: 12
     Direction: 1
-    Type: 1
-  - Landmark: 11
-    Direction: 0
-    Type: 2
+    Type: 3

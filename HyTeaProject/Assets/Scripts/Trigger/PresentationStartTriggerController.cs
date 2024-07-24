@@ -4,8 +4,8 @@ using UnityEngine;
 [Serializable]
 public class PresentationStartSettings
 {
-    public Transform lookAtTransform;
-    public Transform playerPositionTransform;
+   [SerializeField] public Transform lookAtTransform;
+   [SerializeField]  public Transform playerPositionTransform;
 }
 
 

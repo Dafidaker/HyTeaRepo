@@ -56,7 +56,8 @@ public enum DialogueID
     BeginningCalibration,
     BeforePresentation,
     PresentingPlayer,
-    Feedback
+    Feedback,
+    SecondLevelIntroduction
     
 }
 

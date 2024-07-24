@@ -7,6 +7,7 @@ public enum GameState
     Dialogue,
     Walking,
     Presentation,
+    PrePresentation,
     Calibration
 }
 
@@ -94,9 +95,18 @@ public class GameManager : Singleton<GameManager>
         }
         //make player not be able to move
         //make player move the place 
-        
-        
-        PresentationManager.Instance.StartPresentation(presentationStartSettings);
+
+        if (presentationStartSettings == null) PresentationManager.Instance.StartPresentation();
+        else PresentationManager.Instance.StartPresentation(presentationStartSettings);
+    }
+
+    public void PrepareforPresentation(PresentationStartSettings presentationStartSettings)
+    {
+        SetGameState(GameState.PrePresentation);
+        if (presentationStartSettings != null)
+        {
+            LockPlayerCameraOnTarget(presentationStartSettings.lookAtTransform);
+        }
     }
 
     public void EndPresentation()

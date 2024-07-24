@@ -98,7 +98,8 @@ public class PlayerCam : MonoBehaviour
 
     private void RotateLockedCamera()
     {
-        if (cameraIsMoving || GameManager.Instance.GameState != GameState.Presentation) return;
+        if (cameraIsMoving || (GameManager.Instance.GameState != GameState.Presentation &&
+                               GameManager.Instance.GameState != GameState.PrePresentation)) return;
             
         LookToTransform();
         
