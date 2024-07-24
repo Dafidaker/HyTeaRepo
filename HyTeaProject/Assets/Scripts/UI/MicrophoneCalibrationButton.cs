@@ -34,7 +34,7 @@ public class MicrophoneCalibrationButton : VirtualButton
         _button = GetComponent<Button>();
         buttonText = gameObject.GetComponentInChildren<TextMeshProUGUI>();
         _buttonState = ButtonState.Start;
-        _initialButtonName = buttonText.text;
+        //_initialButtonName = buttonText.text;
     }
 
 

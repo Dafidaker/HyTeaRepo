@@ -11,7 +11,8 @@ public class ScriptableObjectTable<T> where T : ScriptableObject
     
     private static List<T> FetchAllObjects()
     {
-        return AssetDatabase.FindAssets("t:" + typeof(T).Name).Select( AssetDatabase.GUIDToAssetPath).Select(AssetDatabase.LoadAssetAtPath<T>).ToList();
+        return null;
+        //return AssetDatabase.FindAssets("t:" + typeof(T).Name).Select( AssetDatabase.GUIDToAssetPath).Select(AssetDatabase.LoadAssetAtPath<T>).ToList();
     }
 
     public void UpdateObjects()

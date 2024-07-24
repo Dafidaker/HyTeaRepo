@@ -10,7 +10,7 @@ public class PlayerInteracts : MonoBehaviour
     
     private bool _interactThoroughMouse;
 
-    private Camera playerCamera;
+    public Camera playerCamera;
     
     private GameObject _observedGameObject;
     private GameObject _previousObservedGameObject;
@@ -21,7 +21,7 @@ public class PlayerInteracts : MonoBehaviour
         _observedGameObject = null;
         isDebuggingObjectName = false;
 
-        playerCamera = GameManager.Instance.currentCamera;
+        //playerCamera = GameManager.Instance.currentCamera;
     }
 
     private void OnEnable()

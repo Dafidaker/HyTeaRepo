@@ -74,6 +74,8 @@ public class PresentationManager : Singleton<PresentationManager>
     {
         if (presentationStartSettings != null) _presentationStartSettings = presentationStartSettings; 
         
+        EventManager.PresentationHasStarted.Invoke();
+        
         presentationData =  gameObject.AddComponent<PresentationData>();
 
         MicrophoneManager.Instance.RecordMicrophone();
@@ -87,6 +89,8 @@ public class PresentationManager : Singleton<PresentationManager>
     
     public void StartPresentation()
     {
+        EventManager.PresentationHasStarted.Invoke();
+        
         presentationData =  gameObject.AddComponent<PresentationData>();
 
         MicrophoneManager.Instance.RecordMicrophone();

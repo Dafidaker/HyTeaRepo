@@ -1,14 +1,7 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using Mediapipe;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Serialization;
-using UnityEngine.UIElements;
 using Button = UnityEngine.UI.Button;
-using Image = Microsoft.Unity.VisualStudio.Editor.Image;
 
 public class FullSlideManager : MonoBehaviour
 {

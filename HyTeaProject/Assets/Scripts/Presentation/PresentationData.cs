@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public enum GesturesEnum
 {
@@ -242,5 +243,7 @@ public class PresentationData : MonoBehaviour
         
         _timedGestures.Add(timedGestures);
         TrackLookingAtNotes = null;
+
+        AudienceManager.Instance.HandleMakingReactionFromRobots(RobotFace.Unhappy, Random.Range(40,80), 5);
     }
 }

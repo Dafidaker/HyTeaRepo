@@ -111,6 +111,7 @@ public class GameManager : Singleton<GameManager>
 
     public void EndPresentation()
     {
+        EventManager.PresentationHasEnded.Invoke();
         SetGameState(GameState.Walking);
         UnlockPlayerCameraOnTarget(PresentationManager.Instance.GetPresentationStartSettings().lookAtTransform);
         //make player not be able to move

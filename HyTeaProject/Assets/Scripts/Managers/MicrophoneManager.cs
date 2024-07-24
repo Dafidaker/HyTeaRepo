@@ -64,7 +64,7 @@ public class MicrophoneManager : Singleton<MicrophoneManager>
 
     private void SetVolumeAnalyzer(VolumeAnalyzer volumeAnalyzer)
     {
-        volumeAnalyzer = volumeAnalyzer;
+        this.volumeAnalyzer = volumeAnalyzer;
     }
 
     public void SetGain(float newGain)

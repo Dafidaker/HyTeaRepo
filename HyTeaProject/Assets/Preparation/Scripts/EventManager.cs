@@ -66,6 +66,7 @@ public static class EventManager
    
    public static readonly UnityEvent FeedbackHasBeenCreated = new();
    
+   public static readonly UnityEvent PresentationHasStarted= new(); 
    public static readonly UnityEvent PresentationHasEnded = new(); 
    
    ///////////////////////////*AI*//////////////////////////////////

@@ -172,8 +172,8 @@ public class MicCalibrationUIManager : MonoBehaviour
     
     private IEnumerator ResultsOfLoudnessTest()
     {
-        _projectingLoudness = 0.7f;
-        _whisperingLoudness = 0.3f;
+        /*_projectingLoudness = 0.7f;
+        _whisperingLoudness = 0.3f;*/
         
         _calibrationComplete = false;
         
@@ -202,6 +202,7 @@ public class MicCalibrationUIManager : MonoBehaviour
             instructionText.text = "If the problem precises ou might not have the equipment to play the game";
             yield return new WaitForSeconds(3f);
             instructionText.text = "";
+            RedoCalibration();
         }
         else
         {
@@ -211,6 +212,8 @@ public class MicCalibrationUIManager : MonoBehaviour
             yield return new WaitForSeconds(3f);
             instructionText.text = "";
         }
+
+        
         
         
         EventManager.FinishedVolumeAnalysis.Invoke();

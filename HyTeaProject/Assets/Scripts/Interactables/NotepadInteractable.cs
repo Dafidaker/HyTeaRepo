@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 internal enum LookingAtNotepad
 {
@@ -9,11 +11,16 @@ internal enum LookingAtNotepad
 
 public class NotepadInteractable : Interactable
 {
-    [field: SerializeField] private LookingAtNotepad LookingAtNotepadMode;
+    [SerializeField] private LookingAtNotepad LookingAtNotepadMode;
     [Header("Camera Moves"),SerializeField] private Transform CameraLookAt;
     [Header("Notepad Moves"), SerializeField] private Transform pickedUpTransform;
-    [field: SerializeField] private Transform holdingTransform;
+    [ SerializeField] private Transform holdingTransform;
+    
+    [Header("Notepad Scrolling"),  SerializeField] private ScrollRect scrollRect;
+    [SerializeField] private float scrollSpeed = 50f;
 
+
+    private bool IsBeingLookedAt = false;
     private PlayerCam playerCam;
     private bool notepadMoving;
     
@@ -26,6 +33,7 @@ public class NotepadInteractable : Interactable
     {
         if (obj == this && isInteractable)
         {
+            
             isBeingWatched = true;
             
             //_outline.enabled = true;
@@ -51,6 +59,29 @@ public class NotepadInteractable : Interactable
             
         }
         
+    }
+
+    private void CheckToMoveScroll()
+    {
+        if(Input.mouseScrollDelta.y != 0)
+        {
+            // Get the current scroll position
+            float newY = scrollRect.verticalNormalizedPosition + (Input.mouseScrollDelta.y * scrollSpeed * Time.deltaTime);
+
+            // Clamp the value between 0 and 1
+            newY = Mathf.Clamp(newY, 0f, 1f);
+
+            // Set the new scroll position
+            scrollRect.verticalNormalizedPosition = newY;
+        }
+    }
+
+    private void Update()
+    {
+        if (isBeingWatched)
+        {
+            CheckToMoveScroll();
+        }
     }
 
     protected override void StoppedBeingLookedAt(Interactable obj)

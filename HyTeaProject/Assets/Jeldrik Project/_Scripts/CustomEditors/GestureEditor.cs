@@ -5,7 +5,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class GestureEditor : EditorWindow
+/*public class GestureEditor : EditorWindow
 {
     [MenuItem("Window/UI Toolkit/GestureEditor")]
     public static void ShowExample()
@@ -89,4 +89,4 @@ public class GestureEditor : EditorWindow
         }
         
     }
-}
+}*/

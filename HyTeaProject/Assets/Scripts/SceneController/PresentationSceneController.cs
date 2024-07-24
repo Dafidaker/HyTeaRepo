@@ -8,7 +8,9 @@ public class PresentationSceneController : MonoBehaviour
     [FormerlySerializedAs("_settings")] [SerializeField] private PresentationStartSettings settings;
     [SerializeField] private Camera playerCam;
     [SerializeField] private Transform Notes;
-    
+    [SerializeField] private GameObject PresentationLight;
+    [SerializeField] private GameObject PresentationButtons;
+    [SerializeField] private GameObject PrePresentationButtonsUI;
     void Start()
     {
         DialogueManager.Instance.HandleStartDialogue(GetDialogueFromID(DialogueID.PresentingPlayer));
@@ -19,11 +21,26 @@ public class PresentationSceneController : MonoBehaviour
         EventManager.DialogueWasEnded.AddListener(HandleDialogueEnding);
         EventManager.FeedbackHasBeenCreated.AddListener(HandleFeedbackWasCreated);
         EventManager.PresentationHasEnded.AddListener(HandlePresentationEnded);
+        EventManager.PresentationHasStarted.AddListener(HandlePresentationStarted);
     }
+
+    private void HandlePresentationStarted()
+    {
+        if (PresentationLight != null)  PresentationLight.SetActive(true);
+        else Debug.LogWarning("the PresentationLight is not set in " + gameObject.name);
+        
+        if (PrePresentationButtonsUI != null)  PrePresentationButtonsUI.SetActive(false);
+        else Debug.LogWarning("the PrePresentationButtonsUI is not set in " + gameObject.name);
+        
+        if (PresentationButtons != null)  PresentationButtons.SetActive(true);
+        else Debug.LogWarning("the PresentationButtons is not set in " + gameObject.name);
+    }
+
     private void OnDisable()
     {
         EventManager.DialogueWasEnded.RemoveListener(HandleDialogueEnding);
         EventManager.FeedbackHasBeenCreated.RemoveListener(HandleFeedbackWasCreated);
+        EventManager.PresentationHasStarted.RemoveListener(HandlePresentationStarted);
         EventManager.PresentationHasEnded.RemoveListener(HandlePresentationEnded);
     }
     
@@ -73,6 +90,13 @@ public class PresentationSceneController : MonoBehaviour
     {
         if (Notes != null)  Notes.gameObject.SetActive(false);
         else Debug.LogWarning("the notes tranform is not set in " + gameObject.name);
+        
+        if (PresentationLight != null)  PresentationLight.SetActive(false);
+        else Debug.LogWarning("the PresentationLight is not set in " + gameObject.name);
+        
+        if (PresentationButtons != null)  PresentationButtons.SetActive(false);
+        else Debug.LogWarning("the PresentationButtons is not set in " + gameObject.name);
+        
     }
     
     private void HandleDialogueEnding(DialogueID id)
@@ -83,6 +107,9 @@ public class PresentationSceneController : MonoBehaviour
         }
         else if (id == DialogueID.BeforePresentation)
         {
+            if (PrePresentationButtonsUI != null)  PrePresentationButtonsUI.SetActive(true);
+            else Debug.LogWarning("the PrePresentationButtonsUI is not set in " + gameObject.name);
+            
             if (playerCam != null) GameManager.Instance.SetUpNewCamera(playerCam);
             else Debug.LogWarning("player cam is not assigned in the " + gameObject.name);
             //GameManager.Instance.SetGameState(GameState.Presentation);

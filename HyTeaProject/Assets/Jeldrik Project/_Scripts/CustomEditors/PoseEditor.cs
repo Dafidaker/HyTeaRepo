@@ -2,7 +2,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class PoseEditor : EditorWindow
+/*public class PoseEditor : EditorWindow
 {
     [MenuItem("Window/UI Toolkit/PoseEditor")]
     public static void ShowExample()
@@ -22,3 +22,4 @@ public class PoseEditor : EditorWindow
         
     }
 }
+*/
