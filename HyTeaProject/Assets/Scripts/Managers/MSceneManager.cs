@@ -15,7 +15,6 @@ public class MSceneManager : Singleton<MSceneManager>
             return false;
         if (SceneUtility.GetBuildIndexByScenePath(scenePath) >= 0)
             return true;
-        
         if (SceneUtility.GetBuildIndexByScenePath(scenePath + ".unity") >= 0)
             return true;
         if (SceneUtility.GetBuildIndexByScenePath("Assets/" + scenePath) >= 0)

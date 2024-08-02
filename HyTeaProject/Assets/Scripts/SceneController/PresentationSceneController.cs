@@ -112,9 +112,10 @@ public class PresentationSceneController : MonoBehaviour
             
             if (playerCam != null) GameManager.Instance.SetUpNewCamera(playerCam);
             else Debug.LogWarning("player cam is not assigned in the " + gameObject.name);
-            //GameManager.Instance.SetGameState(GameState.Presentation);
+            
             if (Notes != null)  Notes.gameObject.SetActive(true);
-            else Debug.LogWarning("the notes tranform is not set in " + gameObject.name);
+            else Debug.LogWarning("the notes transform is not set in " + gameObject.name);
+            
             GameManager.Instance.PrepareforPresentation(settings);
         }
         else if  (id == DialogueID.Feedback)
